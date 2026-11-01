@@ -9,7 +9,7 @@ import { deflateRawSync } from 'node:zlib';
 const workspace = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const productName = 'cutu-devday-delhi-2026-11-01';
 const rootFiles = ['Start-Workspace.ps1', '.env.local.example', 'README.md', 'Setup-Workspace.ps1', 'Activate-Workspace.ps1', 'workspace.ps1', '.gitignore'];
-const optionalRootFiles = ['scripts/build-makada.mjs', 'requirements.txt', 'requirements-dev.txt', 'LICENSE', 'LICENSE.md', 'LICENSE.txt', 'NOTICE', 'NOTICE.md', 'THIRD-PARTY-NOTICES.md'];
+const optionalRootFiles = ['scripts/makada.mjs', 'scripts/build-makada.mjs', 'requirements.txt', 'requirements-dev.txt', 'LICENSE', 'LICENSE.md', 'LICENSE.txt', 'NOTICE', 'NOTICE.md', 'THIRD-PARTY-NOTICES.md'];
 const providerNames = { Cerebras: '@cutucircuits/cerebras', Exa: '@cutucircuits/exa' };
 const pluginDist = new Set(['cutu-circuits/plugins/cutucircuits/dist/server.mjs', 'cutu-circuits/plugins/cutucircuits/dist/THIRD_PARTY_LICENSES.txt']);
 const blocked = new Set(['.git', '.hg', '.svn', '.tools', '.venv', 'node_modules', 'dist', 'artifacts', 'test-results', 'playwright-report', '.pio', '.cache', '.local', '.ssh', '.aws', '.azure', '__pycache__', '.pytest_cache', '.mypy_cache', '.ruff_cache', '.vite', '.turbo', 'coverage']);

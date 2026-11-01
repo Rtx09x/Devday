@@ -499,8 +499,8 @@
     },
     {
       "path": "cutu-circuits/docs/presentation-and-walking.md",
-      "bytes": 3091,
-      "sha256": "c499f1f7d0b9d69f52ca86fae5f4a92ae04833551e910444d8487826342ebae0"
+      "bytes": 3820,
+      "sha256": "b1607f71ba66a61a083066f5f589f4c0edf2a012d13622bbf4b9bf9681cf2f43"
     },
     {
       "path": "cutu-circuits/docs/release.md",
@@ -2794,13 +2794,18 @@
     },
     {
       "path": "scripts/package-submission.mjs",
-      "bytes": 17027,
-      "sha256": "a1728be40d408d5cdf6c54e2db856aee4a37d6586f26ee95f05ced2bf46c4404"
+      "bytes": 17289,
+      "sha256": "dba53bad454b63d0dd9ff73593ce2bdcaab94b755f63e034a9ed4e4114e802f0"
     },
     {
       "path": "workspace.ps1",
       "bytes": 293,
       "sha256": "ad5aef3ef542957246adac0127d3f15a2e9a7ef0ae2105bd58dc69c586de0c83"
+    },
+    {
+      "path": "scripts/makada.mjs",
+      "bytes": 3304,
+      "sha256": "21ec79d5a70e73774f927ed57648d7d0e81b219b5523cbcaeb101311115d0f9d"
     }
   ]
 }
