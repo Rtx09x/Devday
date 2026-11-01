@@ -189,8 +189,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5279,
-      "sha256": "cb3173a7230f4cb26bdd901369a3b539dc69cc17fc628ef985965ecba8e4a05e"
+      "bytes": 5443,
+      "sha256": "fcb1c12d1788a797b63bdeba41d9e3b58a2568e33b356f65ee2e44564a7245f4"
     },
     {
       "path": "Setup-Workspace.ps1",
@@ -476,6 +476,11 @@
       "path": "cutu-circuits/docs/demo.md",
       "bytes": 9736,
       "sha256": "73b044ec75dc5c7c68d95e027433bfd7271a004d61075baddbf1aa703492ed12"
+    },
+    {
+      "path": "cutu-circuits/docs/images/workspace.png",
+      "bytes": 46972,
+      "sha256": "4a4fc855812a56c66d9e632fd4a7975017bef42c726ae128c3a264ef4fa9c360"
     },
     {
       "path": "cutu-circuits/docs/live-provider-validation.md",

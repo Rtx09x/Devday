@@ -1,63 +1,83 @@
+<div align="center">
+
 # Cutu Circuits
 
-An agent-assisted electronics and robotics workspace. Design circuits and mechanical parts, inspect a robot assembly, and connect the same project to real hardware.
+### Build electronics. Bring them to life.
 
-**Makada** is the demonstration robot: a calibrated three-servo walker with a NodeMCU controller, an animated assembly presentation and Wi-Fi gait controls.
+A workspace where circuits, mechanical design, firmware and AI work on the same project.
 
-## Start on Windows
+[Get started](#try-cutu) · [Meet Makada](#meet-makada) · [Connect Codex](cutu-circuits/plugins/cutucircuits/README.md)
 
-Requires Node.js 24+, PowerShell and an internet connection for the initial dependency installation. Setup installs user-level Python 3.12 when needed.
+</div>
+
+![Cutu Circuits — Makada in the engineering workspace](cutu-circuits/docs/images/workspace.png)
+
+## One project, from circuit to robot
+
+Building a robot usually means carrying context between a circuit editor, a CAD tool, firmware files and an AI chat. Cutu brings those pieces into one workspace, so you can move from a wiring question to a design change to a hardware command with the project beside you.
+
+Open the assembly. Inspect a circuit. Change a part. Ask the agent to check your assumptions. Then connect the real device and see it move.
+
+## Meet Makada
+
+Makada is our six-legged, three-servo robot, powered by a NodeMCU. It is the project you can explore inside Cutu—and the physical robot we use to demonstrate the workflow.
+
+**“Build Makada.”** The assembly comes together over a smooth, 37-second sequence: servo bodies, horns, each leg individually, then the controller and wiring. The presentation ends with the complete robot, ready to inspect.
+
+Switch between **Assembly**, **Circuit**, **CAD** and **Robot** to explore how the pieces fit together. Ask Cutu to explain the wiring or research a component. With calibrated hardware connected over Wi-Fi, choose a gait count and press **Walk forward** to command the real Makada.
+
+The assembly show is visual; walking is a separate, explicit hardware action. A gait cycle describes the commanded sequence, not a measured distance.
+
+## Design with an agent beside you
+
+The assistant lives next to the design, with access to the project you are working on.
+
+- **Understand the build.** Ask about source files, components, connections and device programs.
+- **Check the details.** Use Exa to find public component documentation and bring back cited sources.
+- **Make a change together.** Review proposed edits and approve changes before they are applied.
+- **See the work happen.** Streaming answers, tool activity and approvals stay in the conversation.
+- **Go deeper with Codex.** Connect the local plugin for larger engineering tasks through the same project runtime.
+
+Cerebras powers the embedded assistant. Exa supplies web research. The providers are separate modules, while the project runtime coordinates files, tools and permissions.
+
+## Explore, test, build
+
+| In Cutu | What you can do |
+| --- | --- |
+| **Assembly** | Inspect the full build in 3D and present Makada coming together |
+| **Circuit** | Edit native circuit source, inspect connections and export engineering outputs |
+| **CAD** | Work on mechanical geometry and export manufacturing files |
+| **Robot** | Inspect URDF models, move joints and explore rigid-body simulation |
+| **Hardware** | Run project-owned device programs with telemetry and Stop controls |
+
+Source files remain editable. Project history and guarded writes make changes inspectable. The light and dark themes let you work at your desk or present on a bright screen.
+
+## Try Cutu
+
+On Windows, install **Node.js 24+**, then run these commands in PowerShell from the repository root:
 
 ```powershell
 .\Setup-Workspace.ps1
-Copy-Item .env.local.example .env.local
-# Add your provider keys to .env.local, then:
 .\Start-Workspace.ps1
 ```
 
-Open **http://127.0.0.1:4310/** and select **Makada Demo → Assembly**. The top-bar button switches between a high-contrast light theme and dark mode.
+Open **http://127.0.0.1:4310/** and choose **Makada Demo → Assembly**. Setup installs the dependencies and prepares Python when needed; the launcher builds and warms the demo assets.
 
-Keys are optional for the design workspace. Cerebras enables the embedded assistant; Exa enables cited web research. Keep keys in the root `.env.local` file, never in frontend code. Restart the launcher after changing keys.
+To enable the assistant and web research, copy `.env.local.example` to `.env.local`, add your **Cerebras** and **Exa** keys, and restart the launcher. The design workspace works without provider keys.
 
-## Demo
+For the assembly presentation, keep the Assembly view open and ask a connected assistant to **build Makada**, or run this in a second terminal:
 
-1. Open **Makada Demo → Assembly** and keep that view visible.
-2. Ask the connected assistant to **build Makada**, or run the presentation helper in another activated PowerShell terminal:
+```powershell
+. .\Activate-Workspace.ps1
+node scripts/build-makada.mjs
+```
 
-   ```powershell
-   . .\Activate-Workspace.ps1
-   node scripts/build-makada.mjs
-   ```
+Physical walking requires a commissioned, calibrated robot and private connection settings. See the [hardware and walking guide](cutu-circuits/docs/presentation-and-walking.md) before using the real robot controls. The simulator and commanded telemetry do not measure real-world pose or travel.
 
-   The approximately 37-second show reveals the servo bodies, horns, six legs individually, controller and wiring. It uses the existing geometry and finishes stationary. It sends no hardware commands.
-3. Inspect **Circuit**, **CAD** and **Robot** for the engineering representations. The Robot view supports bounded rigid-body simulation; it does not predict real-world walking performance.
-4. With separately commissioned and calibrated hardware, use **Real robot · Wi-Fi → Gait cycles → Walk forward**. This is physical motion. Requests of 1–100 cycles are split into queues of at most 20, monitored on one authenticated connection. Stop remains available in the header. A connection failure cancels remaining batches; uncertain RUN commands are never repeated automatically.
+<details>
+<summary><strong>For developers</strong></summary>
 
-A gait cycle is not a measured distance. Physical pose and displacement are not sensor-verified. Board credentials and calibration backups are deliberately absent from this repository; follow the hardware guide before connecting a device.
-
-## Workspace capabilities
-
-- Native circuit and CAD source editing, compilation and manufacturing exports.
-- Shared project identities, selections, saved revisions and guarded source writes.
-- URDF inspection, joint controls and Rapier rigid-body simulation.
-- Streaming Cerebras assistant with Markdown, tool activity and explicit approvals for changes and execution.
-- Exa research with cited public sources.
-- A local Codex plugin with 27 shared-runtime tools, including the assembly presentation trigger.
-- Project-owned device programs, live telemetry, cancellation and calibrated Wi-Fi gait control.
-
-## Code map
-
-| Location | Purpose |
-| --- | --- |
-| `cutu-circuits/apps/web` | Workspace interface, agent sidebar and 3D presentation |
-| `cutu-circuits/packages/runtime` | Project persistence, API, agent orchestration and presentation events |
-| `cutu-circuits/packages/hardware` | Device program execution and monitoring |
-| `cutu-circuits/packages/plugin` | Codex/MCP tool server |
-| `cutu-circuits/examples/spidey` | Makada sources, firmware and Python controller adapter |
-| `Cerebras` | Isolated inference and streaming provider package |
-| `Exa` | Isolated search provider package |
-
-## Validate
+The frontend is in `cutu-circuits/apps/web`. The shared runtime, hardware runner and Codex plugin are under `cutu-circuits/packages`. `Cerebras/` and `Exa/` contain the isolated provider integrations. Makada's source, firmware and controller adapter live in `cutu-circuits/examples/spidey`.
 
 ```powershell
 .\workspace.ps1 run typecheck
@@ -66,17 +86,12 @@ A gait cycle is not a measured distance. Physical pose and displacement are not 
 .\workspace.ps1 run demo:check
 ```
 
-The latest software check passed 131 tests, with zero failures and one platform-specific skip. Typecheck and the application/plugin build passed. Four presentation, theme and control browser scenarios passed; an additional control check verified Stop remains available after changing views. UI motion tests use a fake device and send no physical commands. Live Wi-Fi walking has also been exercised, but the wireless connection can interrupt longer runs.
+Latest checks: **131 tests passed**, zero failures, one platform-specific skip. Typecheck, application/plugin build and presentation/control browser checks passed. Hardware UI tests use a fake device; real Wi-Fi walking has been exercised separately, and longer runs can be interrupted by connection loss.
 
-Browser tests use an isolated runtime. See the application documentation before running them alongside a demo server. Provider keys are needed only for live inference/search, not the offline test suite.
+[Development guide](cutu-circuits/README.md) · [Plugin setup](cutu-circuits/plugins/cutucircuits/README.md) · [Demo runbook](cutu-circuits/docs/demo-runbook.md)
 
-## Documentation
+</details>
 
-- [Presentation and physical walking](cutu-circuits/docs/presentation-and-walking.md)
-- [Demo runbook](cutu-circuits/docs/demo-runbook.md)
-- [Physical board validation](cutu-circuits/docs/physical-board-validation.md)
-- [Codex plugin setup](cutu-circuits/plugins/cutucircuits/README.md)
-- [Application development](cutu-circuits/README.md)
-- [Third-party notices](cutu-circuits/THIRD-PARTY-NOTICES.md)
+---
 
-This submission contains the application and provider sources, dependency lockfiles, tests and setup scripts. Local credentials, device flash backups, installed dependencies, generated caches and private project history are excluded. Third-party notices accompany incorporated components. The workspace builds on the existing [Cutu project](https://github.com/rtx09x/cutu); this repository is a fresh submission snapshot.
+Built on [Cutu](https://github.com/rtx09x/cutu). [Third-party notices](cutu-circuits/THIRD-PARTY-NOTICES.md).
