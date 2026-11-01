@@ -1,0 +1,146 @@
+/* Presentation ported from the archived CutuCircuits model/power picker. */
+.cutucircuits-power {
+  --step-progress: 42%;
+  --picker-motion: 300ms;
+  --picker-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  touch-action: none;
+  height: 32px;
+  margin-inline: 2px;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.cutucircuits-power[data-dragging="true"] {
+  --picker-motion: 150ms;
+  cursor: grabbing;
+}
+
+.cutucircuits-power-root {
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.cutucircuits-power-track {
+  position: relative;
+  flex: 1;
+  height: 24px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--theme-ink) 10%, transparent);
+  box-shadow: inset 0 0 0 0.5px var(--theme-border);
+  overflow: hidden;
+}
+
+.cutucircuits-power-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(14px + (100% - 28px) * var(--step-progress));
+  height: 100%;
+  border-radius: 12px 0 0 12px;
+  background: var(--theme-accent);
+  overflow: hidden;
+  transition:
+    width var(--picker-motion) var(--picker-ease),
+    background 200ms ease;
+}
+
+.cutucircuits-power[data-full="true"] .cutucircuits-power-fill {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.cutucircuits-power-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cutucircuits-power-tick {
+  --tick: 0;
+  position: absolute;
+  top: 50%;
+  left: calc(14px + (100% - 28px) * var(--tick));
+  width: 4px;
+  height: 4px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: currentColor;
+  color: color-mix(in srgb, var(--theme-ink-faint) 50%, transparent);
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  z-index: 5;
+  cursor: pointer;
+  transition:
+    transform 120ms ease,
+    color var(--picker-motion) var(--picker-ease),
+    filter 120ms ease;
+}
+
+.cutucircuits-power-tick::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.cutucircuits-power-tick:hover {
+  filter: brightness(0.85);
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.cutucircuits-power-tick[data-selected="true"] {
+  color: #ffffff4d;
+}
+.cutucircuits-power-tick[data-selected="false"] {
+  color: color-mix(in srgb, var(--theme-ink-faint) 50%, transparent);
+}
+
+.cutucircuits-power-thumb {
+  position: absolute;
+  top: 50%;
+  left: calc(14px + (100% - 28px) * var(--step-progress));
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0.5px solid var(--theme-border-strong);
+  box-shadow: 0 0 2px #0000001a;
+  pointer-events: none;
+  z-index: 4;
+  transform: translate(-50%, -50%);
+  transition:
+    left var(--picker-motion) var(--picker-ease),
+    transform 140ms var(--picker-ease);
+}
+
+.cutucircuits-power:hover .cutucircuits-power-thumb,
+.cutucircuits-power[data-dragging="true"] .cutucircuits-power-thumb {
+  transform: translate(-50%, -50%) scale(0.94);
+}
+
+.cutucircuits-power-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.cutucircuits-power-hit:focus-visible {
+  outline: 2px solid var(--theme-accent-focus);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.cutucircuits-power[data-disabled="true"] {
+  opacity: 0.5;
+}
+.cutucircuits-power-hit:disabled {
+  cursor: default;
+}

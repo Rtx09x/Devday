@@ -1,0 +1,148 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -7,8 +7,14 @@
+     debugGrid?: boolean;
+     editingEnabled?: boolean;
+     debug?: boolean;
++    onViewerControlsReady?: (controls: ViewerControls | null) => void;
+ }
+-declare const AssemblyViewer: ({ circuitJson, containerStyle, debugGrid, debug, }: Props$1) => react.JSX.Element;
++interface ViewerControls {
++    fitToView: () => void;
++    zoomIn: () => void;
++    zoomOut: () => void;
++}
++declare const AssemblyViewer: ({ circuitJson, containerStyle, debugGrid, debug, onViewerControlsReady, }: Props$1) => react.JSX.Element;
+ 
+ interface Props {
+     circuitJson: any[];
+diff --git a/dist/index.js b/dist/index.js
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -27,12 +27,18 @@
+   return { containerWidth, containerHeight };
+ };
+ 
+-// lib/components/AssemblyViewer.tsx
+-import {
+-  identity,
+-  fromString,
+-  toString as transformToString
+-} from "transformation-matrix";
++// Electronics Studio exact-version patch: this package omits its own
++// transformation-matrix dependency. Serialize the hook's plain matrix value
++// locally so the viewer never mixes the root v2 module with the hook's v3 copy.
++var transformToString = ({ a, b, c, d, e, f }) => `matrix(${a},${b},${c},${d},${e},${f})`;
++var zoomTransformAt = (transform, factor, centerX, centerY) => ({
++  a: transform.a * factor,
++  b: transform.b * factor,
++  c: transform.c * factor,
++  d: transform.d * factor,
++  e: centerX + (transform.e - centerX) * factor,
++  f: centerY + (transform.f - centerY) * factor
++});
+ 
+ // lib/utils/debug.ts
+ import Debug from "debug";
+@@ -47,7 +53,8 @@
+   circuitJson,
+   containerStyle,
+   debugGrid = false,
+-  debug: debug2 = false
++  debug: debug2 = false,
++  onViewerControlsReady
+ }) => {
+   if (debug2) {
+     enableDebug();
+@@ -56,7 +63,8 @@
+   const {
+     ref: containerRef,
+     cancelDrag,
+-    transform: svgToScreenProjection
++    transform: svgToScreenProjection,
++    setTransform: setViewerTransform
+   } = useMouseMatrixTransform({
+     onSetTransform(transform) {
+       if (!svgDivRef.current) return;
+@@ -64,6 +72,21 @@
+     }
+   });
+   const { containerWidth, containerHeight } = useResizeHandling(containerRef);
++  useEffect(() => {
++    if (!onViewerControlsReady) return;
++    const zoomAtCenter = (factor) => setViewerTransform(zoomTransformAt(
++      svgToScreenProjection,
++      factor,
++      containerWidth / 2,
++      containerHeight / 2
++    ));
++    onViewerControlsReady({
++      fitToView: () => setViewerTransform({ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }),
++      zoomIn: () => zoomAtCenter(1.2),
++      zoomOut: () => zoomAtCenter(1 / 1.2)
++    });
++    return () => onViewerControlsReady(null);
++  }, [containerHeight, containerWidth, onViewerControlsReady, setViewerTransform, svgToScreenProjection]);
+   const svgString = useMemo(() => {
+     if (!containerWidth || !containerHeight) return "";
+     return convertCircuitJsonToAssemblySvg(circuitJson, {
+@@ -71,18 +94,6 @@
+       height: containerHeight || 720
+     });
+   }, [circuitJson, containerWidth, containerHeight]);
+-  const realToSvgProjection = useMemo(() => {
+-    if (!svgString) return identity();
+-    const transformString = svgString.match(
+-      /data-real-to-screen-transform="([^"]+)"/
+-    )?.[1];
+-    try {
+-      return fromString(transformString);
+-    } catch (e) {
+-      console.error(e);
+-      return identity();
+-    }
+-  }, [svgString]);
+   const svgDiv = useMemo(
+     () => /* @__PURE__ */ jsx(
+       "div",
+@@ -117,11 +128,6 @@
+ import { useMouseMatrixTransform as useMouseMatrixTransform2 } from "use-mouse-matrix-transform";
+ import { convertCircuitJsonToPinoutSvg } from "circuit-to-svg";
+ import { useMemo as useMemo2, useRef as useRef2 } from "react";
+-import {
+-  identity as identity2,
+-  fromString as fromString2,
+-  toString as transformToString2
+-} from "transformation-matrix";
+ import { jsx as jsx2 } from "react/jsx-runtime";
+ var PinoutViewer = ({
+   circuitJson,
+@@ -140,7 +146,7 @@
+   } = useMouseMatrixTransform2({
+     onSetTransform(transform) {
+       if (!svgDivRef.current) return;
+-      svgDivRef.current.style.transform = transformToString2(transform);
++      svgDivRef.current.style.transform = transformToString(transform);
+     }
+   });
+   const { containerWidth, containerHeight } = useResizeHandling(containerRef);
+@@ -151,18 +157,6 @@
+       height: containerHeight || 720
+     });
+   }, [circuitJson, containerWidth, containerHeight]);
+-  const realToSvgProjection = useMemo2(() => {
+-    if (!svgString) return identity2();
+-    const transformString = svgString.match(
+-      /data-real-to-screen-transform="([^"]+)"/
+-    )?.[1];
+-    try {
+-      return fromString2(transformString);
+-    } catch (e) {
+-      console.error(e);
+-      return identity2();
+-    }
+-  }, [svgString]);
+   const svgDiv = useMemo2(
+     () => /* @__PURE__ */ jsx2(
+       "div",

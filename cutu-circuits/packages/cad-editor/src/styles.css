@@ -1,0 +1,1081 @@
+/*
+ * Replicad extension styles.
+ *
+ * All colors come from CutuCircuits's theme tokens (--cutucircuits-*). Layout uses a
+ * container query so the editor adapts to its tab width regardless of window
+ * size or sidebar state.
+ */
+
+.replicad-editor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--cutucircuits-bg);
+  color: var(--cutucircuits-text);
+  container-type: inline-size;
+  container-name: replicad-editor;
+}
+
+.replicad-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--cutucircuits-border);
+  background: var(--cutucircuits-bg-secondary);
+  font-size: 12px;
+}
+
+.replicad-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.replicad-toolbar label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cutucircuits-text-muted);
+}
+
+.replicad-filename {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cutucircuits-text);
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.replicad-toolbar select,
+.replicad-toolbar button {
+  font: inherit;
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg);
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 6px;
+  padding: 4px 9px;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.replicad-toolbar select {
+  max-width: 240px;
+  text-overflow: ellipsis;
+}
+
+.replicad-toolbar button:hover:not(:disabled),
+.replicad-toolbar select:hover {
+  background: var(--cutucircuits-bg-hover);
+}
+
+.replicad-toolbar button:disabled {
+  color: var(--cutucircuits-text-disabled);
+  cursor: progress;
+}
+
+.replicad-export {
+  position: relative;
+}
+
+.replicad-toolbar .replicad-export-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.replicad-export-caret {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid currentColor;
+}
+
+.replicad-export-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 10;
+  min-width: 104px;
+  padding: 4px;
+  background: var(--cutucircuits-bg);
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 6px;
+}
+
+.replicad-toolbar .replicad-export-menu button {
+  display: block;
+  width: 100%;
+  padding: 5px 8px;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+}
+
+.replicad-toolbar .replicad-export-menu button:hover {
+  background: var(--cutucircuits-bg-hover);
+}
+
+.replicad-status {
+  font-size: 11px;
+  color: var(--cutucircuits-text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.replicad-status[data-state='error'] {
+  color: var(--cutucircuits-text);
+}
+
+.replicad-status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cutucircuits-text-faint);
+  margin-right: 6px;
+  vertical-align: 1px;
+}
+
+.replicad-status[data-state='ok'] .replicad-status-dot {
+  background: #16a34a;
+}
+
+.replicad-status[data-state='error'] .replicad-status-dot {
+  background: #dc2626;
+}
+
+.replicad-status[data-state='working'] .replicad-status-dot {
+  background: var(--cutucircuits-border-focus, #3b82f6);
+  animation: replicad-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes replicad-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/*
+ * Nested-flex three-pane layout. The outer track (.replicad-layout) holds
+ * [main | params]; the inner track (.replicad-main) holds [code | preview].
+ * Container queries flip both flex-directions to reflow columns into a stack
+ * (see the @container blocks near the end of this file). Side panes size from
+ * CSS custom properties (--code-w/--code-h, --params-w/--params-h) set inline
+ * on the layout element, so the stylesheet chooses width or height to match the
+ * current orientation while React only tracks the numbers.
+ */
+.replicad-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+  min-height: 0;
+}
+
+.replicad-main {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+  min-height: 0;
+}
+
+.replicad-code-pane,
+.replicad-preview-pane,
+.replicad-params-pane {
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+}
+
+/* Along the outer/inner track's main axis, the side panes take their stored
+   size; preview absorbs the rest. */
+.replicad-code-pane {
+  flex: 0 0 var(--code-w);
+}
+.replicad-preview-pane {
+  flex: 1 1 0;
+}
+.replicad-params-pane {
+  flex: 0 0 var(--params-w);
+}
+
+/* A collapsed pane shrinks to just its header (which stays visible so the user
+   can re-expand it in any orientation). !important beats the inline-var flex. */
+.replicad-collapsed {
+  flex: 0 0 auto !important;
+}
+.replicad-collapsed > .replicad-pane-body {
+  display: none;
+}
+
+/* Shared pane scaffolding: a slim header bar over a flexing, scrollable body. */
+.replicad-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.replicad-pane-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 6px 3px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cutucircuits-text-muted);
+  background: var(--cutucircuits-bg-secondary);
+  border-bottom: 1px solid var(--cutucircuits-border);
+  user-select: none;
+}
+
+.replicad-pane-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--cutucircuits-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.replicad-pane-collapse:hover {
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg-hover);
+  border-color: var(--cutucircuits-border);
+}
+
+.replicad-pane-body {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* When collapsed in a horizontal track the header rotates to a slim vertical
+   rail; the container queries below flip it back to a horizontal strip once the
+   panes have stacked. */
+.replicad-collapsed > .replicad-pane-header {
+  writing-mode: vertical-rl;
+  justify-content: flex-start;
+  padding: 8px 3px;
+  border-bottom: none;
+  border-inline-start: 1px solid var(--cutucircuits-border);
+}
+
+/* Draggable divider. It reads its own orientation from the parent flex track,
+   so the same element is a col-resize grip in a row and a row-resize grip in a
+   column (cursor + grip line are swapped by the @container blocks below). */
+.replicad-resizer {
+  flex: 0 0 6px;
+  position: relative;
+  cursor: col-resize;
+  touch-action: none;
+  z-index: 2;
+}
+
+.replicad-resizer--disabled {
+  pointer-events: none;
+}
+
+.replicad-resizer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--cutucircuits-border);
+  transition: background 0.12s ease, inline-size 0.12s ease, block-size 0.12s ease;
+}
+
+.replicad-resizer:hover::after {
+  width: 2px;
+  background: var(--cutucircuits-border-focus, #3b82f6);
+}
+
+/* Trim Monaco chrome we don't need in a focused single-file editor. */
+.replicad-code-pane .monaco-editor .minimap,
+.replicad-code-pane .monaco-editor .decorationsOverviewRuler {
+  display: none !important;
+}
+
+.replicad-preview-pane {
+  display: flex;
+  flex-direction: column;
+  background: var(--cutucircuits-bg-secondary);
+}
+
+/* The stage holds the canvas (or empty state) and any absolutely-positioned
+   overlays. Keeping it a separate flex child means the stats overlay anchors to
+   the canvas region only and never overlaps the timeline/diagnostics below it. */
+.replicad-preview-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.replicad-preview-canvas {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.replicad-preview-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  color: var(--cutucircuits-text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.replicad-mesh-stage {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--cutucircuits-bg-secondary);
+}
+
+.replicad-diagnostics {
+  border-top: 1px solid var(--cutucircuits-border);
+  background: var(--cutucircuits-bg);
+  max-height: 30%;
+  overflow: auto;
+  font-size: 12px;
+}
+
+.replicad-diagnostics-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.replicad-diagnostic {
+  display: flex;
+  gap: 8px;
+  padding: 4px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  line-height: 1.45;
+  border-left: 2px solid transparent;
+}
+
+.replicad-diagnostic-error {
+  color: var(--cutucircuits-text);
+  border-left-color: #dc2626;
+}
+
+.replicad-diagnostic-warn {
+  color: var(--cutucircuits-text);
+  border-left-color: #d97706;
+}
+
+.replicad-diagnostic-info {
+  color: var(--cutucircuits-text-muted);
+}
+
+.replicad-diagnostic-level {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.replicad-timeline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-top: 1px solid var(--cutucircuits-border);
+  background: var(--cutucircuits-bg-secondary);
+}
+
+.replicad-timeline-play {
+  font: inherit;
+  font-size: 11px;
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg);
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 6px;
+  padding: 3px 12px;
+  cursor: pointer;
+  min-width: 56px;
+}
+
+.replicad-timeline-play:hover {
+  background: var(--cutucircuits-bg-hover);
+}
+
+.replicad-timeline input[type='range'] {
+  flex: 1;
+  min-width: 0;
+}
+
+.replicad-timeline-time {
+  font-size: 11px;
+  color: var(--cutucircuits-text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.replicad-preview-stale {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+  font-size: 11px;
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg);
+  border: 1px solid #d97706;
+  border-radius: 4px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.replicad-selection-chip {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 20px);
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg);
+  border: 1px solid #f59e0b;
+  border-radius: 5px;
+  padding: 4px 5px 4px 9px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.replicad-selection-chip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.replicad-selection-chip strong {
+  font-weight: 600;
+}
+
+.replicad-selection-chip button {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  color: var(--cutucircuits-text-muted);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  line-height: 20px;
+}
+
+.replicad-selection-chip button:hover {
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg-hover);
+}
+
+.replicad-view-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--cutucircuits-text-muted);
+  background: var(--cutucircuits-bg);
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 5px;
+  opacity: 0.62;
+  transition: opacity 0.12s ease, border-color 0.12s ease;
+}
+
+.replicad-view-controls:hover,
+.replicad-view-controls:focus-within {
+  opacity: 0.96;
+  border-color: var(--cutucircuits-border-focus, #3b82f6);
+}
+
+.replicad-view-controls button {
+  min-width: 34px;
+  height: 25px;
+  padding: 0 6px;
+  border: 0;
+  border-right: 1px solid var(--cutucircuits-border);
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  line-height: 25px;
+}
+
+.replicad-view-controls button:last-child {
+  border-right: 0;
+}
+
+.replicad-view-controls button:hover,
+.replicad-view-controls button:focus-visible,
+.replicad-view-controls button[aria-pressed='true'] {
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg-hover);
+  outline: none;
+}
+
+.replicad-section-panel {
+  position: absolute;
+  top: 42px;
+  right: 10px;
+  z-index: 3;
+  width: 244px;
+  padding: 7px;
+  color: var(--cutucircuits-text-muted);
+  background: var(--cutucircuits-bg);
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 5px;
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--cutucircuits-text) 12%, transparent);
+  font-size: 10px;
+}
+
+.replicad-section-header,
+.replicad-section-row,
+.replicad-section-slider {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.replicad-section-header {
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.replicad-section-header strong {
+  color: var(--cutucircuits-text);
+  font-weight: 600;
+}
+
+.replicad-section-panel button {
+  height: 22px;
+  padding: 0 7px;
+  color: var(--cutucircuits-text-muted);
+  background: transparent;
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.replicad-section-panel button:hover,
+.replicad-section-panel button:focus-visible,
+.replicad-section-panel button[aria-pressed='true'] {
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg-hover);
+  border-color: var(--cutucircuits-border-focus, #3b82f6);
+  outline: none;
+}
+
+.replicad-section-row > span,
+.replicad-section-slider > span {
+  width: 36px;
+  flex: 0 0 36px;
+}
+
+.replicad-section-axis {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.replicad-section-axis button {
+  flex: 1 1 0;
+  min-width: 26px;
+  border-radius: 0;
+  border-right: 0;
+}
+
+.replicad-section-axis button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.replicad-section-axis button:last-child {
+  border-right: 1px solid var(--cutucircuits-border);
+  border-radius: 0 4px 4px 0;
+}
+
+.replicad-section-flip {
+  flex: 0 0 auto;
+}
+
+.replicad-section-slider {
+  margin-top: 7px;
+}
+
+.replicad-section-slider input {
+  min-width: 0;
+  flex: 1 1 auto;
+  accent-color: var(--cutucircuits-border-focus, #3b82f6);
+}
+
+.replicad-section-slider output {
+  width: 52px;
+  flex: 0 0 52px;
+  overflow: hidden;
+  color: var(--cutucircuits-text);
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.replicad-diagnostics-more {
+  padding: 4px 12px;
+  font-size: 11px;
+  color: var(--cutucircuits-text-muted);
+}
+
+.replicad-stats-overlay {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--cutucircuits-text-muted);
+  background: var(--cutucircuits-bg);
+  border: 1px solid var(--cutucircuits-border);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.replicad-stats-overlay strong {
+  color: var(--cutucircuits-text);
+  font-weight: 600;
+}
+
+.replicad-stats-overlay .replicad-ok {
+  color: #16a34a;
+}
+
+.replicad-stats-overlay .replicad-warn {
+  color: #d97706;
+}
+
+/* --- Customizer / params panel --- */
+
+.replicad-params-pane {
+  background: var(--cutucircuits-bg);
+}
+
+/* The pane body flexes; scrolling lives here so the header stays pinned. */
+.replicad-params-pane > .replicad-pane-body {
+  overflow: auto;
+}
+
+.replicad-shapes {
+  padding: 8px 10px 0;
+  font-size: 12px;
+}
+
+.replicad-shapes-title,
+.replicad-params-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cutucircuits-text-muted);
+  margin: 4px 2px 8px;
+}
+
+.replicad-shape-list {
+  overflow: hidden;
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 6px;
+}
+
+.replicad-shape-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px 42px;
+  align-items: center;
+  min-height: 30px;
+  background: var(--cutucircuits-bg);
+}
+
+.replicad-shape-row + .replicad-shape-row {
+  border-top: 1px solid var(--cutucircuits-border);
+}
+
+.replicad-shape-row:hover,
+.replicad-shape-row--selected {
+  background: var(--cutucircuits-bg-hover);
+}
+
+.replicad-shape-row--selected {
+  box-shadow: inset 2px 0 var(--cutucircuits-border-focus, #3b82f6);
+}
+
+.replicad-shape-row button {
+  min-width: 0;
+  height: 28px;
+  padding: 0;
+  color: var(--cutucircuits-text-muted);
+  font: inherit;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.replicad-shape-row button:hover,
+.replicad-shape-row button:focus-visible,
+.replicad-shape-solo[aria-pressed='true'] {
+  color: var(--cutucircuits-text);
+  border-color: var(--cutucircuits-border);
+  background: var(--cutucircuits-bg-secondary);
+}
+
+.replicad-shape-row-main {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 6px 0 8px !important;
+  color: var(--cutucircuits-text) !important;
+  text-align: left;
+}
+
+.replicad-shape-swatch {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 3px;
+}
+
+.replicad-shape-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.replicad-shape-visibility {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.replicad-visibility-eye {
+  position: relative;
+  display: block;
+  width: 14px;
+  height: 9px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.replicad-visibility-eye::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.replicad-visibility-eye--hidden {
+  opacity: 0.55;
+}
+
+.replicad-visibility-eye--hidden::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 3px;
+  left: -2px;
+  width: 17px;
+  height: 1px;
+  background: currentColor;
+  transform: rotate(-35deg);
+}
+
+.replicad-shape-solo {
+  margin-right: 3px;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+}
+
+.replicad-params {
+  padding: 8px 10px 16px;
+  font-size: 12px;
+}
+
+.replicad-params-empty {
+  padding: 16px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--cutucircuits-text-muted);
+}
+
+.replicad-params-empty code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--cutucircuits-bg-secondary);
+  padding: 0 3px;
+  border-radius: 3px;
+}
+
+.replicad-param-group {
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 6px;
+  margin: 0 0 10px;
+  padding: 6px 8px 8px;
+}
+
+.replicad-param-group legend {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cutucircuits-text-muted);
+  padding: 0 4px;
+}
+
+.replicad-param-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 6px 0;
+}
+
+.replicad-param-label {
+  font-size: 11px;
+  color: var(--cutucircuits-text);
+}
+
+.replicad-param-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.replicad-param-control input[type='range'] {
+  flex: 1;
+  min-width: 0;
+}
+
+.replicad-param-control input[type='number'],
+.replicad-param-row > input[type='text'],
+.replicad-param-row > select {
+  width: 100%;
+  font: inherit;
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg-secondary);
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+
+.replicad-param-control input[type='number'] {
+  width: 72px;
+  flex-shrink: 0;
+}
+
+.replicad-param-vector {
+  display: flex;
+  gap: 4px;
+}
+
+.replicad-param-vector label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.replicad-param-vector label span {
+  font-size: 10px;
+  color: var(--cutucircuits-text-muted);
+  text-transform: uppercase;
+}
+
+.replicad-param-vector input {
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  color: var(--cutucircuits-text);
+  background: var(--cutucircuits-bg-secondary);
+  border: 1px solid var(--cutucircuits-border);
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+/*
+ * Narrow tabs reflow by flipping flex-directions instead of switching layout
+ * engines, so the resizers keep working — just along a new axis. At <=1000px
+ * the params pane drops beneath main (outer track becomes a column, so its
+ * divider resizes height); at <=620px code stacks above preview too (inner
+ * track becomes a column). Each side pane switches from its width var to its
+ * height var, and the divider grip/cursor rotate to match.
+ */
+@container replicad-editor (max-width: 1000px) {
+  .replicad-layout {
+    flex-direction: column;
+  }
+  .replicad-params-pane {
+    flex-basis: var(--params-h);
+  }
+  /* Params divider now splits top/bottom. */
+  .replicad-resizer--params {
+    cursor: row-resize;
+  }
+  .replicad-resizer--params::after {
+    inset: 50% 0 auto 0;
+    width: auto;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+  .replicad-resizer--params:hover::after {
+    width: auto;
+    height: 2px;
+  }
+  /* A collapsed pane below main gets a horizontal header strip again. */
+  .replicad-params-pane.replicad-collapsed > .replicad-pane-header {
+    writing-mode: horizontal-tb;
+    padding: 3px 6px 3px 9px;
+    border-inline-start: none;
+    border-bottom: 1px solid var(--cutucircuits-border);
+  }
+}
+
+@container replicad-editor (max-width: 620px) {
+  .replicad-main {
+    flex-direction: column;
+  }
+  .replicad-code-pane {
+    flex-basis: var(--code-h);
+  }
+  /* Code divider now splits top/bottom. */
+  .replicad-resizer--code {
+    cursor: row-resize;
+  }
+  .replicad-resizer--code::after {
+    inset: 50% 0 auto 0;
+    width: auto;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+  .replicad-resizer--code:hover::after {
+    width: auto;
+    height: 2px;
+  }
+  .replicad-code-pane.replicad-collapsed > .replicad-pane-header {
+    writing-mode: horizontal-tb;
+    padding: 3px 6px 3px 9px;
+    border-inline-start: none;
+    border-bottom: 1px solid var(--cutucircuits-border);
+  }
+}
+
+/* Visual authoring is the resting state. Monaco stays mounted while hidden so
+   content, undo, diagnostics and host save subscriptions retain their identity. */
+.replicad-editor .replicad-collapsed,
+.replicad-editor .replicad-resizer--disabled { display: none; }
+.replicad-editor .replicad-toolbar {
+  min-height: 44px;
+  padding: 6px 12px;
+  gap: 8px;
+  background: color-mix(in srgb, var(--cutucircuits-bg-secondary) 86%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: .5px solid var(--cutucircuits-border);
+}
+.replicad-editor .replicad-toolbar button {
+  width: auto;
+  border: 0;
+  border-radius: 10px;
+  padding: 6px 10px;
+  background: transparent;
+  transition: background 160ms ease, color 160ms ease;
+}
+.replicad-editor .replicad-toolbar button[aria-pressed='true'] {
+  background: var(--cutucircuits-bg-hover);
+  color: var(--cutucircuits-primary);
+}
+.replicad-toolbar-group { gap: 4px; }
+.replicad-status { margin-right: 8px; font-size: 11px; }
+.replicad-pane-header { min-height: 38px; padding: 7px 12px; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.replicad-pane-collapse { width: 25px; height: 25px; border-radius: 8px; }
+.replicad-params-pane { background: var(--cutucircuits-bg-secondary); }
+.replicad-stats-overlay { border-radius: 12px; backdrop-filter: blur(8px); opacity: .8; }
+@media (prefers-reduced-motion: reduce) {
+  .replicad-editor * { transition-duration: 0ms !important; }
+}
+.replicad-editor .replicad-view-controls {
+  top: 12px;
+  right: 12px;
+  gap: 2px;
+  padding: 4px;
+  border: .5px solid var(--cutucircuits-border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--cutucircuits-bg-tertiary) 85%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px #0002;
+}
+.replicad-editor .replicad-view-controls button {
+  width: auto;
+  border: 0;
+  border-radius: 10px;
+  padding: 6px 10px;
+  background: transparent;
+  transition: background 160ms ease;
+}
+.replicad-editor .replicad-view-controls button:hover { background: var(--cutucircuits-bg-hover); }

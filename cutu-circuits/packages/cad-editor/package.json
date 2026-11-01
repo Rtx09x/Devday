@@ -1,0 +1,23 @@
+{
+  "name": "@cutucircuits/cad-editor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/browser.tsx"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "replicad": "0.23.1",
+    "replicad-opencascadejs": "0.23.0",
+    "sucrase": "3.35.1",
+    "three": "^0.181.1",
+    "@cutucircuits/editor-host": "*",
+    "@expo-google-fonts/roboto": "^0.4.3",
+    "@types/js-yaml": "^4.0.9"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

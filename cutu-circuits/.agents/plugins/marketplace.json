@@ -1,0 +1,10 @@
+{
+  "name": "cutucircuits-local",
+  "interface": {"displayName": "Cutu Circuits Local"},
+  "plugins": [{
+    "name": "cutucircuits",
+    "source": {"source": "local", "path": "./plugins/cutucircuits"},
+    "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+    "category": "Productivity"
+  }]
+}

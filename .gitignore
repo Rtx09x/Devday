@@ -1,0 +1,22 @@
+.tools/
+.venv/
+**/__pycache__/
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# Generated output and private hardware state
+**/node_modules/
+**/dist/
+**/.local/
+**/.pio/
+**/.cutucircuits*/
+**/artifacts/
+**/test-results/
+**/playwright-report/
+**/*.tsbuildinfo
+**/*.pyc
+**/*.log
+**/secrets.h
+**/wifi.json

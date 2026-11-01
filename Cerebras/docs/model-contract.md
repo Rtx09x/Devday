@@ -1,0 +1,34 @@
+# Verified Cerebras Shared Inference contract
+
+Checked **2026-11-01** against Cerebras' live documentation and public model catalog, without an API key or inference request. The exact API identifier is **`qwen-3.8-27b`** (Hugging Face: `Qwen/Qwen3.8-27B`). The shared model catalog lists Qwen 3.8, and its public model metadata reports vision, reasoning, streaming, JSON mode, structured outputs, function calling and parallel tools. [Model catalog](https://inference-docs.cerebras.ai/models/overview), [Qwen specification](https://inference-docs.cerebras.ai/models/qwen-3.8-27b), [live public metadata](https://api.cerebras.ai/public/v1/models/qwen-3.8-27b).
+
+## Capacity and images
+
+| Capacity selected by caller | Context window | Max output including reasoning | Max images |
+| --- | ---: | ---: | ---: |
+| Free Trial (default) | 65,536 | 32,768 | 2 |
+| Paid Shared Inference | 131,072 | 40,960 | 10 |
+
+These are documented ceilings, not guaranteed access or current per-account quota. Public metadata currently returns the trial token ceilings. Trial/promotion credit balances do not establish account tier. [Qwen specification](https://inference-docs.cerebras.ai/models/qwen-3.8-27b), [account rate limits](https://inference-docs.cerebras.ai/support/rate-limits).
+
+Qwen vision is explicitly available through **Shared and Dedicated Inference**, in Public Preview. Shared Qwen accepts **user-message PNG/JPEG base64 data URIs** and produces text. Remote URLs and Qwen images in tool results are unsupported. The request ceiling is 10 MiB including base64, text and JSON overhead. Additional independent image limits are 50 MiB total decoded image data, 15,000 pixels per dimension, 100,000,000 pixels per image and 350 MiB decompressed per image by default. The package checks encoding/MIME signatures and serialized payloads; the server checks decoded-image validity and these image limits. Do not send `image_url.detail`: Qwen's behavior is endpoint-dependent. [Image inputs, availability and limits](https://inference-docs.cerebras.ai/capabilities/image-inputs).
+
+## Reasoning and generation
+
+`reasoning_effort`: `none`, `low`, `medium`, `high`; default `high`, mapping to Qwen's native `xhigh`. These are mode choices, not token-budget guarantees. Reasoning counts in completion tokens. `reasoning_format` can be `parsed`, `raw` or `none`; Qwen continues to separate reasoning even with `raw`. `hidden` is unsupported. Reasoning is in `message.reasoning` / `delta.reasoning`. `clear_thinking: false` preserves historical assistant reasoning and is the default; `true` removes it before prompting. Chat Completions is stateless: history must be resent. Do not send Qwen-native `disable_reasoning`, `enable_thinking`, `preserve_thinking` or `thinking_budget`. [Reasoning model matrix and Qwen semantics](https://inference-docs.cerebras.ai/capabilities/reasoning).
+
+The shared Chat Completions contract supports sampling, penalties, logit bias, best-effort seeded sampling, stop sequences, token logprobs and completion budgets. Only one generated choice (`n: 1`) is supported. Prompt caching is automatic; `prompt_cache_key` is an optional workflow routing hint, at most 1,024 characters. No cache is guaranteed; reported cached/image tokens are already included in prompt totals. [Chat Completions reference](https://inference-docs.cerebras.ai/api-reference/chat-completions), [prompt caching](https://inference-docs.cerebras.ai/capabilities/prompt-caching).
+
+## Tools and structured outputs
+
+Qwen supports `tool_choice: none | auto | required | named function`, strict mode, parallel calls and multi-turn tool results. It does not execute tools. Version 2 requires unique tool-call IDs and all matching tool results immediately after the assistant message. [Tool calling](https://inference-docs.cerebras.ai/capabilities/tool-use), [API versions](https://inference-docs.cerebras.ai/api-reference/versions).
+
+Text, JSON object and JSON Schema formats are supported, including strict schemas. Legacy JSON object mode cannot stream and needs explicit JSON instructions. JSON Schema streaming is supported. Combined tools and JSON output constraints are not a documented validated contract, so this package uses separate requests. Strict schemas require an object root with properties, no root union, `additionalProperties: false` at every object and item schemas for arrays (or `prefixItems` + `items: false`). Optional fields, local nonrecursive references, `$defs`, nonroot unions, enums/constants, tuples and numeric constraints are supported. Strict limits include 10 nesting levels, 500 object properties, 500 total enum values and 5,000 counted schema-text characters; extra enum-string constraints also apply. Unsupported features include external/recursive references, composition/conditional/dynamic-key constraints, regex/format strings, array length constraints and Qwen strict tool string length constraints. The local common checker conservatively rejects string length constraints for both strict tool and response schemas; omit them or validate length afterward. [Structured Outputs rules and limitations](https://inference-docs.cerebras.ai/capabilities/structured-outputs).
+
+## Deliberate scope
+
+The package implements the reusable **Shared Qwen chat capability surface**, rather than a provisioning SDK. No audio/video inputs, image generation, embeddings, automatic browsing, executable tools, local files, background agent loops or automatic model substitution are exposed. Vision input is not image generation. Legacy raw-text Completions is not wrapped because Chat Completions covers the same text generation workflows with conversation/tool/vision support. [Model capabilities](https://inference-docs.cerebras.ai/models/qwen-3.8-27b), [Chat Completions](https://inference-docs.cerebras.ai/api-reference/chat-completions).
+
+Predicted outputs are explicitly unavailable for Shared `qwen-3.8-27b`. Batch/file lifecycle, reserved-capacity management, deployment metrics and private-preview service tiers belong to dedicated or separately enabled services and are not silently exposed as shared-credit capabilities. JSON transport is used; optional msgpack/gzip payload optimization is not necessary to use model capabilities. [Predicted outputs availability](https://inference-docs.cerebras.ai/dedicated/predicted-outputs), [Dedicated Inference](https://inference-docs.cerebras.ai/dedicated/overview), [service tiers](https://inference-docs.cerebras.ai/capabilities/service-tiers), [payload optimization](https://inference-docs.cerebras.ai/capabilities/payload-optimization).
+
+No credential-dependent account access, rate limit or end-to-end inference behavior has been claimed as tested. To verify later, explicitly supply a key and call `listModels` / `retrieveModel` first, then run a small, authorized inference request with a bounded completion budget.

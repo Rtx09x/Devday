@@ -1,0 +1,22 @@
+{
+  "name": "@cutucircuits/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@cutucircuits/cad-editor": "0.1.0",
+    "@cutucircuits/core": "0.1.0",
+    "@cutucircuits/electronics-editor": "0.1.0",
+    "@cutucircuits/robotics": "0.1.0",
+    "@cutucircuits/ui": "0.1.0",
+    "diff": "8.0.4",
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1",
+    "three": "0.181.2",
+    "urdf-loader": "0.13.1"
+  }
+}

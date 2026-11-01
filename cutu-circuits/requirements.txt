@@ -1,0 +1,2 @@
+# Serial acquisition used by examples/sensor/programs/controller.py.
+pyserial==3.5

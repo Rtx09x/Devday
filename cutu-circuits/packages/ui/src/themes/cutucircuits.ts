@@ -1,0 +1,39 @@
+import type {ThemeVariant} from "@cutucircuits/ui/themes/theme";
+
+const dark = {
+  codeThemeId: "github-dark",
+  theme: {
+    accent: "#0169cc",
+    contrast: 60,
+    fonts: {code: null, ui: null},
+    ink: "#fcfcfc",
+    opaqueWindows: false,
+    semanticColors: {
+      diffAdded: "#00a240",
+      diffRemoved: "#e02e2a",
+      warning: "#e0a526",
+    },
+    surface: "#111111",
+  },
+  variant: "dark",
+} as const satisfies ThemeVariant;
+
+const light = {
+  codeThemeId: "github-light",
+  theme: {
+    accent: "#0169cc",
+    contrast: 45,
+    fonts: {code: null, ui: null},
+    ink: "#0d0d0d",
+    opaqueWindows: false,
+    semanticColors: {
+      diffAdded: "#00a240",
+      diffRemoved: "#e02e2a",
+      warning: "#e0a526",
+    },
+    surface: "#ffffff",
+  },
+  variant: "light",
+} as const satisfies ThemeVariant;
+
+export const cutucircuitsTheme = {id: "cutucircuits", name: "Cutu Circuits", dark, light} as const;

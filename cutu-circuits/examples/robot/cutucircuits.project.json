@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "robot",
+  "name": "Robot arm",
+  "description": "A real URDF two-axis rigid-body arm. SI units, physical joint constraints and Rapier gravity/contact simulation.",
+  "revision": 1,
+  "createdAt": "2026-10-31T00:00:00.000Z",
+  "updatedAt": "2026-10-31T00:00:00.000Z",
+  "units": "mm",
+  "entities": [],
+  "links": [],
+  "assets": [
+    {
+      "id": "robot-urdf",
+      "name": "Two-axis arm",
+      "kind": "urdf",
+      "path": "arm.urdf",
+      "entityIds": []
+    }
+  ]
+}

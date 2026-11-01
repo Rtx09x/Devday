@@ -1,0 +1,90 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -32,8 +32,14 @@
+     }) => void;
+     /** Called when the active schematic sheet changes (multi-sheet circuits). */
+     onSchematicSheetChange?: (schematicSheetId: string) => void;
++    onViewerControlsReady?: (controls: ViewerControls | null) => void;
+ }
+-declare const SchematicViewer: ({ circuitJson, containerStyle, editEvents: unappliedEditEvents, onEditEvent, defaultEditMode, debugGrid, editingEnabled, debug, clickToInteractEnabled, colorOverrides, spiceSimulationEnabled, disableGroups, netHoverHighlightEnabled, onSchematicComponentClicked, showSchematicPorts, onSchematicPortClicked, onSchematicSheetChange, css, className, }: Props$1) => react.JSX.Element;
++interface ViewerControls {
++    fitToView: () => void;
++    zoomIn: () => void;
++    zoomOut: () => void;
++}
++declare const SchematicViewer: ({ circuitJson, containerStyle, editEvents: unappliedEditEvents, onEditEvent, defaultEditMode, debugGrid, editingEnabled, debug, clickToInteractEnabled, colorOverrides, spiceSimulationEnabled, disableGroups, netHoverHighlightEnabled, onSchematicComponentClicked, showSchematicPorts, onSchematicPortClicked, onSchematicSheetChange, onViewerControlsReady, css, className, }: Props$1) => react.JSX.Element;
+ 
+ interface BoundingBoxBounds {
+     minX: number;
+diff --git a/dist/index.js b/dist/index.js
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -591,8 +591,11 @@
+ // lib/components/SchematicViewer.tsx
+ import { useCallback as useCallback6, useEffect as useEffect13, useMemo as useMemo5, useRef as useRef8, useState as useState8 } from "react";
+ import {
++  compose as composeSchematicViewer,
+   fromString,
+   identity,
++  scale as scaleSchematicViewer,
++  translate as translateSchematicViewer,
+   toString as transformToString
+ } from "transformation-matrix";
+ import { useMouseMatrixTransform } from "use-mouse-matrix-transform";
+@@ -2640,6 +2643,7 @@
+   showSchematicPorts = false,
+   onSchematicPortClicked,
+   onSchematicSheetChange,
++  onViewerControlsReady,
+   css,
+   className
+ }) => {
+@@ -2824,7 +2828,8 @@
+   const {
+     ref: containerRef,
+     cancelDrag,
+-    transform: svgToScreenProjection
++    transform: svgToScreenProjection,
++    setTransform: setViewerTransform
+   } = useMouseMatrixTransform({
+     onSetTransform(transform) {
+       if (!svgDivRef.current) return;
+@@ -2834,6 +2839,25 @@
+     enabled: isInteractionEnabled && !showSpiceOverlay
+   });
+   const { containerWidth, containerHeight } = useResizeHandling(containerRef);
++  useEffect13(() => {
++    if (!onViewerControlsReady) return;
++    const zoomAtCenter = (factor) => {
++      const centerX = containerWidth / 2;
++      const centerY = containerHeight / 2;
++      setViewerTransform(composeSchematicViewer(
++        translateSchematicViewer(centerX, centerY),
++        scaleSchematicViewer(factor, factor),
++        translateSchematicViewer(-centerX, -centerY),
++        svgToScreenProjection
++      ));
++    };
++    onViewerControlsReady({
++      fitToView: () => setViewerTransform(identity()),
++      zoomIn: () => zoomAtCenter(1.2),
++      zoomOut: () => zoomAtCenter(1 / 1.2)
++    });
++    return () => onViewerControlsReady(null);
++  }, [containerHeight, containerWidth, onViewerControlsReady, setViewerTransform, svgToScreenProjection]);
+   const svgString = useMemo5(() => {
+     if (!containerWidth || !containerHeight) return "";
+     return convertCircuitJsonToSchematicSvg(circuitJson, {
+@@ -2855,7 +2879,10 @@
+     containerHeight,
+     showGrid,
+     showSchematicPorts,
+-    activeSheetId
++    activeSheetId,
++    colorOverrides,
++    css,
++    className
+   ]);
+   const containerBackgroundColor = useMemo5(() => {
+     const match = svgString.match(

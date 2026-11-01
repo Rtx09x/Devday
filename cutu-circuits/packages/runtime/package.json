@@ -1,0 +1,22 @@
+{
+  "name": "@cutucircuits/runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start": "tsx src/main.ts",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@cutucircuits/core": "*",
+    "@cutucircuits/engines": "*",
+    "@cutucircuits/hardware": "*",
+    "express": "5.3.0",
+    "@cutucircuits/robotics": "0.1.0",
+    "@cutucircuits/cerebras": "file:../../../Cerebras",
+    "@cutucircuits/exa": "file:../../../Exa",
+    "zod-to-json-schema": "3.25.2"
+  }
+}

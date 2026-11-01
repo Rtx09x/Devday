@@ -1,0 +1,52 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index f536b3f..f6a963b 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -8,6 +8,8 @@ import { JSDOM } from 'jsdom';
+ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+ 
+ declare const CadViewer: (props: any) => React__default.JSX.Element;
++/** Bundled JSCAD-only viewer without the public CadViewer's runtime CDN engine path. */
++declare const OfflineCadViewer: (props: any) => React__default.JSX.Element;
+ 
+ interface CircuitToSvgOptions {
+     width?: number;
+@@ -150,4 +152,4 @@ declare const useCameraSession: () => {
+     handleControlsChange: () => void;
+ };
+ 
+-export { CadViewer, CameraAnimatorWithContext, CameraControllerProvider, type ManifoldGeoms, applyJsdomShim, convertCircuitJsonTo3dSvg, loadCameraFromSession, saveCameraToSession, useCameraController, useCameraSession, useExportGltfUrl, useManifoldBoardBuilder, useSaveGltfAs };
++export { CadViewer, CameraAnimatorWithContext, CameraControllerProvider, type ManifoldGeoms, OfflineCadViewer, applyJsdomShim, convertCircuitJsonTo3dSvg, loadCameraFromSession, saveCameraToSession, useCameraController, useCameraSession, useExportGltfUrl, useManifoldBoardBuilder, useSaveGltfAs };
+diff --git a/dist/index.js b/dist/index.js
+index 49e38ae..e998502 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -46934,6 +46934,20 @@ var CadViewer = (props) => {
+     }
+   );
+ };
++// Electronics Studio exact-version bridge: expose the package's bundled JSCAD
++// renderer without the public CadViewer's runtime Manifold CDN loader, engine
++// switcher, or global react-hot-toast Toaster. This stays in the host React tree.
++var OfflineCadViewer = (props) => {
++  return /* @__PURE__ */ jsx38(
++    CameraControllerProvider,
++    {
++      defaultTarget: DEFAULT_TARGET,
++      initialCameraPosition: INITIAL_CAMERA_POSITION,
++      initialCameraType: readStoredCameraType(),
++      children: /* @__PURE__ */ jsx38(LayerVisibilityProvider, { children: /* @__PURE__ */ jsx38(RenderingModeProvider, { children: /* @__PURE__ */ jsx38(CadViewerJscad, { ...props }) }) })
++    }
++  );
++};
+ 
+ // src/convert-circuit-json-to-3d-svg.ts
+ var import_debug = __toESM(require_browser(), 1);
+@@ -47290,6 +47304,7 @@ function applyJsdomShim(jsdom) {
+ }
+ export {
+   CadViewer,
++  OfflineCadViewer,
+   CameraAnimatorWithContext,
+   CameraControllerProvider,
+   applyJsdomShim,

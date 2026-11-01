@@ -1,0 +1,48 @@
+.cutucircuits-stream-word {
+  animation: cutucircuits-stream-arrival 500ms both;
+}
+.cutucircuits-stream-word-ink {
+  transition: color 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cutucircuits-stream-fresh {
+  color: var(--color-blue-500);
+}
+.cutucircuits-stream-caret {
+  display: inline-block;
+  width: 2px;
+  height: 16px;
+  margin-left: 2px;
+  margin-bottom: -2px;
+  border-radius: 999px;
+  background: var(--color-blue-500);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+:root[data-color-mode="dark"] .cutucircuits-stream-fresh {
+  color: var(--color-blue-400);
+}
+:root[data-color-mode="dark"] .cutucircuits-stream-caret {
+  background: var(--color-blue-400);
+}
+@keyframes cutucircuits-stream-arrival {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cutucircuits-stream-word,
+  .cutucircuits-stream-caret {
+    animation: none;
+  }
+  .cutucircuits-stream-word-ink {
+    transition: none;
+  }
+}
+:root[data-reduce-motion="on"] :is(.cutucircuits-stream-word, .cutucircuits-stream-caret) {
+  animation: none;
+}
+:root[data-reduce-motion="on"] .cutucircuits-stream-word-ink {
+  transition: none;
+}

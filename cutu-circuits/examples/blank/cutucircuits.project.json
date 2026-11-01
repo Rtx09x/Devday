@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "id": "blank",
+  "name": "New engineering project",
+  "description": "A project-owned workspace for native sources, linked entities and local programs.",
+  "revision": 1,
+  "createdAt": "2026-10-31T00:00:00.000Z",
+  "updatedAt": "2026-10-31T00:00:00.000Z",
+  "units": "mm",
+  "entities": [],
+  "links": [],
+  "assets": []
+}

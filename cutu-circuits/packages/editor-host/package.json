@@ -1,0 +1,20 @@
+{
+  "name": "@cutucircuits/editor-host",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./runtime": "./src/runtime.tsx"
+  },
+  "dependencies": {
+    "@cutucircuits/core": "*",
+    "@monaco-editor/react": "^4.7.0",
+    "monaco-editor": "^0.52.2",
+    "@cutucircuits/ui": "*"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

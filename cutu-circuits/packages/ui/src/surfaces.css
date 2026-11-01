@@ -1,0 +1,117 @@
+/* The archived CutuCircuits dropdown material, shared by menus and selects. */
+:root[data-ui="cutucircuits"] {
+  --cutucircuits-scroll-thumb: color-mix(in srgb, var(--theme-ink) 19%, transparent);
+  --cutucircuits-scroll-thumb-hover: color-mix(in srgb, var(--theme-ink) 29%, transparent);
+  --cutucircuits-menu-edge: color-mix(in srgb, var(--theme-ink) 8.2%, transparent);
+}
+
+:root[data-ui="cutucircuits"] :is(.cutucircuits-menu, .cutucircuits-select-popup, .cutucircuits-tooltip) {
+  background: color-mix(in srgb, var(--theme-surface-popover) 85%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 0;
+  box-shadow:
+    0 0 0 0.5px var(--cutucircuits-menu-edge),
+    0 8px 16px -4px rgb(0 0 0 / 0.12);
+  corner-shape: round;
+}
+.cutucircuits-tooltip {
+  padding: 8px 12px;
+  border-radius: 16px;
+  color: var(--theme-ink);
+  font: 14px/20px var(--font-sans);
+}
+.cutucircuits-tooltip-shortcut {
+  border-radius: 7px;
+  padding: 0 6px;
+  background: var(--theme-overlay-pressed);
+  color: var(--theme-ink-muted);
+  font: inherit;
+}
+
+.cutucircuits-select-popup {
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity 140ms ease-out,
+    transform 140ms ease-out;
+}
+.cutucircuits-select-popup:is([data-starting-style], [data-ending-style]) {
+  opacity: 0;
+  transform: translateY(-2px) scale(0.985);
+}
+
+/* Keep native thumbs consistent; scroll containers reserve their own gutter. */
+:root[data-ui="cutucircuits"],
+:root[data-ui="cutucircuits"] * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cutucircuits-scroll-thumb) transparent;
+}
+:root[data-ui="cutucircuits"] :is(.overflow-auto, .overflow-y-auto, .overflow-x-auto, .overflow-scroll, .overflow-y-scroll, .cutucircuits-picker-list, textarea) {
+  scrollbar-gutter: stable;
+}
+@supports selector(::-webkit-scrollbar) {
+  :root[data-ui="cutucircuits"],
+  :root[data-ui="cutucircuits"] * {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+  }
+  :root[data-ui="cutucircuits"] ::-webkit-scrollbar {
+    width: var(--cutucircuits-scrollbar-width);
+    height: var(--cutucircuits-scrollbar-width);
+  }
+  :root[data-ui="cutucircuits"] ::-webkit-scrollbar-track,
+  :root[data-ui="cutucircuits"] ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  :root[data-ui="cutucircuits"] ::-webkit-scrollbar-thumb {
+    background: var(--cutucircuits-scroll-thumb);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-radius: 999px;
+  }
+  :root[data-ui="cutucircuits"] ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--cutucircuits-scroll-thumb-hover);
+  }
+  :root[data-ui="cutucircuits"] ::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+:root[data-ui="cutucircuits"] .cutucircuits-menu {
+  padding: 5px;
+  border-radius: 18px;
+  corner-shape: round;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-menu-item {
+  min-height: 28px;
+  padding: 5px 8px;
+  border-radius: 9px;
+  corner-shape: round;
+  font-size: 13px;
+  line-height: 18px;
+}
+:root[data-ui="cutucircuits"] [data-slot="dialog-content"] {
+  border-radius: 24px;
+  corner-shape: round;
+  background: var(--theme-surface-popover);
+  box-shadow: 0 16px 48px rgb(0 0 0 / 0.25);
+}
+:root[data-ui="cutucircuits"] [data-slot="dialog-content"]::before {
+  display: none;
+}
+:root[data-ui="cutucircuits"] [data-slot="dialog-title"] {
+  font-size: 22px;
+  font-weight: 600;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-menu:not([data-kind="power-picker"]) {
+  border-radius: 16px;
+  min-width: 164px;
+  padding: 4px;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-menu:not([data-kind="power-picker"]) .cutucircuits-menu-item {
+  border-radius: 12px;
+  padding: 5px 9px;
+  gap: 7px;
+}

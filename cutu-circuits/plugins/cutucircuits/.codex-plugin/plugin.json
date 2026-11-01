@@ -1,0 +1,8 @@
+{
+  "name": "cutucircuits",
+  "version": "0.1.0",
+  "description": "Persistent hardware engineering through the local Cutu Circuits runtime.",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {"displayName": "Cutu Circuits", "shortDescription": "Design hardware with your local engineering workspace", "developerName": "Cutu Circuits", "category": "Productivity", "capabilities": ["Read", "Write"]}
+}

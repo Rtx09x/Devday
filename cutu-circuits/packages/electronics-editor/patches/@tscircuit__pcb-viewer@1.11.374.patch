@@ -1,0 +1,819 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -48,8 +48,9 @@
+     setFocusedErrorId: (errorId: string | null) => void;
+ }
+ type StateProps = {
+-    [key in keyof State]: State[key] extends boolean ? boolean : never;
++    [key in keyof State as State[key] extends boolean ? key : never]: State[key];
+ };
++type InitialStateProps = StateProps & Pick<State, "selected_layer">;
+ 
+ type GridConfig = {
+     spacing: number;
+@@ -68,20 +69,38 @@
+     maxY: number;
+ }
+ 
++interface PcbViewerSelection {
++    source_component_id: string;
++    pcb_component_id: string;
++    source_component_name?: string;
++}
++interface ViewerControls {
++    fitToView: () => void;
++    zoomIn: () => void;
++    zoomOut: () => void;
++}
++
+ type Props = {
+     circuitJson?: AnyCircuitElement[];
++    width?: number;
+     height?: number;
+     allowEditing?: boolean;
+     editEvents?: ManualEditEvent[];
+-    initialState?: Partial<StateProps>;
++    initialState?: Partial<InitialStateProps>;
+     onEditEventsChanged?: (editEvents: ManualEditEvent[]) => void;
+     onBoundsSelected?: (bounds: BoundsSelection) => void;
++    onSelectionChange?: (selection: PcbViewerSelection | null) => void;
++    selectedSourceComponentId?: string;
++    hiddenLayerIds?: string[];
++    drillColor?: string;
++    drillStrokeColor?: string;
++    onViewerControlsReady?: (controls: ViewerControls | null) => void;
+     focusOnHover?: boolean;
+     clickToInteractEnabled?: boolean;
+     debugGraphics?: GraphicsObject | null;
+     disablePcbGroups?: boolean;
+ };
+-declare const PCBViewer: ({ circuitJson, debugGraphics, height, initialState, allowEditing, editEvents: editEventsProp, onEditEventsChanged, onBoundsSelected, focusOnHover, clickToInteractEnabled, disablePcbGroups, }: Props) => react_jsx_runtime.JSX.Element;
++declare const PCBViewer: ({ circuitJson, debugGraphics, width: widthProp, height, initialState, allowEditing, editEvents: editEventsProp, onEditEventsChanged, onBoundsSelected, onSelectionChange, selectedSourceComponentId, hiddenLayerIds, drillColor, drillStrokeColor, onViewerControlsReady, focusOnHover, clickToInteractEnabled, disablePcbGroups, }: Props) => react_jsx_runtime.JSX.Element;
+ 
+ interface CanvasElementsRendererProps {
+     elements: AnyCircuitElement[];
+@@ -94,10 +113,20 @@
+     allowEditing: boolean;
+     focusOnHover?: boolean;
+     onBoundsSelected?: (bounds: BoundsSelection) => void;
++    onSelectionChange?: (selection: PcbViewerSelection | null) => void;
++    selectedSourceComponentId?: string;
++    hiddenLayerIds?: string[];
++    drillColor?: string;
++    drillStrokeColor?: string;
+     cancelPanDrag: () => void;
+     onCreateEditEvent: (event: ManualEditEvent) => void;
+     onModifyEditEvent: (event: Partial<ManualEditEvent>) => void;
+ }
+ declare const CanvasElementsRenderer: (props: CanvasElementsRendererProps) => react_jsx_runtime.JSX.Element;
++declare const getPcbViewerSelectionAtPoint: (elements: AnyCircuitElement[], point: {
++    x: number;
++    y: number;
++}) => PcbViewerSelection | null;
++declare const PCB_VIEWER_SELECTION_BRIDGE_VERSION = "source-component@2";
+ 
+-export { CanvasElementsRenderer, PCBViewer };
++export { CanvasElementsRenderer, PCBViewer, PCB_VIEWER_SELECTION_BRIDGE_VERSION, getPcbViewerSelectionAtPoint, type PcbViewerSelection };
+diff --git a/dist/index.js b/dist/index.js
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -9414,6 +9414,25 @@
+ 
+ // src/lib/draw-hole.ts
+ import { CircuitToCanvasDrawer as CircuitToCanvasDrawer3 } from "circuit-to-canvas";
++function drawCircularDrillRings(canvas, elements, realToCanvasMat, drillStrokeColor) {
++  if (!drillStrokeColor) return;
++  const context = canvas.getContext("2d");
++  if (!context) return;
++  const scale = Math.hypot(realToCanvasMat.a, realToCanvasMat.b);
++  context.save();
++  context.strokeStyle = drillStrokeColor;
++  context.lineWidth = 1.25;
++  for (const element of elements) {
++    const isCircularHole = element.type === "pcb_hole" ? element.hole_shape === "circle" : element.type === "pcb_via" || element.type === "pcb_plated_hole" && (element.shape === "circle" || element.hole_shape === "circle");
++    if (!isCircularHole || typeof element.hole_diameter !== "number") continue;
++    const x = realToCanvasMat.a * element.x + realToCanvasMat.c * element.y + realToCanvasMat.e;
++    const y = realToCanvasMat.b * element.x + realToCanvasMat.d * element.y + realToCanvasMat.f;
++    context.beginPath();
++    context.arc(x, y, Math.abs(scale * element.hole_diameter / 2), 0, Math.PI * 2);
++    context.stroke();
++  }
++  context.restore();
++}
+ function isPcbHole(element) {
+   return element.type === "pcb_hole";
+ }
+@@ -9422,12 +9441,16 @@
+   elements,
+   layers,
+   realToCanvasMat,
+-  drawSoldermask
++  drawSoldermask,
++  drillColor,
++  drillStrokeColor
+ }) {
+   const drawer = new CircuitToCanvasDrawer3(canvas);
++  if (drillColor) drawer.configure({ colorOverrides: { drill: drillColor } });
+   drawer.realToCanvasMat = realToCanvasMat;
+   const holeElements = elements.filter(isPcbHole);
+   drawer.drawElements(holeElements, { layers, drawSoldermask });
++  drawCircularDrillRings(canvas, holeElements, realToCanvasMat, drillStrokeColor);
+ }
+ 
+ // src/lib/draw-pcb-board.ts
+@@ -9731,7 +9754,9 @@
+   layers,
+   realToCanvasMat,
+   primitives,
+-  drawSoldermask
++  drawSoldermask,
++  drillColor,
++  drillStrokeColor
+ }) {
+   const platedHoleElements = elements.filter(isPlatedHole);
+   if (platedHoleElements.length === 0) return;
+@@ -9751,12 +9776,13 @@
+   );
+   if (nonHighlightedElements.length > 0) {
+     const drawer = new CircuitToCanvasDrawer12(canvas);
++    if (drillColor) drawer.configure({ colorOverrides: { drill: drillColor } });
+     drawer.realToCanvasMat = realToCanvasMat;
+     drawer.drawElements(nonHighlightedElements, { layers, drawSoldermask });
+   }
+   if (highlightedElements.length > 0) {
+     const highlightDrawer = new CircuitToCanvasDrawer12(canvas);
+-    highlightDrawer.configure({ colorOverrides: HOVER_COLOR_MAP3 });
++    highlightDrawer.configure({ colorOverrides: { ...HOVER_COLOR_MAP3, ...drillColor ? { drill: drillColor } : {} } });
+     highlightDrawer.realToCanvasMat = realToCanvasMat;
+     highlightDrawer.drawElements(highlightedElements, {
+       layers,
+@@ -10309,7 +10335,9 @@
+   layers,
+   realToCanvasMat,
+   primitives,
+-  drawSoldermask
++  drawSoldermask,
++  drillColor,
++  drillStrokeColor
+ }) {
+   const viaElements = elements.filter(isPcbVia).filter((element) => {
+     return layers.some((layer) => layer.includes("copper"));
+@@ -10331,12 +10359,13 @@
+   );
+   if (nonHighlightedElements.length > 0) {
+     const drawer = new CircuitToCanvasDrawer15(canvas);
++    if (drillColor) drawer.configure({ colorOverrides: { drill: drillColor } });
+     drawer.realToCanvasMat = realToCanvasMat;
+     drawer.drawElements(nonHighlightedElements, { layers, drawSoldermask });
+   }
+   if (highlightedElements.length > 0) {
+     const highlightDrawer = new CircuitToCanvasDrawer15(canvas);
+-    highlightDrawer.configure({ colorOverrides: HOVER_COLOR_MAP4 });
++    highlightDrawer.configure({ colorOverrides: { ...HOVER_COLOR_MAP4, ...drillColor ? { drill: drillColor } : {} } });
+     highlightDrawer.realToCanvasMat = realToCanvasMat;
+     highlightDrawer.drawElements(highlightedElements, {
+       layers,
+@@ -10405,11 +10434,31 @@
+   "bottom_courtyard",
+   "other"
+ ];
++var isPrimitiveHiddenByLayerIds = (primitive, hiddenLayerIds) => {
++  const element = primitive._element;
++  const type = element?.type ?? "";
++  const layer = primitive.layer ?? element?.layer ?? "";
++  if (hiddenLayerIds.has("board-outline") && (layer === "board" || layer === "edge_cuts" || type === "pcb_board" || type === "pcb_boundary" || type.startsWith("pcb_cutout"))) return true;
++  if (hiddenLayerIds.has("drill") && layer === "drill") return true;
++  if (hiddenLayerIds.has("annotations") && (type.startsWith("pcb_note_") || type.startsWith("pcb_fabrication_note_") || type === "pcb_airwire" || type.endsWith("_error"))) return true;
++  if (hiddenLayerIds.has("top-silkscreen") && type.startsWith("pcb_silkscreen_") && layer === "top") return true;
++  if (hiddenLayerIds.has("bottom-silkscreen") && type.startsWith("pcb_silkscreen_") && layer === "bottom") return true;
++  if (hiddenLayerIds.has("top-solderpaste") && type === "pcb_solder_paste" && layer === "top") return true;
++  if (hiddenLayerIds.has("bottom-solderpaste") && type === "pcb_solder_paste" && layer === "bottom") return true;
++  if (hiddenLayerIds.has("top-courtyard") && type.startsWith("pcb_courtyard_") && layer === "top") return true;
++  if (hiddenLayerIds.has("bottom-courtyard") && type.startsWith("pcb_courtyard_") && layer === "bottom") return true;
++  if (hiddenLayerIds.has("top-keepouts") && type === "pcb_keepout" && layer === "top") return true;
++  if (hiddenLayerIds.has("bottom-keepouts") && type === "pcb_keepout" && layer === "bottom") return true;
++  return false;
++};
+ var CanvasPrimitiveRenderer = ({
+   primitives,
+   elements,
+   transform,
+   grid,
++  hiddenLayerIds = [],
++  drillColor,
++  drillStrokeColor,
+   width = 500,
+   height = 500
+ }) => {
+@@ -10421,6 +10470,7 @@
+   );
+   const isShowingCourtyards = useGlobalStore((s) => s.is_showing_courtyards);
+   const isShowingSilkscreen = useGlobalStore((s) => s.is_showing_silkscreen);
++  const hiddenLayerIdSet = new Set(hiddenLayerIds);
+   useEffect5(() => {
+     if (!canvasRefs.current) return;
+     if (Object.keys(canvasRefs.current).length === 0) return;
+@@ -10435,7 +10485,7 @@
+     if (transform) drawer.transform = transform;
+     drawer.clear();
+     drawer.foregroundLayer = selectedLayer;
+-    const filteredPrimitives = primitives.filter((p) => isShowingSolderMask || !p.layer?.includes("soldermask")).filter((p) => isShowingSilkscreen || !p.layer?.includes("silkscreen")).filter(
++    const filteredPrimitives = primitives.filter((p) => !isPrimitiveHiddenByLayerIds(p, hiddenLayerIdSet)).filter((p) => isShowingSolderMask || !p.layer?.includes("soldermask")).filter((p) => isShowingSilkscreen || !p.layer?.includes("silkscreen")).filter(
+       (p) => isShowingFabricationNotes || !p.layer?.includes("fabrication")
+     ).filter((p) => p.layer !== "board").filter((p) => p._element?.type !== "pcb_smtpad").filter((p) => p._element?.type !== "pcb_plated_hole").filter((p) => p._element?.type !== "pcb_via").filter((p) => p._element?.type !== "pcb_trace").filter((p) => p._element?.type !== "pcb_copper_text");
+     drawPrimitives(drawer, filteredPrimitives);
+@@ -10460,6 +10510,7 @@
+       ];
+       for (const { canvas, copperLayer } of copperLayers) {
+         if (!canvas) continue;
++        if (hiddenLayerIdSet.has(`${copperLayer.replace("_copper", "")}-copper`)) continue;
+         drawPcbTraceElementsForLayer({
+           canvas,
+           elements,
+@@ -10470,6 +10521,7 @@
+       }
+       for (const { canvas, copperLayer } of copperLayers) {
+         if (!canvas) continue;
++        if (hiddenLayerIdSet.has(`${copperLayer.replace("_copper", "")}-copper`)) continue;
+         drawPcbCopperTextElementsForLayer({
+           canvas,
+           elements,
+@@ -10477,28 +10529,33 @@
+           realToCanvasMat: transform
+         });
+       }
+-      if (topCanvas) {
++      if (topCanvas && !hiddenLayerIdSet.has("top-copper")) {
+         drawPlatedHolePads({
+           canvas: topCanvas,
+           elements,
+           layers: ["top_copper"],
+           realToCanvasMat: transform,
+           primitives,
+-          drawSoldermask: isShowingSolderMask
++          drawSoldermask: isShowingSolderMask,
++          drillColor,
++          drillStrokeColor
+         });
+       }
+-      if (bottomCanvas) {
++      if (bottomCanvas && !hiddenLayerIdSet.has("bottom-copper")) {
+         drawPlatedHolePads({
+           canvas: bottomCanvas,
+           elements,
+           layers: ["bottom_copper"],
+           realToCanvasMat: transform,
+           primitives,
+-          drawSoldermask: isShowingSolderMask
++          drawSoldermask: isShowingSolderMask,
++          drillColor,
++          drillStrokeColor
+         });
+       }
+       for (const { canvas, copperLayer } of copperLayers) {
+         if (!canvas) continue;
++        if (hiddenLayerIdSet.has(`${copperLayer.replace("_copper", "")}-copper`)) continue;
+         drawCopperPourElementsForLayer({
+           canvas,
+           elements,
+@@ -10508,6 +10565,7 @@
+       }
+       for (const { canvas, copperLayer } of copperLayers) {
+         if (!canvas) continue;
++        if (hiddenLayerIdSet.has(`${copperLayer.replace("_copper", "")}-copper`)) continue;
+         drawPcbSmtPadElementsForLayer({
+           canvas,
+           elements,
+@@ -10517,24 +10575,28 @@
+           drawSoldermask: isShowingSolderMask
+         });
+       }
+-      if (topCanvas) {
++      if (topCanvas && !hiddenLayerIdSet.has("top-copper")) {
+         drawPcbViaElementsForLayer({
+           canvas: topCanvas,
+           elements,
+           layers: ["top_copper"],
+           realToCanvasMat: transform,
+           primitives,
+-          drawSoldermask: isShowingSolderMask
++          drawSoldermask: isShowingSolderMask,
++          drillColor,
++          drillStrokeColor
+         });
+       }
+-      if (bottomCanvas) {
++      if (bottomCanvas && !hiddenLayerIdSet.has("bottom-copper")) {
+         drawPcbViaElementsForLayer({
+           canvas: bottomCanvas,
+           elements,
+           layers: ["bottom_copper"],
+           realToCanvasMat: transform,
+           primitives,
+-          drawSoldermask: isShowingSolderMask
++          drawSoldermask: isShowingSolderMask,
++          drillColor,
++          drillStrokeColor
+         });
+       }
+       if (isShowingSolderMask) {
+@@ -10542,7 +10604,7 @@
+         const drawSoldermaskTop = soldermaskLayer === "top";
+         const drawSoldermaskBottom = soldermaskLayer === "bottom";
+         const topSoldermaskCanvas = canvasRefs.current.soldermask_top;
+-        if (topSoldermaskCanvas && soldermaskLayer === "top") {
++        if (topSoldermaskCanvas && soldermaskLayer === "top" && !hiddenLayerIdSet.has("top-soldermask")) {
+           drawSoldermaskElementsForLayer({
+             canvas: topSoldermaskCanvas,
+             elements,
+@@ -10554,7 +10616,7 @@
+           });
+         }
+         const bottomSoldermaskCanvas = canvasRefs.current.soldermask_bottom;
+-        if (bottomSoldermaskCanvas && soldermaskLayer === "bottom") {
++        if (bottomSoldermaskCanvas && soldermaskLayer === "bottom" && !hiddenLayerIdSet.has("bottom-soldermask")) {
+           drawSoldermaskElementsForLayer({
+             canvas: bottomSoldermaskCanvas,
+             elements,
+@@ -10567,17 +10629,19 @@
+         }
+       }
+       const drillCanvas = canvasRefs.current.drill;
+-      if (drillCanvas) {
++      if (drillCanvas && !hiddenLayerIdSet.has("drill")) {
+         drawPcbHoleElementsForLayer({
+           canvas: drillCanvas,
+           elements,
+           layers: ["drill"],
+-          realToCanvasMat: transform
++          realToCanvasMat: transform,
++          drillColor,
++          drillStrokeColor
+         });
+       }
+       if (isShowingSilkscreen) {
+         const topSilkscreenCanvas = canvasRefs.current.top_silkscreen;
+-        if (topSilkscreenCanvas) {
++        if (topSilkscreenCanvas && !hiddenLayerIdSet.has("top-silkscreen")) {
+           drawSilkscreenElementsForLayer({
+             canvas: topSilkscreenCanvas,
+             elements,
+@@ -10586,7 +10650,7 @@
+           });
+         }
+         const bottomSilkscreenCanvas = canvasRefs.current.bottom_silkscreen;
+-        if (bottomSilkscreenCanvas) {
++        if (bottomSilkscreenCanvas && !hiddenLayerIdSet.has("bottom-silkscreen")) {
+           drawSilkscreenElementsForLayer({
+             canvas: bottomSilkscreenCanvas,
+             elements,
+@@ -10597,7 +10661,7 @@
+       }
+       if (isShowingFabricationNotes) {
+         const topFabCanvas = canvasRefs.current.top_fabrication;
+-        if (topFabCanvas) {
++        if (topFabCanvas && !hiddenLayerIdSet.has("annotations")) {
+           drawFabricationNoteElementsForLayer({
+             canvas: topFabCanvas,
+             elements,
+@@ -10606,7 +10670,7 @@
+           });
+         }
+         const bottomFabCanvas = canvasRefs.current.bottom_fabrication;
+-        if (bottomFabCanvas) {
++        if (bottomFabCanvas && !hiddenLayerIdSet.has("annotations")) {
+           drawFabricationNoteElementsForLayer({
+             canvas: bottomFabCanvas,
+             elements,
+@@ -10616,7 +10680,7 @@
+         }
+       }
+       const bottomNotesCanvas = canvasRefs.current.bottom_notes;
+-      if (bottomNotesCanvas) {
++      if (bottomNotesCanvas && !hiddenLayerIdSet.has("annotations")) {
+         drawPcbNoteElementsForLayer({
+           canvas: bottomNotesCanvas,
+           elements,
+@@ -10625,7 +10689,7 @@
+         });
+       }
+       const topNotesCanvas = canvasRefs.current.top_notes;
+-      if (topNotesCanvas) {
++      if (topNotesCanvas && !hiddenLayerIdSet.has("annotations")) {
+         drawPcbNoteElementsForLayer({
+           canvas: topNotesCanvas,
+           elements,
+@@ -10635,7 +10699,7 @@
+       }
+       if (isShowingCourtyards) {
+         const topCourtyardCanvas = canvasRefs.current.top_courtyard;
+-        if (topCourtyardCanvas) {
++        if (topCourtyardCanvas && !hiddenLayerIdSet.has("top-courtyard")) {
+           drawCourtyardElementsForLayer({
+             canvas: topCourtyardCanvas,
+             elements,
+@@ -10644,7 +10708,7 @@
+           });
+         }
+         const bottomCourtyardCanvas = canvasRefs.current.bottom_courtyard;
+-        if (bottomCourtyardCanvas) {
++        if (bottomCourtyardCanvas && !hiddenLayerIdSet.has("bottom-courtyard")) {
+           drawCourtyardElementsForLayer({
+             canvas: bottomCourtyardCanvas,
+             elements,
+@@ -10654,7 +10718,7 @@
+         }
+       }
+       const boardCanvas = canvasRefs.current.board;
+-      if (boardCanvas) {
++      if (boardCanvas && !hiddenLayerIdSet.has("board-outline")) {
+         drawPcbPanelElements({
+           canvas: boardCanvas,
+           elements,
+@@ -10671,7 +10735,7 @@
+         });
+       }
+       const edgeCutsCanvas = canvasRefs.current.edge_cuts;
+-      if (edgeCutsCanvas) {
++      if (edgeCutsCanvas && !hiddenLayerIdSet.has("board-outline")) {
+         drawPcbCutoutElementsForLayer({
+           canvas: edgeCutsCanvas,
+           elements,
+@@ -10685,13 +10749,21 @@
+       ];
+       for (const { canvas, layer } of keepoutLayers) {
+         if (!canvas) continue;
++        if (hiddenLayerIdSet.has(`${layer}-keepouts`)) continue;
+         drawPcbKeepoutElementsForLayer({
+           canvas,
+           elements,
+           layers: [layer],
+           realToCanvasMat: transform
+         });
++      }
++      const copperDrillElements = elements.filter((element) => element.type === "pcb_plated_hole" || element.type === "pcb_via");
++      if (topCanvas && !hiddenLayerIdSet.has("top-copper")) {
++        drawCircularDrillRings(topCanvas, copperDrillElements, transform, drillStrokeColor);
+       }
++      if (bottomCanvas && !hiddenLayerIdSet.has("bottom-copper")) {
++        drawCircularDrillRings(bottomCanvas, copperDrillElements, transform, drillStrokeColor);
++      }
+     }
+     drawer.orderAndFadeLayers();
+   }, [
+@@ -10702,7 +10774,10 @@
+     isShowingSolderMask,
+     isShowingFabricationNotes,
+     isShowingCourtyards,
+-    isShowingSilkscreen
++    isShowingSilkscreen,
++    hiddenLayerIds,
++    drillColor,
++    drillStrokeColor
+   ]);
+   return /* @__PURE__ */ jsxs(
+     "div",
+@@ -11082,9 +11157,7 @@
+ }) => {
+   const canvasRef = useRef4(null);
+   const [containerRef, { width, height }] = useMeasure_default();
+-  const is_showing_autorouting = useGlobalStore((s) => s.is_showing_autorouting);
+   useEffect6(() => {
+-    if (!is_showing_autorouting) return;
+     if (canvasRef.current && debugGraphics && width && height) {
+       canvasRef.current.width = width;
+       canvasRef.current.height = height;
+@@ -11093,8 +11166,8 @@
+         disableLabels: true
+       });
+     }
+-  }, [debugGraphics, transform, width, height, is_showing_autorouting]);
+-  if (!is_showing_autorouting) return children;
++  }, [debugGraphics, transform, width, height]);
++  if (!debugGraphics) return children;
+   return /* @__PURE__ */ jsxs2(
+     "div",
+     {
+@@ -11130,7 +11203,8 @@
+ var WarningGraphicsOverlay = ({
+   children,
+   transform = identity3(),
+-  elements = []
++  elements = [],
++  hidden = false
+ }) => {
+   const [containerRef, { width, height }] = useMeasure_default();
+   const canvasRef = useRef5(null);
+@@ -11186,6 +11260,7 @@
+       ctx.fillText(labelText, labelX + labelWidth / 2, labelY + labelHeight / 2);
+     });
+   }, [elements, transform, width, height]);
++  if (hidden) return children;
+   return /* @__PURE__ */ jsxs3(
+     "div",
+     {
+@@ -12952,7 +13027,8 @@
+ var ErrorOverlay = ({
+   children,
+   transform = identity7(),
+-  elements
++  elements,
++  hidden = false
+ }) => {
+   const containerRef = useRef9(null);
+   const { isShowingDRCErrors, hoveredErrorId, focusedErrorId } = useGlobalStore(
+@@ -12963,6 +13039,7 @@
+     })
+   );
+   const activeErrorId = focusedErrorId ?? hoveredErrorId;
++  if (hidden) return children;
+   if (!elements) {
+     return /* @__PURE__ */ jsx11("div", { style: { position: "relative" }, ref: containerRef, children });
+   }
+@@ -14360,13 +14437,46 @@
+     }
+   }
+   return newMousedPrimitives;
++};
++var getPcbViewerSelectionAtPoint = (elements, point) => {
++  if (!Number.isFinite(point?.x) || !Number.isFinite(point?.y)) return null;
++  const candidates = [];
++  for (const element of elements) {
++    if (element?.type !== "pcb_component" || typeof element.pcb_component_id !== "string" || typeof element.source_component_id !== "string") continue;
++    const center = element.center;
++    const width2 = element.width;
++    const height2 = element.height;
++    const rotation = element.rotation ?? 0;
++    if (!Number.isFinite(center?.x) || !Number.isFinite(center?.y) || !Number.isFinite(width2) || !Number.isFinite(height2) || width2 <= 0 || height2 <= 0 || !Number.isFinite(rotation)) continue;
++    const radians = -rotation * Math.PI / 180;
++    const dx = point.x - center.x;
++    const dy = point.y - center.y;
++    const localX = dx * Math.cos(radians) - dy * Math.sin(radians);
++    const localY = dx * Math.sin(radians) + dy * Math.cos(radians);
++    if (Math.abs(localX) <= width2 / 2 && Math.abs(localY) <= height2 / 2) {
++      candidates.push(element);
++    }
++  }
++  if (candidates.length !== 1) return null;
++  const pcbComponent = candidates[0];
++  const sourceComponents = elements.filter(
++    (element) => element?.type === "source_component" && element.source_component_id === pcbComponent.source_component_id
++  );
++  if (sourceComponents.length !== 1) return null;
++  const sourceComponent = sourceComponents[0];
++  return {
++    source_component_id: sourceComponent.source_component_id,
++    pcb_component_id: pcbComponent.pcb_component_id,
++    ...typeof sourceComponent.name === "string" && sourceComponent.name ? { source_component_name: sourceComponent.name } : {}
++  };
+ };
+ var MouseElementTracker = ({
+   elements,
+   children,
+   transform,
+   primitives,
+-  onMouseHoverOverPrimitives
++  onMouseHoverOverPrimitives,
++  onSelectionChange
+ }) => {
+   const [mousedPrimitives, setMousedPrimitives] = useState8([]);
+   const [mousePos, setMousePos] = useState8({ x: 0, y: 0 });
+@@ -14455,6 +14565,35 @@
+           const y = e.clientY - rect.top;
+           handleInteraction(x, y, transform, primitives);
+         }
++      },
++      onClick: (e) => {
++        if (!transform || !onSelectionChange) return;
++        const rect = e.currentTarget.getBoundingClientRect();
++        const rwPoint = applyToPoint14(inverse5(transform), {
++          x: e.clientX - rect.left,
++          y: e.clientY - rect.top
++        });
++        const selections = /* @__PURE__ */ new Map();
++        for (const primitive of getPrimitivesUnderPoint(primitives, rwPoint, transform)) {
++          const sourceComponent = primitive._parent_source_component;
++          const pcbComponent = primitive._parent_pcb_component;
++          if (sourceComponent?.type !== "source_component" || !sourceComponent.source_component_id) continue;
++          if (pcbComponent?.type !== "pcb_component" || !pcbComponent.pcb_component_id) continue;
++          selections.set(`${sourceComponent.source_component_id}\0${pcbComponent.pcb_component_id}`, {
++            source_component_id: sourceComponent.source_component_id,
++            pcb_component_id: pcbComponent.pcb_component_id,
++            ...sourceComponent.name ? { source_component_name: sourceComponent.name } : {}
++          });
++        }
++        if (selections.size === 1) {
++          onSelectionChange(selections.values().next().value);
++          return;
++        }
++        if (selections.size > 1) {
++          onSelectionChange(null);
++          return;
++        }
++        onSelectionChange(getPcbViewerSelectionAtPoint(elements, rwPoint));
+       },
+       onTouchStart: (e) => {
+         if (transform) {
+@@ -14904,7 +15043,7 @@
+ // package.json
+ var package_default = {
+   name: "@tscircuit/pcb-viewer",
+-  version: "1.11.373",
++  version: "1.11.374",
+   main: "dist/index.js",
+   type: "module",
+   repository: "tscircuit/pcb-viewer",
+@@ -16289,12 +16428,20 @@
+       ...hoverState.primitiveIdsInMousedOverNet,
+       ...errorRelatedIds
+     ];
++    const selectedDrawingObjectIds = new Set(hoverState.drawingObjectIdsWithMouseOver);
++    if (props.selectedSourceComponentId) {
++      for (const primitive of primitivesWithoutInteractionMetadata) {
++        if (primitive._parent_source_component?.source_component_id === props.selectedSourceComponentId) {
++          selectedDrawingObjectIds.add(primitive._pcb_drawing_object_id);
++        }
++      }
++    }
+     return addInteractionMetadataToPrimitives({
+       primitivesWithoutInteractionMetadata,
+-      drawingObjectIdsWithMouseOver: hoverState.drawingObjectIdsWithMouseOver,
++      drawingObjectIdsWithMouseOver: selectedDrawingObjectIds,
+       primitiveIdsInMousedOverNet: combinedPrimitiveIds
+     });
+-  }, [primitivesWithoutInteractionMetadata, hoverState, errorRelatedIds]);
++  }, [primitivesWithoutInteractionMetadata, hoverState, errorRelatedIds, props.selectedSourceComponentId]);
+   const onMouseOverPrimitives = useCallback11(
+     (primitivesHoveredOver) => {
+       const primitiveIdsInMousedOverNet = [];
+@@ -16335,6 +16482,7 @@
+       transform,
+       primitives: primitivesWithoutInteractionMetadata,
+       onMouseHoverOverPrimitives: onMouseOverPrimitives,
++      onSelectionChange: props.onSelectionChange,
+       children: /* @__PURE__ */ jsx24(
+         EditPlacementOverlay,
+         {
+@@ -16361,7 +16509,7 @@
+                   primitives: primitivesWithoutInteractionMetadata,
+                   onBoundsSelected: props.onBoundsSelected,
+                   cancelPanDrag: props.cancelPanDrag,
+-                  children: /* @__PURE__ */ jsx24(ToolbarOverlay, { elements, children: /* @__PURE__ */ jsx24(ErrorOverlay, { transform, elements, children: /* @__PURE__ */ jsx24(RatsNestOverlay, { transform, soup: elements, children: /* @__PURE__ */ jsx24(
++                  children: /* @__PURE__ */ jsx24(ToolbarOverlay, { elements, children: /* @__PURE__ */ jsx24(ErrorOverlay, { transform, elements, hidden: props.hiddenLayerIds?.includes("annotations"), children: /* @__PURE__ */ jsx24(RatsNestOverlay, { transform, soup: elements, children: /* @__PURE__ */ jsx24(
+                     PcbGroupOverlay,
+                     {
+                       transform,
+@@ -16377,6 +16525,7 @@
+                             {
+                               transform,
+                               elements,
++                              hidden: props.hiddenLayerIds?.includes("annotations"),
+                               children: /* @__PURE__ */ jsx24(
+                                 CanvasPrimitiveRenderer,
+                                 {
+@@ -16385,7 +16534,10 @@
+                                   elements: elementsToRender,
+                                   width: props.width,
+                                   height: props.height,
+-                                  grid: props.grid
++                                  grid: props.grid,
++                                  hiddenLayerIds: props.hiddenLayerIds,
++                                  drillColor: props.drillColor,
++                                  drillStrokeColor: props.drillStrokeColor
+                                 }
+                               )
+                             }
+@@ -16461,15 +16613,23 @@
+ // src/PCBViewer.tsx
+ import { jsx as jsx25, jsxs as jsxs17 } from "react/jsx-runtime";
+ var defaultTransform = compose8(translate12(400, 300), scale6(40, -40));
++var PCB_VIEWER_SELECTION_BRIDGE_VERSION = "source-component@2";
+ var PCBViewer = ({
+   circuitJson,
+   debugGraphics,
++  width: widthProp,
+   height = 600,
+   initialState,
+   allowEditing = true,
+   editEvents: editEventsProp,
+   onEditEventsChanged,
+   onBoundsSelected,
++  onSelectionChange,
++  selectedSourceComponentId,
++  hiddenLayerIds = [],
++  drillColor,
++  drillStrokeColor,
++  onViewerControlsReady,
+   focusOnHover = false,
+   clickToInteractEnabled = false,
+   disablePcbGroups = false
+@@ -16478,6 +16638,7 @@
+     !clickToInteractEnabled
+   );
+   const [ref, refDimensions] = useMeasure_default();
++  const viewerWidth = widthProp && Number.isFinite(widthProp) && widthProp > 0 ? widthProp : refDimensions.width;
+   const [transform, setTransformInternal] = useState13(defaultTransform);
+   const shouldAllowCanvasInteraction = useCallback12(
+     (event) => {
+@@ -16507,7 +16668,7 @@
+   );
+   const boardSizeKey = calculateBoardSizeKey(circuitJson);
+   const resetTransform = () => {
+-    const elmBounds = refDimensions?.width > 0 ? refDimensions : { width: 500, height: 500 };
++    const elmBounds = viewerWidth > 0 ? { width: viewerWidth, height } : refDimensions?.width > 0 ? refDimensions : { width: 500, height: 500 };
+     const { center, width, height: height2 } = elements.some(
+       (e) => e.type.startsWith("pcb_")
+     ) ? findBoundsAndCenter(
+@@ -16527,14 +16688,14 @@
+     return;
+   };
+   useEffect19(() => {
+-    if (!refDimensions?.width) return;
++    if (!viewerWidth) return;
+     if (!circuitJson) return;
+     if (circuitJson.length === 0) return;
+     if (!initialRenderCompleted.current) {
+       resetTransform();
+       initialRenderCompleted.current = true;
+     }
+-  }, [circuitJson, refDimensions]);
++  }, [circuitJson, refDimensions, viewerWidth]);
+   useEffect19(() => {
+     if (initialRenderCompleted.current === true) {
+       resetTransform();
+@@ -16551,6 +16712,21 @@
+       editEvents
+     });
+   }, [pcbElmsPreEdit, editEvents]);
++  useEffect19(() => {
++    if (!onViewerControlsReady) return;
++    const zoomAtCenter = (factor) => setTransform(compose8(
++      translate12(viewerWidth / 2, height / 2),
++      scale6(factor, factor),
++      translate12(-viewerWidth / 2, -height / 2),
++      transform
++    ));
++    onViewerControlsReady({
++      fitToView: resetTransform,
++      zoomIn: () => zoomAtCenter(1.2),
++      zoomOut: () => zoomAtCenter(1 / 1.2)
++    });
++    return () => onViewerControlsReady(null);
++  }, [height, onViewerControlsReady, setTransform, transform, viewerWidth, elements]);
+   const onCreateEditEvent = (event) => {
+     setEditEvents([...editEvents, event]);
+     onEditEventsChanged?.([...editEvents, event]);
+@@ -16588,10 +16764,15 @@
+                   transform,
+                   setTransform,
+                   height,
+-                  width: refDimensions.width,
++                  width: viewerWidth,
+                   allowEditing,
+                   focusOnHover,
+                   onBoundsSelected,
++                  onSelectionChange,
++                  selectedSourceComponentId,
++                  hiddenLayerIds,
++                  drillColor,
++                  drillStrokeColor,
+                   cancelPanDrag,
+                   onCreateEditEvent,
+                   onModifyEditEvent,
+@@ -16599,7 +16780,7 @@
+                     spacing: 1,
+                     view_window: {
+                       left: 0,
+-                      right: refDimensions.width || 500,
++                      right: viewerWidth || 500,
+                       top: height,
+                       bottom: 0
+                     }
+@@ -16607,7 +16788,7 @@
+                   elements,
+                   debugGraphics
+                 },
+-                refDimensions.width
++                viewerWidth
+               ),
+               /* @__PURE__ */ jsx25(ToastContainer, {})
+             ]
+@@ -16672,7 +16853,9 @@
+ };
+ export {
+   CanvasElementsRenderer,
+-  PCBViewer
++  PCBViewer,
++  PCB_VIEWER_SELECTION_BRIDGE_VERSION,
++  getPcbViewerSelectionAtPoint
+ };
+ /*! Bundled license information:
+ 
+@@ -16724,4 +16907,4 @@
+    * Released under the MIT License.
+    *)
+ */
+-//# sourceMappingURL=index.js.map
+\ No newline at end of file
++//# sourceMappingURL=index.js.map

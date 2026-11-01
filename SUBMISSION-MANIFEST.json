@@ -1,0 +1,2801 @@
+{
+  "format": 1,
+  "product": "Cutu Circuits",
+  "generatedAt": "2026-11-01T09:34:09.792Z",
+  "provenance": "Fresh release snapshot of existing sources. Artifact creation time is not original authorship time. Existing source bytes, licenses, notices and provenance are preserved; original files and Git history are untouched.",
+  "archiveTimestamps": "ZIP entries use artifact creation time in UTC-derived DOS fields (two-second precision, no timezone field); copied files receive their actual current filesystem write times. Historical source dates are not rewritten.",
+  "build": "Run Setup-Workspace.ps1. Provider dist is generated from included sources. Only the standalone plugin bundle and its licenses are retained from dist when present.",
+  "freshLocalGitRequested": false,
+  "files": [
+    {
+      "path": ".env.local.example",
+      "bytes": 116,
+      "sha256": "8067938ecd9ac0b9b932c2704d576d357bfc7141ec7b3bf8d653977310789f84"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 325,
+      "sha256": "4e58086e46e615134a18a743998fdaaa7540ecc7b7558c738d470044918fc28a"
+    },
+    {
+      "path": "Activate-Workspace.ps1",
+      "bytes": 476,
+      "sha256": "01ac9d676d3956ee8ea1c5665ec7cb66f2e5dc32e7182190c42e9af71489490f"
+    },
+    {
+      "path": "Cerebras/.env.example",
+      "bytes": 110,
+      "sha256": "8e00f151d484ad01cb6d968e187abcad9c493c181d46d94a4342d793cd40cb97"
+    },
+    {
+      "path": "Cerebras/.gitignore",
+      "bytes": 52,
+      "sha256": "df0eb6ee1ae84676a3ab96d0e0224c1a1fabb170cd7c64e392a30e6658461609"
+    },
+    {
+      "path": "Cerebras/README.md",
+      "bytes": 9882,
+      "sha256": "a3b892c918e8599306a906bda5c97e36371a28f08846644494308e8b653fb71e"
+    },
+    {
+      "path": "Cerebras/docs/model-contract.md",
+      "bytes": 6882,
+      "sha256": "a011a42ebc136497a8a946d054358733ecbea9aa09064cec66643c335e6dc195"
+    },
+    {
+      "path": "Cerebras/examples/usage.ts",
+      "bytes": 4966,
+      "sha256": "e6b67ded638a610792baed43b41f182b8a89a3bb9ca854ca822ee9f1d54dfffd"
+    },
+    {
+      "path": "Cerebras/package-lock.json",
+      "bytes": 1507,
+      "sha256": "6a1206755cf17ecde34330f1697123852c1ec858c25bc117871f1b16408dabaf"
+    },
+    {
+      "path": "Cerebras/package.json",
+      "bytes": 780,
+      "sha256": "b57669bb661c61251804eb0f38535cac3a217dcf4b0344d9c8c19bc7419ffa72"
+    },
+    {
+      "path": "Cerebras/src/client.ts",
+      "bytes": 10028,
+      "sha256": "00578c31b6c93c382b5a7beab6ff26ded6fff0aca0dbc1ec4d278a4d5a506053"
+    },
+    {
+      "path": "Cerebras/src/errors.ts",
+      "bytes": 951,
+      "sha256": "7439c410bf79e124f02f1a44bc18dcf74af79bb91f06f02596412ef4a5c518ab"
+    },
+    {
+      "path": "Cerebras/src/helpers.ts",
+      "bytes": 3745,
+      "sha256": "6bc97d34aadefde52277e7cedb5a731ae09396303ee324a3341d29131c537f15"
+    },
+    {
+      "path": "Cerebras/src/images.ts",
+      "bytes": 1579,
+      "sha256": "bdd64f6ea4b1710a58bc5defc29fb05b5187921a93f76f4eafe36511954d2d8d"
+    },
+    {
+      "path": "Cerebras/src/index.ts",
+      "bytes": 389,
+      "sha256": "c9bdf8c4622b05992b44d2f879f7d772381d098851dff72a97e842c7184cb07a"
+    },
+    {
+      "path": "Cerebras/src/model.ts",
+      "bytes": 1557,
+      "sha256": "6c8e0680f748007d90537f373b3896632984855e7c2c4e1de907a1a75f596880"
+    },
+    {
+      "path": "Cerebras/src/sse.ts",
+      "bytes": 3270,
+      "sha256": "390ddfde881c3fc408db54aa189158e39bb0bcb67f45f96dfe4060245f3f60f6"
+    },
+    {
+      "path": "Cerebras/src/types.ts",
+      "bytes": 5365,
+      "sha256": "27713e306e8485b726a5890b9842344c166a1f810247b4af0516b5394ee31038"
+    },
+    {
+      "path": "Cerebras/src/validation.ts",
+      "bytes": 9288,
+      "sha256": "b697fff91596af78e978404b6b7685b00b23b70db6403b41dd1c5aa18c411ce9"
+    },
+    {
+      "path": "Cerebras/tests/client.test.ts",
+      "bytes": 18072,
+      "sha256": "97bc62a7a54ec8ed2442cb482d6f5c84eb352c3d99944fdc0d0258612579bcdb"
+    },
+    {
+      "path": "Cerebras/tsconfig.examples.json",
+      "bytes": 159,
+      "sha256": "548bc8ffd4b5430b02285137cd4e109d53a36304114025085ff2d8c575e66821"
+    },
+    {
+      "path": "Cerebras/tsconfig.json",
+      "bytes": 485,
+      "sha256": "38efb2abd323c3580dff2f7c2621b3c529aaa16bf5592a63f4def84ba658c691"
+    },
+    {
+      "path": "Exa/.env.example",
+      "bytes": 68,
+      "sha256": "926f9ac054f82a5ac3657afa99749afba14bcc6b02b439748391b33dfa69d596"
+    },
+    {
+      "path": "Exa/.gitignore",
+      "bytes": 52,
+      "sha256": "83554585acbd54f3e1c592b6e6addc2e7e185e2606af10f745d1484ff058a1c1"
+    },
+    {
+      "path": "Exa/README.md",
+      "bytes": 5794,
+      "sha256": "27851c884556910dc2a5ff0594f641b292dbc48b1aca476c45ef7705ef6f7ceb"
+    },
+    {
+      "path": "Exa/package-lock.json",
+      "bytes": 1497,
+      "sha256": "6e715384cd02714111e6d9ea7cfc0a9e1a9096fb5a146441eddeca114327d404"
+    },
+    {
+      "path": "Exa/package.json",
+      "bytes": 726,
+      "sha256": "b1e927f2edc44b61c141b56efc7122614053ba39a1535aca11a1232b71fd9b7a"
+    },
+    {
+      "path": "Exa/src/client.ts",
+      "bytes": 5001,
+      "sha256": "4ec91d68b3631a86a2761005455e59e8e721d8999940b7352da0b6cf2d4ed7b8"
+    },
+    {
+      "path": "Exa/src/errors.ts",
+      "bytes": 639,
+      "sha256": "1b01f19a73bcb55559854a1fef4d8bd844577647cb0d5081373a549dde7c3760"
+    },
+    {
+      "path": "Exa/src/index.ts",
+      "bytes": 133,
+      "sha256": "f0870f3a4000a498719eded2880586861ac9451e67f7066570bf3c9fe20ebe11"
+    },
+    {
+      "path": "Exa/src/response.ts",
+      "bytes": 3351,
+      "sha256": "1ef1fce12287b69fe97327f2777777f3dc0ca6d806228cd75d603dcc46f27cd7"
+    },
+    {
+      "path": "Exa/src/types.ts",
+      "bytes": 1895,
+      "sha256": "5a04b30c518f2589003245d8cda0f693d03d28dc646df8487e5189935bd2b343"
+    },
+    {
+      "path": "Exa/src/validation.ts",
+      "bytes": 3766,
+      "sha256": "0f2732f3298ff909462fcd1e54b64cd61a03d25f596fa9bc2a4c5e073ed6bdd4"
+    },
+    {
+      "path": "Exa/tests/client.test.ts",
+      "bytes": 6718,
+      "sha256": "6e62a00d305e4b031b356c8dda9c3e4bf215e064e03c438003ce176511173873"
+    },
+    {
+      "path": "Exa/tsconfig.json",
+      "bytes": 485,
+      "sha256": "38efb2abd323c3580dff2f7c2621b3c529aaa16bf5592a63f4def84ba658c691"
+    },
+    {
+      "path": "Exa/tsconfig.tests.json",
+      "bytes": 139,
+      "sha256": "cd3598c5eee8f64491df7ac4769d0d15a9bbe57893bb05152feb3784e120a992"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5279,
+      "sha256": "cb3173a7230f4cb26bdd901369a3b539dc69cc17fc628ef985965ecba8e4a05e"
+    },
+    {
+      "path": "Setup-Workspace.ps1",
+      "bytes": 2939,
+      "sha256": "7a6457e56e4700a5e99eacd6b8ed16f182cfbe84e1362cd90a267da36544d1c4"
+    },
+    {
+      "path": "Start-Workspace.ps1",
+      "bytes": 2250,
+      "sha256": "520420e9ab01b5141837be229267d3216063d27f8990e76665f11c8312576bdf"
+    },
+    {
+      "path": "cutu-circuits/.agents/plugins/marketplace.json",
+      "bytes": 317,
+      "sha256": "a98419d63bdde7b28749dbac4d1bf4399fc3d545430fcd660d2008147e5e6842"
+    },
+    {
+      "path": "cutu-circuits/.gitignore",
+      "bytes": 165,
+      "sha256": "c26b8041ecc7a4fc96e96264a6c6485fccf430c7ac5eefb4ed224c7a4f9c5f63"
+    },
+    {
+      "path": "cutu-circuits/README.md",
+      "bytes": 5460,
+      "sha256": "bf750381688aaee78fa4e3f4126df5b2f31dbe321245af5cf116ba645ab5fc92"
+    },
+    {
+      "path": "cutu-circuits/THIRD-PARTY-NOTICES.md",
+      "bytes": 1904,
+      "sha256": "fc03519c06e5f7da37a38386b63679ef77be3f322668a2a3d23671691032e24a"
+    },
+    {
+      "path": "cutu-circuits/apps/web/index.html",
+      "bytes": 324,
+      "sha256": "d0341225cf3ddbf7882c1fd4c609cdf8c0c5def2a70482077d0eedd09a109dd4"
+    },
+    {
+      "path": "cutu-circuits/apps/web/package.json",
+      "bytes": 543,
+      "sha256": "24b447d05f460f4bfefa42074e7af9b8c1974993798f6c72ab275eaa0eb2004e"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/AgentMarkdown.tsx",
+      "bytes": 1841,
+      "sha256": "1230a09719e13a2483085e1be61d8a9c21e5f3eb41d4e245744fb843808e70a6"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/AgentPanel.tsx",
+      "bytes": 25642,
+      "sha256": "d18fe5874cf51bf3476d949e939aacebf816a95bcd7c5b5303bb3da8e2b3ed10"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/App.tsx",
+      "bytes": 42858,
+      "sha256": "568a1f0460bae7e0e665fd883213d3f3a8cde238ef4c70c5592ae020ea5f35ba"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/AssemblyReplay.tsx",
+      "bytes": 2630,
+      "sha256": "7b6ebad50d32703ac261adcfe8220df7d0ec626c2528ce84fd3593a58dacfea2"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/CapabilitiesPanel.tsx",
+      "bytes": 7875,
+      "sha256": "75f0eb8180ab005472b1fcd79cafd667e4919370f4ff5a13d316bd7a4cadb846"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/CodexPanel.tsx",
+      "bytes": 2736,
+      "sha256": "a8a50e61ec1804aeab3b84a8b46f62aa11b3700ab216c685638ee450fd73f913"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/EditorBoundary.tsx",
+      "bytes": 701,
+      "sha256": "70b9fae34a1db094cabe0acc393becb47cff14e61cbb430ead8026eb40775a44"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/EntityInspector.tsx",
+      "bytes": 4565,
+      "sha256": "41a3844a741db4a0390fcd7077fa66a8aa57e8c9bfc06009e5acd58d317780af"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/Glyph.tsx",
+      "bytes": 563,
+      "sha256": "268e5c2a0ab78b1e8bcf708fb1d339ce6d36274e940c7cc969e339c1dcb5e884"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/HistoryPanel.tsx",
+      "bytes": 15472,
+      "sha256": "2b045eeafd19b8c313cc26b74a7ed98161df9e914e63428a0757647a2b7e99fd"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/MotionStrip.tsx",
+      "bytes": 2528,
+      "sha256": "2d4cc0b01534ae4eaa8ff2dfbdd715fa3af293af49ac003fdad9ace59cf8ba56"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/OperationControls.tsx",
+      "bytes": 1561,
+      "sha256": "014994cef4fbd4c9ef56a2aaca154f0f825233f477f8e74babf95c4279eefc04"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/ProjectSidebar.tsx",
+      "bytes": 5992,
+      "sha256": "1fd3288af3345a93d44031f7a9e3e98ffb94430b4d3dcd9a9aaaf1e8ccaaa8d4"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/RobotWalkControls.tsx",
+      "bytes": 3141,
+      "sha256": "655e91350ee0665e22a92946a1ccb7d2e7eed8ca38f684387ed92606a6467184"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/Scene.tsx",
+      "bytes": 28033,
+      "sha256": "9bcc72b3859666f60cff6fca11488d9bf404bfaafd7c9c2051c64e33b6741f88"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/SourceEditor.tsx",
+      "bytes": 3301,
+      "sha256": "774438f85d0b257f141713db0797b3766d2fad79ecb46eb89bb396c66e7582ab"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/ViewToolbar.tsx",
+      "bytes": 3157,
+      "sha256": "d7248486e5bf1f41cda52e30003adbad05cc752643f4184aa1ca9e30906e3e1b"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/WorkspaceDialogs.tsx",
+      "bytes": 5186,
+      "sha256": "ff7a4a5903e34d575e0dad3ef4b23fe2908284ec9ff59dbff80175aa04ea01db"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/agent.css",
+      "bytes": 10906,
+      "sha256": "b8f59b9fc8d44ca3d5761e4ac654bfef18176a99b68988702e40533fce16941c"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/agentStream.ts",
+      "bytes": 2482,
+      "sha256": "bfa4b5272df78b6e67dddf238f4a19533fca906b0b0c91cd03c43f7f1469e465"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/api.ts",
+      "bytes": 965,
+      "sha256": "11f7e350bded233f406f2c654d86b57be8034f503ae3036dded1d91fef48ef99"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/assemblyCache.ts",
+      "bytes": 1640,
+      "sha256": "6614f7c4709ab7a3774da54c4ad1f2e8af3fe9cd8615628682fbea78403ec0ea"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/assemblyReplay.css",
+      "bytes": 1555,
+      "sha256": "7e2d7dbaf6459a5e891f83bceef26256c1cd1845c6a4f8dc5793f25f9aff612c"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/assemblyReveal.ts",
+      "bytes": 1976,
+      "sha256": "cc1e8ad0eb606e61ba890bf13edb79c4785b0841de81d8057535a1c19b5a7f04"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/gaitTravel.ts",
+      "bytes": 977,
+      "sha256": "6fe913c4531fcda618f584f980a4dc9b27818352774101aecd0f45f0cfd198e5"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/main.tsx",
+      "bytes": 289,
+      "sha256": "2e8f99ce001a088db42584d5bac52ac5e73a6f9f35afe8db795876062efea721"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/programMotion.ts",
+      "bytes": 2714,
+      "sha256": "9bb0891dbc938e675f0b2b59fa59fd4505ddb8f92b873b8ef2155b8238b7b536"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/robotWalk.css",
+      "bytes": 945,
+      "sha256": "1cfdcd8f1401fb9acd7b6767066fc1f7bc4c3f3f3b014fef1dd0760cf8d2cb9e"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/robotics/RobotImportDialog.tsx",
+      "bytes": 3796,
+      "sha256": "2b724ca7f1e19b721df53ab193a421a1ac143bf2dd8753adc02a20e45e56c9f7"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/robotics/RobotViewport.tsx",
+      "bytes": 11074,
+      "sha256": "2c2f26535f7935758940e8826b84d75dc496d0fb5dea8459780852d8895b2fd6"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/robotics/RobotWorkspace.tsx",
+      "bytes": 14283,
+      "sha256": "e02cde22ab65552ed5ede3a206052c0e30bde16622e6e085e80f63bdd959935a"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/robotics/projectResources.ts",
+      "bytes": 2509,
+      "sha256": "c65ceeb882eceb0f4f2e143f70c8e09ffa2362ad46ce4adf75000e06547c65f4"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/robotics/robotics.css",
+      "bytes": 7075,
+      "sha256": "76d4d77de1397f97bece1aa4c10add048368b8a8b89bdf3838b113f79f036b7e"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/style.css",
+      "bytes": 32732,
+      "sha256": "3a0d332dc29602c0bef2071283cb3d6126b011fb6946781ae2824ac0781ed5b7"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/theme.ts",
+      "bytes": 1964,
+      "sha256": "6eebff99773523edc484cf1c2fa0452aeca4d1ec2eac8542af1d6b365287152f"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/useAssemblyCad.ts",
+      "bytes": 2405,
+      "sha256": "3b11d25c6243e63dcec6b87d0225362f1f8aab612f62d169d4f7447a0172e1c4"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/useProjectSession.ts",
+      "bytes": 6428,
+      "sha256": "b2338f828b363849f8957f10fff2dfe316d2dec928de68f87aafe789b4fb8be8"
+    },
+    {
+      "path": "cutu-circuits/apps/web/src/useRestoringDialog.ts",
+      "bytes": 1220,
+      "sha256": "be67a0022828d4503c5284f14c4cca3d434966bf1253f66a093aba165eec5d8d"
+    },
+    {
+      "path": "cutu-circuits/apps/web/tests/agentMarkdown.test.ts",
+      "bytes": 1776,
+      "sha256": "c40c70a9ad572636a3e1e5ec67b2c980b23854647312607a6cd5f260bd5e0b5c"
+    },
+    {
+      "path": "cutu-circuits/apps/web/tests/agentStream.test.ts",
+      "bytes": 1961,
+      "sha256": "11a8fe3195d60740964460faa8d13ea61e25f87a2b7d34f4e5b2d4466da47d91"
+    },
+    {
+      "path": "cutu-circuits/apps/web/tests/assembly-cache.test.ts",
+      "bytes": 2950,
+      "sha256": "90e7aac7bbf92c8e917a6b3d29859076758532b0201aa4b4b27f47b08b5e333f"
+    },
+    {
+      "path": "cutu-circuits/apps/web/tests/assemblyReplay.test.ts",
+      "bytes": 2633,
+      "sha256": "01e0c3f8ffae175afc6b377b5d3ef00905b2b996837002a985610ab133db1da1"
+    },
+    {
+      "path": "cutu-circuits/apps/web/tests/gaitTravel.test.ts",
+      "bytes": 1521,
+      "sha256": "be04df59c2233ff40a56183806cbbc57c96d9cb0741550213c9c99cd1235cea4"
+    },
+    {
+      "path": "cutu-circuits/apps/web/tests/programMotion.test.ts",
+      "bytes": 4041,
+      "sha256": "e1e2631afcca57d139435c789f6724137e82316e448a9859599c553e826fdfdf"
+    },
+    {
+      "path": "cutu-circuits/apps/web/vite.config.ts",
+      "bytes": 1942,
+      "sha256": "ab21f65977582785812b97e74899dc75b237236b6a14357622e18839542e95b9"
+    },
+    {
+      "path": "cutu-circuits/docs/architecture.md",
+      "bytes": 6952,
+      "sha256": "85532f11c564028a5fc6c004fa1056b50c0a19fadc9054fe2cbaf17f50cf72ca"
+    },
+    {
+      "path": "cutu-circuits/docs/contracts.md",
+      "bytes": 7760,
+      "sha256": "a32b9bd7d5819b3c8ba0c1207a577e8a6309122ef099105716b513fa3e857742"
+    },
+    {
+      "path": "cutu-circuits/docs/demo-runbook.md",
+      "bytes": 4251,
+      "sha256": "a12c7f160b3a37059e26c5483c52e4d75a39f9c23de86ed132c52766087af387"
+    },
+    {
+      "path": "cutu-circuits/docs/demo.md",
+      "bytes": 9736,
+      "sha256": "73b044ec75dc5c7c68d95e027433bfd7271a004d61075baddbf1aa703492ed12"
+    },
+    {
+      "path": "cutu-circuits/docs/live-provider-validation.md",
+      "bytes": 2296,
+      "sha256": "d5a1844b74945ee3d19ef4d2810b5f29fa8578239baa9cd8180a0a1511cfbc50"
+    },
+    {
+      "path": "cutu-circuits/docs/model-reference.md",
+      "bytes": 8617,
+      "sha256": "f6a0d06ff69465bdc9cf4868c44a7b34cf4f107239e948efa9676d4e29aed447"
+    },
+    {
+      "path": "cutu-circuits/docs/physical-board-validation.md",
+      "bytes": 3061,
+      "sha256": "107672b797c26ca878d3814d23f26c642d68da9c8bec7f3ab3429b4aa28abe49"
+    },
+    {
+      "path": "cutu-circuits/docs/presentation-and-walking.md",
+      "bytes": 3091,
+      "sha256": "c499f1f7d0b9d69f52ca86fae5f4a92ae04833551e910444d8487826342ebae0"
+    },
+    {
+      "path": "cutu-circuits/docs/release.md",
+      "bytes": 3257,
+      "sha256": "3a60e1b9a682226c68c6e5be9ddbe2fb7f2d0b6780a21eeabe30bcd008b5a15a"
+    },
+    {
+      "path": "cutu-circuits/docs/robotics-and-recovery.md",
+      "bytes": 6155,
+      "sha256": "acc79ad73a8e7b8bbf2fa995371e5a721bb8ef2c992ee234dc4d1b36bc09c1f7"
+    },
+    {
+      "path": "cutu-circuits/examples/blank/README.md",
+      "bytes": 729,
+      "sha256": "409bd5fc1fbcbdea25020ab43234b6c933ca55dbf26fce7e548b0946e08808cd"
+    },
+    {
+      "path": "cutu-circuits/examples/blank/cutucircuits.project.json",
+      "bytes": 344,
+      "sha256": "935127d54a5d9a6178b4179f0ebbfcfbd610b1709fefb58eb92df825aa97b3c9"
+    },
+    {
+      "path": "cutu-circuits/examples/robot/README.md",
+      "bytes": 758,
+      "sha256": "601063485385d1cda0d34ea9f59d6b103ba80ae997bddfa8254f85d455cb0332"
+    },
+    {
+      "path": "cutu-circuits/examples/robot/arm.urdf",
+      "bytes": 2042,
+      "sha256": "924f109e2f111bd6b4ff4c1c1159e9e2277d23c55000a634fdb4e091693c620c"
+    },
+    {
+      "path": "cutu-circuits/examples/robot/cutucircuits.project.json",
+      "bytes": 502,
+      "sha256": "b6c78072ccfeb6e1b58f2aceffdbb2e5b20fcc01908dae59de5983c2ca6efaec"
+    },
+    {
+      "path": "cutu-circuits/examples/sensor/README.md",
+      "bytes": 687,
+      "sha256": "5e9f9d15f397ed48240f4a7844fc27b280e8cbebdee90899a62cbb13f315519a"
+    },
+    {
+      "path": "cutu-circuits/examples/sensor/circuit.circuit.tsx",
+      "bytes": 987,
+      "sha256": "8937771d328b929223c6de6a0e96a5cf863347efa9b95d3f7072cb1261d8b2d8"
+    },
+    {
+      "path": "cutu-circuits/examples/sensor/cutucircuits.project.json",
+      "bytes": 6751,
+      "sha256": "49e89ad157f05ed70a2c90d8f42a26520bb3c7586b36e8f291c45104a1c3e6a7"
+    },
+    {
+      "path": "cutu-circuits/examples/sensor/model.replicad.ts",
+      "bytes": 518,
+      "sha256": "4d796268d191d0c3231a591756d0c02f98664657e707484e90522339ed91b345"
+    },
+    {
+      "path": "cutu-circuits/examples/sensor/programs/controller.py",
+      "bytes": 1934,
+      "sha256": "609e99150d30ea6067c1631a2ad292a4d971e87c0a110364fd5ef3c0543332ee"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/.gitignore",
+      "bytes": 63,
+      "sha256": "a02a10bdd008b4ad7f5355bb9ea933c851a51e5f5fd7b336a6b982c0d46bfdbb"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/README.md",
+      "bytes": 6103,
+      "sha256": "d189637b0164c99f25f41c9b79adebc245fca15cb3f16a25c2926ec5dd6401a4"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/circuit.circuit.tsx",
+      "bytes": 1560,
+      "sha256": "5a722501ac096bfe97f4004e22d079ce37c93ca2377bdc9e0e6edaabb5ed1e24"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/cutucircuits.project.json",
+      "bytes": 66628,
+      "sha256": "5b67018ec691035bcd84690879a3281b0738896296b578cafd4ab74314bf570d"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/firmware/include/secrets.example.h",
+      "bytes": 223,
+      "sha256": "e8b70a8c57595058c6a40c6f3143fa3c6e4ba89aee2cd994b75700a42121a6ff"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/firmware/platformio.ini",
+      "bytes": 154,
+      "sha256": "1bf00a03536db6d48a65918afaa73cc647073bbd359f481e1830520ff0c9bc2b"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/firmware/src/main.cpp",
+      "bytes": 15409,
+      "sha256": "75e6ebc4270a1469edd06d9c6c4b639b6c8b13e429fb7bd2dea2318f26d79183"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/README.md",
+      "bytes": 854,
+      "sha256": "f8bf851a7e5e7b8beb5ebca433108a002a6e387f61e6f0d7cde91cab7b0ec345"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/body.stl",
+      "bytes": 62784,
+      "sha256": "6a371dc786f6003dda659ef965fedc133f8f5a6dbad93bf551e937be54c812ac"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-left-0.stl",
+      "bytes": 95584,
+      "sha256": "6ce885c562235a133aac7a62d58b2532bf52c52c88ae29f1a342548ec953393d"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-left-1.stl",
+      "bytes": 92484,
+      "sha256": "15b6d77a1a8ed67d317372de4bc02f338a4688e7da214ef5bfd997501a94da57"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-left-2.stl",
+      "bytes": 92484,
+      "sha256": "4828378741652b6b3bbca1d6574e1572d7afee6bbd752872c239ab0538aca059"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-right-0.stl",
+      "bytes": 136584,
+      "sha256": "e65a30cf64699a95677ce8c376500457b7b8981190c526b3b89015c6e85a6b37"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-right-1.stl",
+      "bytes": 137784,
+      "sha256": "4aa81a4a7e29eba2fab6226c7812032d87adbc1c87d9a15108d60496d9945076"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-right-2.stl",
+      "bytes": 98284,
+      "sha256": "b541901e7a77783e4431aa3070b8e508a0b9e29ddc6211698de4f8999a50a4e3"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-tilt-0.stl",
+      "bytes": 120784,
+      "sha256": "379ba082dc56aaaf9faad7eb304fc57ddeb73453714723bdd6889569f8ebb0fd"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-tilt-1.stl",
+      "bytes": 115384,
+      "sha256": "2c2f759d12d22f7bb300381e14e239d44b20389e621144d63890e3bfce4e1bfd"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/cable-tilt-2.stl",
+      "bytes": 73284,
+      "sha256": "f6c010ac1e14ce5d48b2f702052526ab0b96d1da60983fe0b31b8bfa7d0d2524"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-antenna-trace.stl",
+      "bytes": 5484,
+      "sha256": "319151fd1ee86ba5a60cda9f534fdd11c812d2e0851d21099cf7b8f6e9ec3699"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-antenna.stl",
+      "bytes": 684,
+      "sha256": "4c7391f12406bddcc64fc542c94c1f60c016ca7bdf3d8ad9ec1262cdfe8c27e7"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-common-ground.stl",
+      "bytes": 56984,
+      "sha256": "cd7b055d32cc1abac40141b2441f72971d41de41295db3a1eb46af71dcca42f8"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-components.stl",
+      "bytes": 3684,
+      "sha256": "9500bc75ed9ab8b460e91d1bceb9ddefb9814dc392aebf2de1aa482be13c9127"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-headers.stl",
+      "bytes": 1284,
+      "sha256": "a25523343a5fbc4dd55306621a75db961788d9eb5aa90205d376f758c644bd52"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-labels.stl",
+      "bytes": 84084,
+      "sha256": "cb080a0071989231c3d52a7ae3ab55368eae66b184a4ce93a2c909c8ef29bb6f"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-module.stl",
+      "bytes": 1284,
+      "sha256": "781e44e9412b5682c80e38a3d7d0e271cca13a50c578bf666b27a6c09a16b4a5"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-3V3-L.stl",
+      "bytes": 5684,
+      "sha256": "0d4e1b02f47524bd33c0ba86c48831a0cdf2e49d339e37d7cc32ec56f711cab2"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-3V3-R1.stl",
+      "bytes": 5684,
+      "sha256": "b4a9df7a7acaa3f9eb4d9516979a3907617b1d4db32661d8c07543b6a829d1c8"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-3V3-R2.stl",
+      "bytes": 5684,
+      "sha256": "4301636a96ccdd97b20fbff7f0e3d058e5f7bc99c35b7b9ae35ab0738c6ed017"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-A0.stl",
+      "bytes": 5684,
+      "sha256": "c7af1ff2a9e044e71c9596554889bd88206527c810100b23dfe8aadf0578beec"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-CLK.stl",
+      "bytes": 5684,
+      "sha256": "5da279ce715bf6b66177fcb0e8d97459f92e7d3add7f1d5ac0cb69c754851367"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-CMD.stl",
+      "bytes": 5684,
+      "sha256": "b3dc60b118e91044acc09dac551203ccbcca2f8925418f37dd06a672c3acc5f9"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D0.stl",
+      "bytes": 5684,
+      "sha256": "b731f26526e0eb384d2e76739e5e7ed100dcc45b5ea1a6897f4d1f0c0c632788"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D1.stl",
+      "bytes": 5684,
+      "sha256": "241b6bbbd62222d3c79bd24500a8706cdb8b7efceb318f57416b1dcc41cadad4"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D2.stl",
+      "bytes": 5684,
+      "sha256": "27aca9b31b7483c90adaa9ad7b083176ee2b9f7191c04345ddffb4f946ddc688"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D3.stl",
+      "bytes": 5684,
+      "sha256": "361239ba651154f31baa65e42c90d62f1ffc10886e6e5a57ea3c4970aff5ea64"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D4.stl",
+      "bytes": 5684,
+      "sha256": "5abbfb80f66afda352281e96f25f992fffe85ef2be3fc5392ae81aa7cc20bb5f"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D5.stl",
+      "bytes": 5684,
+      "sha256": "5a28ad76fd925c8c8e37f3f822d5e77976b62376309675d0f5e86cf07f916f26"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D6.stl",
+      "bytes": 5684,
+      "sha256": "8fe08f2c0d12eaeebbc702a57bda3e95a3ce50337398c5644935298c12b29d43"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D7.stl",
+      "bytes": 5684,
+      "sha256": "1a95a52053d6a1aec6e70bab1d7394a366d097ac93fa4f5153b60c3fd3c4d272"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-D8.stl",
+      "bytes": 5684,
+      "sha256": "d56e1d061c16d76e5e8aee3efecd47f349403576ca6fcf20f2988df7f8ca3586"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-EN.stl",
+      "bytes": 5684,
+      "sha256": "2ece158e07b63786eb80fe3e1df603c64cf5f4bf3426062e4d27fdab23bcc539"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-GND-L1.stl",
+      "bytes": 5684,
+      "sha256": "d552bfafca156c9b57598086bc97e6301a228a823d9e712cac5a355fe4a01aea"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-GND-L2.stl",
+      "bytes": 5684,
+      "sha256": "b00c0ca0ccf33554a0315c6bd5820ece4fcaa5532a204afdb8a3eff23c6dd757"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-GND-R1.stl",
+      "bytes": 5684,
+      "sha256": "4e6750657e8d94ed54cf49b9f2b010d7eeb7c0a94f7bc37ce0f17c8634ea2503"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-GND-R2.stl",
+      "bytes": 5684,
+      "sha256": "39d7693556ece40d2906b99a7341752d09a074cbcfb87b9c46d40255a9bbbeea"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-RST.stl",
+      "bytes": 5684,
+      "sha256": "ce37677d34df6088c21b3b6d516d193b37da867c7d1b219d1602a357eee49c8c"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-RSV1.stl",
+      "bytes": 5684,
+      "sha256": "1cd9927f63d5f253885eea0b763c530a2cedb1176d0d94127fa57b7268ab5a1b"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-RSV2.stl",
+      "bytes": 5684,
+      "sha256": "b846ccfe57d3ef3eeaf40072ff54cbc95728c8b4bd2501d85b73628c16289ff3"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-RX.stl",
+      "bytes": 5684,
+      "sha256": "e6bb31bbad8cef6c8d6a11a15368ef93a9974888ecc5b0dcfb1997774b6f69fa"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-SD0.stl",
+      "bytes": 5684,
+      "sha256": "f47c0df0d0f1b34924af48dc464ddc361db830fe4c550e5dbd7f8fdc3ab8b03d"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-SD1.stl",
+      "bytes": 5684,
+      "sha256": "5136f24332ee59334c2572005768a317371de72e96c10776edb13b156cca6c51"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-SD2.stl",
+      "bytes": 5684,
+      "sha256": "6cf0cee2415134f430c6d3c55d8f87fdde6d1b691fa23b807f81ef0eaacaf1fb"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-SD3.stl",
+      "bytes": 5684,
+      "sha256": "6b1af74fa65d61e89a4fc4040bcd103e4b1871ea0dfba72f8a5a1bb707c5099a"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-TX.stl",
+      "bytes": 5684,
+      "sha256": "bb11fad206003997e51e278b0411848e931e6bf908b7043bbf87a228f9a19a17"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-pin-VIN.stl",
+      "bytes": 5684,
+      "sha256": "24f417e837277452bb6625cc2675bbc1588a216ce51e42219720624d0a4a7f71"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller-usb.stl",
+      "bytes": 1484,
+      "sha256": "ceb96eacae88eedef0fd4a2728a9fa45ad7f239ab91d251a28d00f7ef44821b9"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/controller.stl",
+      "bytes": 22284,
+      "sha256": "2fabf418070dc750c841d89ec1816d62a704200c6bca071159444f1196231848"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/foot-left-1.stl",
+      "bytes": 18884,
+      "sha256": "5c8439a105d45f3030be2921ffb0ddf9d9f24917f617633395e6f6a2e2dea05a"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/foot-left-2.stl",
+      "bytes": 18884,
+      "sha256": "5f21bae634386d0773d40c5dc45d953bbd9c1db1a19e040926b84270f9329ac4"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/foot-left-3.stl",
+      "bytes": 18884,
+      "sha256": "633d279ec4fdb22f7964d9d0305ee59cb85fb7b88e62d5981349709b06394677"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/foot-right-1.stl",
+      "bytes": 18884,
+      "sha256": "809224d09a00999f94bd6b05e3e32aa21b22ebe494bc98c342ece300da97e43c"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/foot-right-2.stl",
+      "bytes": 18784,
+      "sha256": "d67b2f8d01057a889fe32dd40d8bc767f4d67ba4c58313c91e8168ddadce757f"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/foot-right-3.stl",
+      "bytes": 18884,
+      "sha256": "25da63f24eb82673313ac2121c6056b670bfbbb785c89fa1fb6e2082dc2439d9"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/glue-left.stl",
+      "bytes": 105184,
+      "sha256": "c093bb7a9b8771ef399195447fc57e49bf818df1b269d6a54ce5ae2ebe5c3f3a"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/glue-right.stl",
+      "bytes": 104784,
+      "sha256": "835f60a3e3bded6110bc4187f31e8a42a8ff1f8c7533726cb59207d9a11836d8"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/glue-tilt.stl",
+      "bytes": 104884,
+      "sha256": "0857608b74ae860f34f385af4b08ff26c11c1cbf914d46753db822a628d87674"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/horn-left-screw.stl",
+      "bytes": 5884,
+      "sha256": "6aa23c2596f427e7a212af7a7f6afd8e1c5c55703b6b7bb21c0ff3093a84b5a9"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/horn-left.stl",
+      "bytes": 33884,
+      "sha256": "a73d6a8ce1aa3f2516387a7b3d50a8ff47d1982e736bd2d3d5bc98bec48b2b94"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/horn-right-screw.stl",
+      "bytes": 5884,
+      "sha256": "77189fcc845b17155b0575923427cf0d48af6f2bb9a013666462ec3f999aeeed"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/horn-right.stl",
+      "bytes": 33884,
+      "sha256": "4c2d411f749878c77d9dea2c1fd3121acb9f250d90baa3cf83990c8bc5a5d646"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/horn-tilt-screw.stl",
+      "bytes": 5884,
+      "sha256": "bd6eff791e0d2ecc1dcbb2dce9cb51bcd50c1b3b1d9d1d821c806fd53bae95a1"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/horn-tilt.stl",
+      "bytes": 33884,
+      "sha256": "05939c8b138afe402ae723fd5651d77a2076f640e481e209805cd6beec3ef698"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/leg-left-1.stl",
+      "bytes": 19084,
+      "sha256": "f9d219f0d7056c584c9a83a318fb5581eb864cc899c799409ee83428414ff908"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/leg-left-2.stl",
+      "bytes": 19784,
+      "sha256": "0f56f7c375e6b18d03ca87a546dc73f2ffa0ec3ccbb690e2251f9ffad8da3276"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/leg-left-3.stl",
+      "bytes": 21184,
+      "sha256": "52f227605fbd1a3a9fbedf962b2f10e29ea08b5231af8841fa0bbff806a9c066"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/leg-right-1.stl",
+      "bytes": 21784,
+      "sha256": "3f7020bfc9688997074a79553cb3fa1fae6e6c8e10f146a7c8ae7247389347d6"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/leg-right-2.stl",
+      "bytes": 19684,
+      "sha256": "48ff9abb7bacb4e33823698e52229cfadd9059fc052e17904650414f2d8fc584"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/leg-right-3.stl",
+      "bytes": 19284,
+      "sha256": "6920193627ec3f28bd877dd0c82ea317aaa24bc43a85aa1755c6c49036c410a0"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/plug-left.stl",
+      "bytes": 684,
+      "sha256": "62dc54cbe82ac01733d1811d53ea1d8ca53a69dfaeea1ef253a5eefe60f7d93b"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/plug-right.stl",
+      "bytes": 684,
+      "sha256": "deec157b00684188b7fa81b89765861cea71610adff4e49f71b49cfc098a482f"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/plug-tilt.stl",
+      "bytes": 684,
+      "sha256": "ea2c6a0b4e865445a13f48e93697ccade686fa89b028db0c13bced95c6811a37"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/power-bus-pads.stl",
+      "bytes": 30084,
+      "sha256": "000e6ebd077a2d1307fa7b13c2f691b50f82ed37e61e87d918e93b202eab4eb5"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/power-bus.stl",
+      "bytes": 684,
+      "sha256": "ed7b65fd7e7ba0ed4efa71bd6bef438b1371993c6993708c494fc221bbe9e2f6"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/servo-left-seams.stl",
+      "bytes": 6284,
+      "sha256": "49c79184f5e6c03c2dc4ba8b9648eecbb726391701b851cd6e04b9e4eac67b52"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/servo-left.stl",
+      "bytes": 13084,
+      "sha256": "3adc030b19a1114a9985da9fdfeb6e9432887a2ba7abd87ab610a5e35c36f1a2"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/servo-right-seams.stl",
+      "bytes": 6284,
+      "sha256": "604bd8de882ca6f6b337ccf508ae0d1e240c78c601f94ebea59533251b2c31eb"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/servo-right.stl",
+      "bytes": 13084,
+      "sha256": "2c98b19e82d6c4c6ddb325577f37e2f93f6c18f00b1a48c7ae44d94a9190ffe2"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/servo-tilt-seams.stl",
+      "bytes": 6284,
+      "sha256": "662e8230330a7d44f4281cb26cb2ec7783cb5bc5ac25009a57f8d513f039c70d"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/meshes/servo-tilt.stl",
+      "bytes": 13084,
+      "sha256": "34db9072bd5a9164e9e95f49d356df7593995915f8ebedc6eb7bb850c25efc0f"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/model.replicad.ts",
+      "bytes": 11477,
+      "sha256": "4175f6a363df0262744333457256c24cfe19bdb901ade10624d92d5dc8e7266e"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/profiles/spidey-last-known.json",
+      "bytes": 613,
+      "sha256": "9d70c53ad967f870f9d2c06d8322470425ea5d5bafca11677a28bce976f5969f"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/programs/spidey.py",
+      "bytes": 15813,
+      "sha256": "a38ff1adbd3d9dd0bfec7ec3bb50b73320dd5954745b73c4bc93d3b364035bdb"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/spidey.urdf",
+      "bytes": 23388,
+      "sha256": "f502b541b2f9dd1c90565240be19512bd7e28523d933f6fb0da3de5c631eb910"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/tests/test_broker.py",
+      "bytes": 7489,
+      "sha256": "b06a5dc3a717453392462c427bb9c8bb13b2fb7245fcbaa85e1197222c73ec9b"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/tests/test_snapshot.py",
+      "bytes": 7174,
+      "sha256": "0d21434c9d33a168edcc7b488ad912ef73d14ee64260495c83c514cfc7d7ae58"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/tests/test_walk_plan.py",
+      "bytes": 5582,
+      "sha256": "fc78f139776fc1797ad22f3fc16243dc0c23cffda5deccc33f1f31f4ef6c3ff3"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/upstream/hexapod-README.md",
+      "bytes": 3930,
+      "sha256": "53b2c1ee5821565666c7cb4668f03a5c86bbef6344dedd0f1ad54892e677e438"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/upstream/tools/hexapod.py",
+      "bytes": 5469,
+      "sha256": "a4102ab21502fc6c38a374e9624441bcb70cc710050250796185f5b7ba18b1b7"
+    },
+    {
+      "path": "cutu-circuits/examples/spidey/upstream/tools/onboard_walk.py",
+      "bytes": 1626,
+      "sha256": "5d4516dcc238e37d271d80efc22a2ef4973234df1163da826d012cacf86a6c97"
+    },
+    {
+      "path": "cutu-circuits/package-lock.json",
+      "bytes": 537414,
+      "sha256": "e558b28a99b18218c082579f9aa5352c355ad59850518757fc1be5ff17b3fdaf"
+    },
+    {
+      "path": "cutu-circuits/package.json",
+      "bytes": 4272,
+      "sha256": "537e06e9b614bd62b15d047e4f1b511176556c81f234af98c75708eb9e2ae7e2"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/LICENSE",
+      "bytes": 1066,
+      "sha256": "5838621a69b15e4fb955a07e23f6ccc62940ccee9c1204ad945f877b50abbd3a"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/THIRD-PARTY-NOTICES.md",
+      "bytes": 1787,
+      "sha256": "3f119b6f6fc8d36f39dfa0ddb8409fd27073c9f9977dc4eb053385c517e408af"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/assets/replicad.d.ts",
+      "bytes": 90448,
+      "sha256": "d4890fe42d4e35b5b7f9d749c441f095bad85ee0216d089ffb47a055a1b812b1"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/assets/replicad.font.b64",
+      "bytes": 212144,
+      "sha256": "f134a2cf0e572fc9199d51d82ee4f3f9a401a8267a118a11de741d34f6475069"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/assets/replicad.wasm.b64",
+      "bytes": 14459568,
+      "sha256": "aed2ebac3a2f941338c58a560ab5e0dadd23259122058fb08d63198d1fb5af02"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/package.json",
+      "bytes": 509,
+      "sha256": "fe24fe1c81582172460a09ed079a9e873db544987e16684435bcc8a20348f650"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/MeshAssetEditor.tsx",
+      "bytes": 14234,
+      "sha256": "ccc3e97c8e995ad83edf68a1cf045bc075e2a29e2d7d8fa3ef9fb5a041706769"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/ParamsPanel.tsx",
+      "bytes": 6048,
+      "sha256": "fbc1071669f54d25c8400b70523d4ee29808c03ae58e62bf49e573b266d9ee65"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/ReplicadProjectEditor.tsx",
+      "bytes": 85479,
+      "sha256": "b75c6a1a3a496ca3e52b9b3a98d742faedfd71b6736ba74f5fc42f97e2695013"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/aiTools.ts",
+      "bytes": 17512,
+      "sha256": "3973e18ed7a0ce2f974681b3a98c95746cc53ab1571a3e3fa05c0ea921198a78"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/browser.tsx",
+      "bytes": 784,
+      "sha256": "91d126f8835f97781e8638a36e55f91f2d7f51b4060c805aec32010753b061cd"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/compileDiagnostics.ts",
+      "bytes": 3810,
+      "sha256": "8c779f94c42bf25d6d5a2689b8d9420a4ddf42ad65d3e73212a69465afa6ea04"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/geometry.ts",
+      "bytes": 4598,
+      "sha256": "98e5101d499737e98556d937016a4030952456b7ae8ac58db843dbf6eeb69eaf"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/index.tsx",
+      "bytes": 1415,
+      "sha256": "f07e37e58588a47b114c55d16aa044697e4f37f367866e00607204e0de804039"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/monacoIntellisense.ts",
+      "bytes": 1251,
+      "sha256": "2218822c455872efeb29cf4865cd1cfedfb963599c989d6825f1b8e1bb902465"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/pathUtils.ts",
+      "bytes": 2376,
+      "sha256": "aee2d067aa95343e89241770dedb1539a05c84eee838927ddad63162389647a2"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/previewGeometry.ts",
+      "bytes": 1124,
+      "sha256": "408e277b03a03afb40d69028139bc7cf73f2f6e1f6e4ee5a40d52e862ce4f6aa"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/printability.ts",
+      "bytes": 23248,
+      "sha256": "b148b83918a1af84c2a24e632d86668a2a19a6e111fda452ba6ee59a1fdbe18f"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/projectIndex.ts",
+      "bytes": 10098,
+      "sha256": "54944a5253e20b6882f9fadaac8db294695ede5fd02a28ae8072401c7722e3c5"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/renderViews.ts",
+      "bytes": 6333,
+      "sha256": "65d53f8ca409ee8fba151d9312370906d56286269e918ff00c0cbb5f8f6eebbf"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/replicadDts.ts",
+      "bytes": 5331,
+      "sha256": "793936c2e4583214202113efc93fd6f80a5efdda06a563dd382d93f368f90a45"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/runtime-shim.d.ts",
+      "bytes": 473,
+      "sha256": "33bb6f6a0461f96c2412fef4e3ddb68a133bb38627cd54a7a4b68b5ca9f16a59"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/runtime/client.ts",
+      "bytes": 9425,
+      "sha256": "c2b5d3f78c3d441216a720d0c52d8ae80b3c94f03abd2d0d528590dee3241ea0"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/runtime/mat4.ts",
+      "bytes": 2874,
+      "sha256": "59da7b337ab323b4043591a03504413eb609769d9fddf36c849dbb6d54b466bd"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/runtime/messages.ts",
+      "bytes": 1822,
+      "sha256": "2f92c17474887e11814e923e46e742c54a145f16f533241d012097d2da13d6ba"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/runtime/serialize.ts",
+      "bytes": 6059,
+      "sha256": "d20e86bf926d6ac19cd0db6493443799b4121cc8b4d2f17e5a99ae1924622411"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/runtime/worker.ts",
+      "bytes": 30178,
+      "sha256": "cd1e805a9b3558e98444ed57ee6e03177472c7192c2883eae3596703020a8b8e"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/sectionPlane.ts",
+      "bytes": 2449,
+      "sha256": "63b21c8cb46a947fb2b32d5daf0b28352531e86caac9fed4558d76b2aafbf2f4"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/selection.ts",
+      "bytes": 7906,
+      "sha256": "83d21bd8f0581231d552d036cf4cc123b504d1dcb186c98bd0204f2c75a2e394"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/shapeVisibility.ts",
+      "bytes": 1277,
+      "sha256": "296affb5e1d7557a3abcddeb7ad2c5d338945f8711cad97cc30a94a94432685c"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/styles.css",
+      "bytes": 24250,
+      "sha256": "9788d3263de63d62aea365b3d1ea41acece301bab0c1db7bdce172788f0a17e7"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/themeColors.ts",
+      "bytes": 1517,
+      "sha256": "b489f25cf605ebd2e38be3ef2c41ede54fba1bc0dc681abb7e6e5bc3db9bff99"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/types.ts",
+      "bytes": 11280,
+      "sha256": "3c97670424601ce19beffe0588c10a75ab32b3f17b757521ee9b3767ca557d01"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/utils.ts",
+      "bytes": 847,
+      "sha256": "a81347e4890cf8529350cba79e7f3749b0271eb9af719f4d0aa40cd76cfec6d0"
+    },
+    {
+      "path": "cutu-circuits/packages/cad-editor/src/vite-env.d.ts",
+      "bytes": 38,
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "cutu-circuits/packages/core/package.json",
+      "bytes": 139,
+      "sha256": "fc89c76bfbac0f3ab4de69ab5e658c8b8c6d9d3c76867be4b1ba49fdd5423672"
+    },
+    {
+      "path": "cutu-circuits/packages/core/src/index.ts",
+      "bytes": 5686,
+      "sha256": "eb8741c601b44cb63be54f2fc84a36da12c207dddf85f36dea9762e3963c2013"
+    },
+    {
+      "path": "cutu-circuits/packages/editor-host/package.json",
+      "bytes": 421,
+      "sha256": "5500b864f7e730ab5d4f03f7a3bcfdccfb65116a9a9ed922319c070425d6d25f"
+    },
+    {
+      "path": "cutu-circuits/packages/editor-host/src/NativeEditorFrame.tsx",
+      "bytes": 3037,
+      "sha256": "dcc3dd681c54055b83fe9d06c1e7ef8952def07077753a3726af9a4c4e788cd8"
+    },
+    {
+      "path": "cutu-circuits/packages/editor-host/src/browser.ts",
+      "bytes": 17655,
+      "sha256": "ef69de45b11d2aeeb5cf4b84967f2a7f08b526ca7706714ce412984d90dba6b1"
+    },
+    {
+      "path": "cutu-circuits/packages/editor-host/src/index.ts",
+      "bytes": 111,
+      "sha256": "b01fca8ac5a8031638917bd1051524bac269aef27e160e059ee8e8a48dde8891"
+    },
+    {
+      "path": "cutu-circuits/packages/editor-host/src/runtime.tsx",
+      "bytes": 4619,
+      "sha256": "1f48d47a0994061ae29b1a088ca7720563b7017797fa40dccff2fa97dbb10ce8"
+    },
+    {
+      "path": "cutu-circuits/packages/editor-host/src/theme.css",
+      "bytes": 2445,
+      "sha256": "305819dac23523c68815dd5ece9b8cea7d8e33372bbede9ce7c1f907328fae32"
+    },
+    {
+      "path": "cutu-circuits/packages/editor-host/src/types.ts",
+      "bytes": 5686,
+      "sha256": "e30644582c8009d51fbb6fee422f28a261e040bbfb521072b96fd64a387965b7"
+    },
+    {
+      "path": "cutu-circuits/packages/editor-host/tests/browser.test.mjs",
+      "bytes": 15313,
+      "sha256": "0f6c68509d57c88e1ac4015286e645678ae4e26f21bb5f976dc52fdeade84de4"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/LICENSE",
+      "bytes": 1066,
+      "sha256": "5838621a69b15e4fb955a07e23f6ccc62940ccee9c1204ad945f877b50abbd3a"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/THIRD_PARTY_NOTICES.md",
+      "bytes": 28207,
+      "sha256": "8a8ef7a7c86ebd49c79555411b1f0b2cb71660f650d897aadeecd2c7c2aed5eb"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/package.json",
+      "bytes": 1232,
+      "sha256": "adfc98f9e41cfe16ec65ebb30067644ad60d533060f7cc2721593beafcd1b21b"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/patches/@tscircuit__3d-viewer@0.0.577.patch",
+      "bytes": 2390,
+      "sha256": "c019ace36992df848bd14dfbc7d988b18c613eb7c003a594d781c85413e71352"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/patches/@tscircuit__assembly-viewer@0.0.6.patch",
+      "bytes": 4913,
+      "sha256": "feeb32ed4b055b93b16f626d8b3c919c8856868066cefce2e25a0192d33f9eb1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/patches/@tscircuit__pcb-viewer@1.11.374.patch",
+      "bytes": 33021,
+      "sha256": "3f4c89c505d8a5c4413c942448ceb3a6d2a1fea957bf8b8a42ce7486939ac6b7"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/patches/@tscircuit__schematic-viewer@2.0.69.patch",
+      "bytes": 3760,
+      "sha256": "60b60f8e72549ed64067e2091864c2d5652bd13200d88992bff7538051972c5d"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/agentRequestCardState.ts",
+      "bytes": 1937,
+      "sha256": "98f41611d5b15af1e494e792af517a018bc39a3f42352dc474816ae956d0bf41"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/agentSession.ts",
+      "bytes": 95879,
+      "sha256": "b1cbdc672d9efdc8d85cb466f36d6e14bf36fa79e7d2514c81e0de85f82ba5ed"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/aiTools.ts",
+      "bytes": 159178,
+      "sha256": "f0de8a5c19a5dc2da081e79a277e148247297d1979c422d1b0a147fd7d57c050"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/backend.ts",
+      "bytes": 9635,
+      "sha256": "4eefaafd58c2f652dfc414e58482287e1073c7435486cd16523022ff80940ab6"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/browser.tsx",
+      "bytes": 578,
+      "sha256": "c71df6c0733bece91a49cb1209598d4eee6f86e594714aab5a1a1e027c2c1f62"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/advisorAffectedGeometry.ts",
+      "bytes": 35722,
+      "sha256": "e49d735b69f100e2de8b37827d9f87a94fa5cbb31139949243925896532882b9"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/advisorConnection.ts",
+      "bytes": 5250,
+      "sha256": "e085bf2da085d057a69fa9563d29707e05301137545806d539b7c5331a8162d3"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/agentChangeReveal.ts",
+      "bytes": 4995,
+      "sha256": "f6a8c2fe3965c136b73455545772a9e1d520592865c1aac279172592516870c2"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/artifactFreshness.ts",
+      "bytes": 21322,
+      "sha256": "8798cd1802465aab8707a5435fd902d88b7fa303434c736c480f1a206709fbcf"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/assemblyExport.ts",
+      "bytes": 9992,
+      "sha256": "fa7de5cc8e2708d2d8506d8e729fb5a9c408316a947d9d806e418bab9268f265"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/assemblyHandoff.ts",
+      "bytes": 10261,
+      "sha256": "d40a66e193e62042e7f8a5510de8d1fc26b3874ec75733596fe32f33f308d919"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/assemblyHandoffSpotlight.ts",
+      "bytes": 6176,
+      "sha256": "5e0fe86e6ff50f5c29f2ad329fbb383f3d58c490634598069d0c15cbf7b6179a"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/assemblyMetadataPreview.ts",
+      "bytes": 19786,
+      "sha256": "58880dbbd1610f1d1fea57fdce186ab97bbbda8bf22f1ed23c1314d903c698c1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/bom.ts",
+      "bytes": 6190,
+      "sha256": "1d172b6b6fe0bec913e4eb0f416a77f9c8b4629008c19f6a362c71e6c8d22609"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/bomProjection.ts",
+      "bytes": 5894,
+      "sha256": "fa16b6935864a76b737c5e488b04bcdd4ecd345b59b3c52802647c68eaf79e14"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/circuitJson.ts",
+      "bytes": 42060,
+      "sha256": "a50d4470e33b0e5a504109cde6cc370b1f51a5e27448461404baea6e6fb79661"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/connectionPreview.ts",
+      "bytes": 13421,
+      "sha256": "d1a3977838ca958d2ae35435dc09c46fd4da283dde1082214b35dedb9260f5e6"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/connectivityEvidence.ts",
+      "bytes": 10045,
+      "sha256": "2ddda3c66656c96b74fdaeac002604b399c595a875505bcc1b5b312b081dceaa"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/designReviewPacket.ts",
+      "bytes": 43611,
+      "sha256": "020c2898767385d2528b51b41d41143a90d8425566e033470152ae894903621c"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/diagnosticDisposition.ts",
+      "bytes": 11525,
+      "sha256": "4b40a0e6aa7281865edf47f1385380a6a24746bdebdb4930b10a0bb059de1f8d"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/editApproval.ts",
+      "bytes": 13195,
+      "sha256": "26a53093061fd1c396485ab146cb14eaff9aa09153abac7d8ddf22c03105dbcf"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/editHistory.ts",
+      "bytes": 6137,
+      "sha256": "f83492550db3f96f9396fd380032ab734f2573b5153cdc3ca332d10ad1a7e184"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/evalCode.ts",
+      "bytes": 6566,
+      "sha256": "982fd5d15cb39c2976a66824400c91e096412a873ce40b22241d38cd72963560"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/evalCodeHeadless.ts",
+      "bytes": 1495,
+      "sha256": "607a3104d9117d21391b6fc76abc448c307a3e2392a4c61b22639c22f779f114"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/evaluationCache.ts",
+      "bytes": 1363,
+      "sha256": "bb370bbc08f4d6be5f4a36a6ecc96b29921837c69b11e84a6b3cb01025d3a127"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/evaluatorDiagnostics.ts",
+      "bytes": 8653,
+      "sha256": "a962d0ad2b62250d02e24fc7a3cb2bca6868fd0575b7aadbe1a8c6397fb94675"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/externalReferences.ts",
+      "bytes": 1435,
+      "sha256": "32b503bf71da5f578f27109971ecea3e460ae9189fa39cf8bc53cdb12b6b0b50"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/fab.ts",
+      "bytes": 3199,
+      "sha256": "50b1869138c9b4998d7158a306a92d974cd944325ed1f38804aaa4efee4ab5ed"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/fabProfiles.ts",
+      "bytes": 3666,
+      "sha256": "7a2eee09d044dd875ece16f86a4352bb52711c19aea3db895b8ffd87484749a3"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/footprinterApi.ts",
+      "bytes": 6538,
+      "sha256": "8e20e3ad38a39522b41fac7e9c685f6b6905cffc92ad0fbb4f9927bb42ddf397"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/functionalBlocks.ts",
+      "bytes": 3779,
+      "sha256": "ae860b320a82759edf138a51f251761e69e0b88888e651638c8e132f384b458d"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/imageExport.ts",
+      "bytes": 2404,
+      "sha256": "c6f0535528f9d6ca95b06825c376180180810e08e71a22e2e32cf2d920a68e33"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/kicad.ts",
+      "bytes": 4123,
+      "sha256": "a055c008b1caf9f3369fe75b8af0433251e18e6b09d13bd90eea10f7bbf01cc1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/kicadImport.ts",
+      "bytes": 3860,
+      "sha256": "0fb77ed8aac6a0c2481636514ec92d790ce4ceb23304b7a7686c5e6f30465a23"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/layoutSelection.ts",
+      "bytes": 8552,
+      "sha256": "84ec2187c3077f4d1b7dbed82e16606aeed70a54c228aaf82152c4f8459460f6"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pairSelection.ts",
+      "bytes": 13770,
+      "sha256": "8ee419e053758f0cac349eac77ef4a5f97100651ef743e5c9f3d8617b46e9c73"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/partEvidence.ts",
+      "bytes": 15855,
+      "sha256": "c9043b985012a05c632b1233ecdd45c9f45d875939d2d5ee27ec781af43ec6e9"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/partEvidenceAgent.ts",
+      "bytes": 10398,
+      "sha256": "33cd01d9e5cd8f392d12deb5766610a9f2dae6ad82e017bd34b0286273816bec"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/partEvidenceContribution.ts",
+      "bytes": 36369,
+      "sha256": "54b1c634d13c4e6538cd1c53a07d2bc05c45d6794aeaa09525294daa5b9ffa03"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/partTrustSpotlight.ts",
+      "bytes": 8682,
+      "sha256": "15b8da51312074df72395c97f2ed00e22bbab8df4bec6a6864e356583c998c77"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/partWire.ts",
+      "bytes": 7411,
+      "sha256": "38e0fa8d0079f85bb0e7d76e7d28e467b7eb4ae999018584ede03d6fc5cf4f1d"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pcbGeometry.ts",
+      "bytes": 8399,
+      "sha256": "49ea5ff7da5f47bfae4c37f85f4f5a57618779b7e515d975835a02428756c4f1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pcbGrid.ts",
+      "bytes": 6047,
+      "sha256": "e831ad04a523905ec2d3455c1d6525a98117d09b634d611cf0a90dbbbc7196c8"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pcbKeepouts.ts",
+      "bytes": 12600,
+      "sha256": "73e1e0009ed86cbdfe8dd41250a865ca37369bf80e06a96b8cf50f3053ba17b9"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pcbLayerView.ts",
+      "bytes": 17658,
+      "sha256": "a9200eee450961ebd6e3770b001a655b2df02e175f77d6a9199b5d3c6202fd7d"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pcbMeasurement.ts",
+      "bytes": 10481,
+      "sha256": "1293880f05b0aead072c2279177448f846b6cc616bcbbdc52034da7b2cf835ef"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pcbMountingHoles.ts",
+      "bytes": 9238,
+      "sha256": "c9447cedde1462cc5c30502e642cf63fc82c235c1fcaad948dae94990a2f36e9"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pcbRouteProposal.ts",
+      "bytes": 6090,
+      "sha256": "a92bea204a8ba2255a8f5c13e152959487f9879854a1c2bcf76d3360f462d5c1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pcbRuleLens.ts",
+      "bytes": 30003,
+      "sha256": "11d2372c8f4ac6da47d7b5882a26810a66782a22ecaf3b96beb037c7b84aa0e4"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/pinSelection.ts",
+      "bytes": 6165,
+      "sha256": "1b0a5ddbc9d4f24e6c545b61f8cd5da2759337be72f2a6475787083e1214c566"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/projectGuidance.ts",
+      "bytes": 9206,
+      "sha256": "29c174954ba1fbddcc0df1536814d326459d16adc021b123ed40e593b60b8b45"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/projectGuidanceCreation.ts",
+      "bytes": 15505,
+      "sha256": "b750fe221c87d983d38206bf4b579c0458ecad11d0cb31459e0a61d56f11da40"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/projectTemplates.ts",
+      "bytes": 51704,
+      "sha256": "92752262afb8b54c1f9138405ba00a985ab5619eded9ca02529ae07b1641f3c6"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/readiness.ts",
+      "bytes": 17937,
+      "sha256": "c3525fe8258bc76895c1699b8c2d5f283742c1edbc2160f852bf30e6a795b8fd"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/readinessActions.ts",
+      "bytes": 2190,
+      "sha256": "430aee1d2e8cb758b72a59535a1756856893d127de44e87bbd6ecb060cd8af4e"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/selectionContext.ts",
+      "bytes": 21817,
+      "sha256": "046159930944f5e9c6c266a80ee83efb5c3232e6a6344f0e88d0543657af130f"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/simulationProjection.ts",
+      "bytes": 2371,
+      "sha256": "43c76e56a6d844dff8fb36cfdbaed4dc1f5a18a5e06d57d5637d3ab7ec0365c2"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/spiceExport.ts",
+      "bytes": 1289,
+      "sha256": "56177f0cafceb8ec42de460250b2879f26b4d9402d715c9eecc4d528bd18948a"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/tscircuitCode.ts",
+      "bytes": 25333,
+      "sha256": "31c8cb5a15297aa8d186bc0a944a01d3c63ef4e7a4bf1cc5d0dcbe1746837a30"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/circuit/valueFormatting.ts",
+      "bytes": 1706,
+      "sha256": "f3ced14efd0038dd568f7f245ce115860068cdd36520756c6ceb31af03301cb5"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/AgentRequestCard.tsx",
+      "bytes": 7148,
+      "sha256": "06982d1354fe2875ba8253ace5f4d502bce8d895f05e3b89b2d7d04d6b71f681"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/BomPanel.tsx",
+      "bytes": 10286,
+      "sha256": "d2c5da740945385109ade37f8b2002809e8884da84e09e13da0895ab6f379583"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/CircuitViews.tsx",
+      "bytes": 18920,
+      "sha256": "e3ee6324ce9dc9bd8cfe2ea93f95b30b3a34809b73e2f29e1720dfc1b80565c2"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/DesignAdvisor.tsx",
+      "bytes": 13049,
+      "sha256": "cb61f09feda7aae75e5f54ae8292c995bcd8f5c36f07c1c798b5d0096f3df49f"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/ElectronicsEditor.tsx",
+      "bytes": 196021,
+      "sha256": "debae662a165781922f8a1184218e0575086deec3e397a395d108800d9e13214"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/PartsPalette.tsx",
+      "bytes": 23482,
+      "sha256": "49a868bffc541c6257175d9e7f7f9d0fbc74353f9d17ac07ad2709ded937ce28"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/Scope.tsx",
+      "bytes": 3708,
+      "sha256": "43bebb9bf8b5218124539ca436fb40f5bf94e3c31672a55225e571c295da6d84"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/SimulationPanel.tsx",
+      "bytes": 56424,
+      "sha256": "3d3d2a7a1a6bc587751566c93e2a255429ee4504636789b26f90ecc9d0dfb951"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/Tscircuit3dPane.tsx",
+      "bytes": 5192,
+      "sha256": "a844dca0258e8389a947e9a4de88a8fb15df64a8685f56c4de712820259a231f"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/TscircuitAssemblyDirectPane.tsx",
+      "bytes": 9599,
+      "sha256": "d637d4a0024a72f1b51c9128fb5ae5d5e9fc60431f8764934ff497d02d6da932"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/TscircuitPcbPane.tsx",
+      "bytes": 14254,
+      "sha256": "b63531445933439e720139dd557d2c83c731c6d97735255593c3b5c9dae8e74e"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/TscircuitSchematicPane.tsx",
+      "bytes": 13873,
+      "sha256": "a50c9ff1024b45967e2f23917fa38006153cd332357b85647b8ae734949fa38b"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/components/ViewerCanvasControls.tsx",
+      "bytes": 3113,
+      "sha256": "561530436a2772dc42fb33118ce3c0ab5c29f3616e1030aa6c29389dcbf2dd4f"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/cutucircuits-sdk.d.ts",
+      "bytes": 116,
+      "sha256": "9d147a5f3e33502f7f1893c62df0cec65ebbbdd68d14b617d9788d29db821b89"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/editorApi.ts",
+      "bytes": 12849,
+      "sha256": "13847b1fb9558819941066f50fdb55dd7a8848ad1d5ea11e047c0b7651b11f3c"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/fab/board.ts",
+      "bytes": 4733,
+      "sha256": "2110d9b9b0a6f52c3c060745044aef168aff65e0412ec7b4eb9ba431966941aa"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/fab/enclosure.ts",
+      "bytes": 3982,
+      "sha256": "12239733de85a1ab80341bcf3445152d2d5ef48c1f7ddb5d6b850a520f684d92"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/fab/quote.ts",
+      "bytes": 3674,
+      "sha256": "6937bcf2089eb56b3ef32f6ea102578d9d237d184dd0aae7f9c9536a7cfa6634"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/index.tsx",
+      "bytes": 1470,
+      "sha256": "afae49e2e9ead4709fea3de3747a399d2f898e8bdb3dee6c25b07e3b5c0b94f9"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/runtime/localRuntime.ts",
+      "bytes": 1817,
+      "sha256": "a62f29949aaabb4e2e010681bc065f623417e5d82e23ddb5688dfd0b86a082ce"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/adcPwmControllerIntent.ts",
+      "bytes": 3609,
+      "sha256": "0950230e6250e61093cc6438a01326aaa0f5f357ece64f8838411c85bf06375b"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/analogSim.ts",
+      "bytes": 4725,
+      "sha256": "4249e2a4ad213193c0393d2163d0d3bb363eb7b6386bfe37bcd792bb4e6b0007"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/avrRunner.ts",
+      "bytes": 18545,
+      "sha256": "7b7bdd6419cda96b9b03e85b3aeefe176180c552d275060726d0622c9f9718dc"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/buttonDebounceIntent.ts",
+      "bytes": 6354,
+      "sha256": "6384ce5d57a3b9c7377422ccd01367169c662e7bf46a73a5470c0cd6e51d4534"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/canvasFeedback.ts",
+      "bytes": 47347,
+      "sha256": "bdc7e5854177be189e23902fd1c0126eeffb262d527364b73cf9ab3945380fd9"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/detect.ts",
+      "bytes": 1821,
+      "sha256": "9d2441016d8372ad93a877a50f9eb017a7c8f8c8c5e4662a89542a12bcffea7c"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/digitalTrace.ts",
+      "bytes": 2457,
+      "sha256": "c6f1456a0507bbff29bd671c568e20d70f67cdb4bf695b498f4381ed3ec1e232"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/eepromRoundtripIntent.ts",
+      "bytes": 4260,
+      "sha256": "e16be13c81bad310452ab7c7546d8feaceb50f1cbbbf0b688e32e07362956052"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/firmwareFixtures.ts",
+      "bytes": 28320,
+      "sha256": "5a1264687617f596b95d210eda807c6cc670b871f8bd6e4fd21ff4acd6551e6b"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/fixtureStimulus.ts",
+      "bytes": 8672,
+      "sha256": "b2c8db2960ac5b03c3b91f0ae0bbac5aa7a7477bcab1a34312154eb4cbad513d"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/fixtureUi.ts",
+      "bytes": 3750,
+      "sha256": "6129b98cb01567b88047d4e165d17a16e2f592d52cf718f7764c4513139b7f63"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrAdcPwmControllerIntent.ts",
+      "bytes": 773,
+      "sha256": "2d4f6759da8216ff43b04edd5513d7455ef3b17e82d14490233d80d5111b4496"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrAdcThreshold.ts",
+      "bytes": 601,
+      "sha256": "0f5bac8ee68cea8f6790b971a175dd64c38d0f37f31ebe483f53f0e9a7a31fac"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrButtonDebounce.ts",
+      "bytes": 566,
+      "sha256": "3ea9a9c5a2337c54d4348b54c33d29f59f0b7ba8ec14d8e4ee94a442fb409739"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrEepromRoundtripIntent.ts",
+      "bytes": 693,
+      "sha256": "cea84621ecb6299234f8a239ab4b1f2de62054702faadb91e775e8a9b80f06a0"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrI2cDisplayIntent.ts",
+      "bytes": 654,
+      "sha256": "dc1b2ea93b037cfcccc887eb7d184e5cbdb3d2262674fdfba34e1c786d1bb1c1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrInt0InterruptIntent.ts",
+      "bytes": 601,
+      "sha256": "0422e33a681f2f614c0762696e12ef1020170284e7c67f1a53eaddad18289057"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrLimitSwitchInterlock.ts",
+      "bytes": 568,
+      "sha256": "bc7966db14377a2f00f22da2f8199352bc0bf815468dbdf875d4d2ce52463a02"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrNeopixelFrame.ts",
+      "bytes": 775,
+      "sha256": "5bfbbe764d5e5b85d93830aedb34cc294c979c2fcaaa1090d280e8dc471341cb"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrPcintMaskIntent.ts",
+      "bytes": 701,
+      "sha256": "b33b4df1490d93ccea7a231346ae93e4f91640541c1823f3f813bbb54ddb3633"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrPwmHeartbeat.ts",
+      "bytes": 453,
+      "sha256": "c1735762cd7bbc2f17c68d57bf56f810ab7445fe3451412e24d3b6a1449f1952"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrQuadratureDetent.ts",
+      "bytes": 794,
+      "sha256": "b7463933c9d6240b4694b8fcfefb60d0ea5b56e611e273de62e8dcf0bd1496be"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrServoPulseIntent.ts",
+      "bytes": 580,
+      "sha256": "ce9b3a7b471a8fd7f98dd8c59896a50e3708909888d30fffb1819bbc5a547a30"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrSpiPixelPalette.ts",
+      "bytes": 2381,
+      "sha256": "23fd91709aa5614b3af8fd312435c0d1d462114e3d9213f99b289a55b576602d"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrStepDirIntent.ts",
+      "bytes": 485,
+      "sha256": "3a30404052b61b8c98cda8e0786d8d94b7029ad4b58b316b3629e561c93d3d18"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrTimer1PulseCounterIntent.ts",
+      "bytes": 681,
+      "sha256": "d43b34e94ecf8e11d31238074cbe8b5046ccded6f9702935b7906a67c7a16c2f"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrTimer2ToneIntent.ts",
+      "bytes": 494,
+      "sha256": "1685b68663c00969557e372f964be7cf3065be28d2a983b7901da772deacc849"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrUartCommandResponse.ts",
+      "bytes": 873,
+      "sha256": "81f69b1ccf33e7fa6d2092a061f6a0df5ecb6a41a4163732080dfa6c22a5da5c"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/avrWatchdogResetIntent.ts",
+      "bytes": 699,
+      "sha256": "9e95f6972ea7ab4a7afc4358eb4e4bae5081e399f3c7cc4a1d54882010506fd3"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/generated/rp2040LaunchBeacon.ts",
+      "bytes": 1186,
+      "sha256": "e200109012f4d1d2527808ea4cfeb6260ccec70ea3ea26109f280a08ef768543"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/int0InterruptIntent.ts",
+      "bytes": 4920,
+      "sha256": "d1d48135040b2db102a54bbbfe5f48c233b2f5d69ba93fbb4bc99dbd1c45b264"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/intelHex.ts",
+      "bytes": 2075,
+      "sha256": "922421ac1cca4497e259d07ab3710aad3f0772205936342559a75877f3435c12"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/limitInterlockIntent.ts",
+      "bytes": 4828,
+      "sha256": "cc3f0561fe513173f7a13d5f56a20385e23304e915a9acf63adb776c4246e5f9"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/logicalSim.ts",
+      "bytes": 8223,
+      "sha256": "aab37b685b9f3130e50ce47a7a8226c83b3a6d394817a37e159ff1a50a939624"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/mcuSim.ts",
+      "bytes": 29515,
+      "sha256": "0a5bb848defaf3a6c0c07849a69d92662cc03ebfe7a01e2f145215a7b4a5b1af"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/neopixelFrameIntent.ts",
+      "bytes": 3433,
+      "sha256": "5e0e9fdbba104b0c17cf892d285de55e767d2e2c99bd547299ea8630a0117c89"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/netlist.ts",
+      "bytes": 2613,
+      "sha256": "3c2a12e9f39d17a25c3e7970a6b1ef4a1741cd64420b6e2eb594bcb56cdafd6b"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/pcintMaskIntent.ts",
+      "bytes": 6523,
+      "sha256": "26b7234cb6c24447169bb28f3a607d988b37dfc87c3143cbf5790914f59c7e93"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/quadratureDetentIntent.ts",
+      "bytes": 6453,
+      "sha256": "588b8d714dab4f4af69e795965ec319c02aab0985278e6f52754c522568eb403"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/rp2040Runner.ts",
+      "bytes": 5764,
+      "sha256": "ccddcbca896704c30e9015c588e0394c421db8ac2217828e0bb5d3f6fdd94016"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/servoPulseIntent.ts",
+      "bytes": 4296,
+      "sha256": "eda71142c3b18c9303a16574c06a3da08a346aa7e67c80d4f496727cb329b4b2"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulate.ts",
+      "bytes": 1613,
+      "sha256": "81decc6f778484e8d9d1cd4188546e25124923eaab91bd6b0c1f109640b8dfe7"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulationAgent.ts",
+      "bytes": 26931,
+      "sha256": "04001ff8198cdc3bf1b66d3b97bc6e59a5d695dac8359850d724af280785c357"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulationMatrixArtifact.ts",
+      "bytes": 17865,
+      "sha256": "495544e516c1f6b1408ac3aa4477c632dd88d6fe439d1dad8c578a0c20f28899"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulationMatrixCi.ts",
+      "bytes": 18502,
+      "sha256": "9e76a637240126956db430d2f0865e6ba26e5b2a7733905b20c2ecb3eeccb7c1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulationMatrixReport.ts",
+      "bytes": 9197,
+      "sha256": "e623d568191c1223dfa1e20456b940edfaa33d982868372f5640fc34d605e729"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulationMatrixRunLease.ts",
+      "bytes": 656,
+      "sha256": "4a90f3011e9e17b782b8ddc8e2da74f1d4ba4fe345e46686fa0f913fc1a6fd37"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulationReport.ts",
+      "bytes": 6621,
+      "sha256": "a95782ddb2d159100717710e1bde33db9ff8d1210a8834dea2832054f833f085"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulationTestArtifact.ts",
+      "bytes": 21068,
+      "sha256": "74696f4c630ade1a92dba8a3cee165611f2c5170385bf7f5b3b54ed721c8dedf"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/simulationTestCi.ts",
+      "bytes": 15498,
+      "sha256": "9a82606ec4f52d91cabcf4dfc5cc9ed9e962fc5df7d4ec23506cfdff6f057dc1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/stepDirIntent.ts",
+      "bytes": 3485,
+      "sha256": "befa6ebb5565cffd51deeb3c8514700d8e8a62fe7d6e05ccb797634ee7255ca1"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/testHarness.ts",
+      "bytes": 39320,
+      "sha256": "44753b124d07eb03db91f05020df80bd0f308c3adbef20292ba73d2d20014167"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/timer1PulseCounterIntent.ts",
+      "bytes": 7880,
+      "sha256": "75b7143dacb4c374448879e92d49e9bfd7a832a98e8bc0a3ff340ca9061068b4"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/timer2ToneIntent.ts",
+      "bytes": 3638,
+      "sha256": "fc8cfe34a42beaf8d50da8f945de93e331fb01127ce93d9363044b304a9a419c"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/types.ts",
+      "bytes": 8057,
+      "sha256": "d3673be577836cf2599366a59c93e248802e2dbe32e26a02aa07576dde549442"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/sim/watchdogResetIntent.ts",
+      "bytes": 4046,
+      "sha256": "b13bde9f8e1e0aafdf183ea14273954819322b5c5dfe8829255e972b5457e24f"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/styles.css",
+      "bytes": 98854,
+      "sha256": "e03751522e5712be4cc231ce7ae033e109e140c550b52c7ac714bf2bcf693bdb"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/AutorouteRunner.ts",
+      "bytes": 7090,
+      "sha256": "f5d7c81163fcc80fd7308bb7903b9e1da7fc97f084fe14c89e6477a1b6dd9d8f"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/CircuitCheckRunner.ts",
+      "bytes": 2331,
+      "sha256": "bb0f23ab9a260583bfae5271e74b0aaca1098f9e65660020fa2d70c2f255f746"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/assemblyViewerContract.ts",
+      "bytes": 580,
+      "sha256": "a661431d5ad783f73dd5279bee9bdbcb6fc3b8639687b87f38dd047b1ccfb18c"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/autorouteContract.ts",
+      "bytes": 7239,
+      "sha256": "517b07875539ab9407e647163e7fe3797008706818781300900e0ca37f8a3e67"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/autorouteWorker.ts",
+      "bytes": 2991,
+      "sha256": "d800502eec9a7f649a02bb50fa773dc5839941745e404575095965c70326c610"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/checkContract.ts",
+      "bytes": 1188,
+      "sha256": "b9d90dfba8ca07406758ccadfa8491f7139e0820b469352f0d4f3972164b6ae7"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/checkWorker.ts",
+      "bytes": 476,
+      "sha256": "3946196521e82547a6e64a2729f5cd75e8af7865093885d6fb791bfc095c8235"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/manualEditTransactions.ts",
+      "bytes": 9603,
+      "sha256": "e51344b87871d73a619dbd84134ce2cf704e56409eb4b1c7e4ae4cbfa9fa70ec"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/manualEdits.ts",
+      "bytes": 9561,
+      "sha256": "f7a1aba53be35bedc58ee7ccd707c583be381ece163ff8cdb7c9a3d7eb16881e"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/pcbDebugGraphics.ts",
+      "bytes": 11057,
+      "sha256": "c74f8e169c8b772ac69a6f440b4669939f5439abf30138bf60e2269b2ebbdafd"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/pcbViewerContract.ts",
+      "bytes": 3780,
+      "sha256": "d184d17e82a1b3e88acfd92a91b0fffabbb0821616b7e12bb8f859aca7ac09a5"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/schematicOverlayProjection.ts",
+      "bytes": 12532,
+      "sha256": "1b0e3098970ea8d8bcbe3c9bc2c7e090a07c67db595ca1614bf93dfc70491486"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/schematicViewerContract.ts",
+      "bytes": 6459,
+      "sha256": "62a16d0497f6ee05768a37c9f98d6db11d8223be1c7e97675cc22ecda1e115fa"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/tscircuit/threeDViewerContract.ts",
+      "bytes": 833,
+      "sha256": "1398da0e9f52f569b7c92a06140c2f24326db8ab71b9c074ed171ac8599af78c"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/src/vite-env.d.ts",
+      "bytes": 223,
+      "sha256": "07acfda68d62f260557dcf7d38d6cfef79a22ba159d46d72d143b921beca1ae3"
+    },
+    {
+      "path": "cutu-circuits/packages/electronics-editor/tests/evaluation-cache.test.ts",
+      "bytes": 2120,
+      "sha256": "c01129f9f873a81e5eeb6be7fdaf83681bcf88c50cd34ae2cbf68d4849f2cf63"
+    },
+    {
+      "path": "cutu-circuits/packages/engines/README.md",
+      "bytes": 1687,
+      "sha256": "1ca5374265f08b46d157fa3afe6d2230fbe6212cb143910f98085a9912c036d2"
+    },
+    {
+      "path": "cutu-circuits/packages/engines/package.json",
+      "bytes": 1128,
+      "sha256": "343738610c9f908133e5446e267e93cf1b7ed0bcebf5f26bdbaf830b49f2c5a6"
+    },
+    {
+      "path": "cutu-circuits/packages/engines/src/index.ts",
+      "bytes": 3607,
+      "sha256": "acfbb9ae8a7f7b4d1cb01f9ace2a5c68e76417383ab095a83e1b207e9faca761"
+    },
+    {
+      "path": "cutu-circuits/packages/engines/src/worker.ts",
+      "bytes": 7610,
+      "sha256": "35b22f02bbb69fb026037f86b39a7da0d3be460ad7fbf1b670dd02c70e3d06a2"
+    },
+    {
+      "path": "cutu-circuits/packages/engines/tests/engines.test.ts",
+      "bytes": 3358,
+      "sha256": "feb66a23b4ca508c0b0c2a90ccad8005fe5d5346ebf150e14a75ef116a2aeabc"
+    },
+    {
+      "path": "cutu-circuits/packages/engines/tests/environment.test.ts",
+      "bytes": 544,
+      "sha256": "e7a4ae8d5176ed7096d1e061d2df7a6e37c01836d336b4cca7b70ec64a83332b"
+    },
+    {
+      "path": "cutu-circuits/packages/engines/tests/examples-smoke.ts",
+      "bytes": 1184,
+      "sha256": "d9f4d87c766dd09d57030519aee09d9123b7c19748e280401cb60e1c2243cb3c"
+    },
+    {
+      "path": "cutu-circuits/packages/hardware/README.md",
+      "bytes": 2184,
+      "sha256": "6e768969aef2fe3688cbdc07bd9b3c21ca2df30441bdd8b768f0f7ba6f2a74fe"
+    },
+    {
+      "path": "cutu-circuits/packages/hardware/package.json",
+      "bytes": 172,
+      "sha256": "790f75c3dd077dab0ef0711a949472ce698a5f478304f3161c1137816841f5d6"
+    },
+    {
+      "path": "cutu-circuits/packages/hardware/src/index.ts",
+      "bytes": 11257,
+      "sha256": "db106ce933d15a855ac0a34929641e5792cb5d4ab620de3887fb629bdf9815b2"
+    },
+    {
+      "path": "cutu-circuits/packages/hardware/tests/descendants.test.ts",
+      "bytes": 3458,
+      "sha256": "836430a7def8cac694da883e4adccb93aed12d7aeb538c4b5094da28251556ca"
+    },
+    {
+      "path": "cutu-circuits/packages/hardware/tests/runner.test.ts",
+      "bytes": 9875,
+      "sha256": "06992e81fb1d5ece32f71885a35da0858876e7b4f9faff9b404d4f91000e556a"
+    },
+    {
+      "path": "cutu-circuits/packages/hardware/tests/spidey.test.ts",
+      "bytes": 778,
+      "sha256": "a905fad690ffbe216b469b789dd7af652a324fdc0018dd1c860262878cabaeb8"
+    },
+    {
+      "path": "cutu-circuits/packages/plugin/package.json",
+      "bytes": 388,
+      "sha256": "04b9f2a8d7c0b6a3edadb70d7ba275a53fb339c42c6e162545bd3b48718490aa"
+    },
+    {
+      "path": "cutu-circuits/packages/plugin/scripts/build.mjs",
+      "bytes": 1483,
+      "sha256": "238b5ede347846a580266f9aaa64f04dfb008f8de8b466016728f1e38222b9b9"
+    },
+    {
+      "path": "cutu-circuits/packages/plugin/src/client.ts",
+      "bytes": 2403,
+      "sha256": "127604a35677ae1a5c40d7e3b1746292f6390e40ddaf6944180041542a95f11c"
+    },
+    {
+      "path": "cutu-circuits/packages/plugin/src/main.ts",
+      "bytes": 1814,
+      "sha256": "a68381ed59a1878aae46016175382d803e199c03474c85b9bf636c11330451b4"
+    },
+    {
+      "path": "cutu-circuits/packages/plugin/src/registry.ts",
+      "bytes": 13256,
+      "sha256": "7bee9e1906073ba6472f7a11a499f5dd093ff07bcc1894e47ce7a0f0f66f9cd9"
+    },
+    {
+      "path": "cutu-circuits/packages/plugin/tests/stdio.test.ts",
+      "bytes": 7929,
+      "sha256": "9e44665f1f9d88fbba373e8874b4c18a02c42a0e9d8ca0994e352da4ef263e0c"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/README.md",
+      "bytes": 3814,
+      "sha256": "850f5552260907319cc4fbcec44321ee6617a8509b9a62defa00b6d4f098a461"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/licenses/Apache-2.0.txt",
+      "bytes": 11343,
+      "sha256": "4c05555705e3efde601fb1252ae48f1d63992af8a8fb8947745b7fa834e8f519"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/licenses/diff-BSD-3-Clause.txt",
+      "bytes": 1546,
+      "sha256": "eda81a415869e67809f6a9f3fd6056062cb83a462118e07eec5e92b2e0c40ce9"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/licenses/fast-xml-parser-MIT.txt",
+      "bytes": 1073,
+      "sha256": "7883225d5e84a6bbb9b170c3d891b4bf6d6259cee869c86bd86381a927071745"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/package.json",
+      "bytes": 231,
+      "sha256": "34bf02c0d9ef25801550adb227bd77898c20436727bfc46fe917e8e571a1f1c0"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/src/index.ts",
+      "bytes": 125,
+      "sha256": "2f3554b44f51795cbf08f1528d0993a93b4e681d55c4533aac1491934ee8ad9c"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/src/math.ts",
+      "bytes": 3979,
+      "sha256": "4d7cf13205844f4607d477f7497bd51d6246f30e892e6dfdbee362e31f8ed866"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/src/parse.ts",
+      "bytes": 11709,
+      "sha256": "38af4bc2fb894631f8335d0d9ed516f1882256f638323dea4fd37c54fa4db815"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/src/simulation.ts",
+      "bytes": 11026,
+      "sha256": "a2eadf04b7508e71c544eb72a620c872450e0829e739927aea6eacac463941e4"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/src/stl.ts",
+      "bytes": 1312,
+      "sha256": "840deb248a4d5abe56f33e2f55b03e0761b3a563ccaa9db5515a7ce9b4e630bf"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/src/types.ts",
+      "bytes": 2107,
+      "sha256": "7268e73662894a36554347063c3169a8717340b9cc0fbc5e96b3f0c03f83e2fe"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/tests/examples.test.ts",
+      "bytes": 10698,
+      "sha256": "a9e9c823d45ab9eef2ffeaa21709a10c964d31e316ca3fd98a9fdf299f0932be"
+    },
+    {
+      "path": "cutu-circuits/packages/robotics/tests/robotics.test.ts",
+      "bytes": 8525,
+      "sha256": "7527f522c5d2647fe60186e731811cef6fca01b8160cfff6a53361e135baaf98"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/README.md",
+      "bytes": 3448,
+      "sha256": "d22eb0976cb92c9ce4eb0e9da91375e0d6d3e92dcf0914b792d6532613c2ee74"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/package.json",
+      "bytes": 606,
+      "sha256": "d05cc88ad9b27d20b2a9e86456c09976625a0e48377e4453ea806f40d7d5f4bc"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/agent/README.md",
+      "bytes": 5598,
+      "sha256": "60592fe24f67f4f282a06820d8d54df291009679805df759d0981ca4d4f6a291"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/agent/attachments.ts",
+      "bytes": 1809,
+      "sha256": "36e231ac653d254259dfbef69c1ccaad9642016e2b3c535e77480f3f66854eef"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/agent/routes.ts",
+      "bytes": 3326,
+      "sha256": "9329ac8a43c46d9451ac809fa131b91f62c52f7caaf752111a7331c4aa22b847"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/agent/service.ts",
+      "bytes": 27342,
+      "sha256": "0f1b39815a94b7b7a11ea2a92dab62ebe0e263d2f2c4e4ed226da872ee3d054e"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/compile-cache.ts",
+      "bytes": 2187,
+      "sha256": "ff323f0a6e801f3abbca9afc8cb916672e0d30fa176a80e7f0a639bee15380fe"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/editor-bridge.ts",
+      "bytes": 7488,
+      "sha256": "c736462dbd417468c4c2d4144f32c6f9abb5fad4d8f81fbf3caa9f4c1511836e"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/events.ts",
+      "bytes": 752,
+      "sha256": "da429de0cc67888bd3e7e3241a8372de618d14cbaac01b39e3f8ecc0011f9494"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/index.ts",
+      "bytes": 119,
+      "sha256": "9d2c2098f6c3996826368cc803486dfd761925fea53fc1dfab515cb976563634"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/main.ts",
+      "bytes": 920,
+      "sha256": "17e79864212b78479d90a51a649705292bd1786870c935d79241a5e31289523c"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/persistence.ts",
+      "bytes": 6949,
+      "sha256": "2173b4d823177c6d7db318ff7a6125b7e32205932b45e599fa2f5cca33896b6a"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/presentation.ts",
+      "bytes": 2950,
+      "sha256": "967e0dda7d3f86b0e933918a761a0cdeed48d5f9342c4a82fb15c2611a8b7338"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/robot-assets.ts",
+      "bytes": 1264,
+      "sha256": "974778747d6188c85c89dab1d3a847ca4f836519d162a4916acdc342c00235ad"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/robot-worker.ts",
+      "bytes": 2979,
+      "sha256": "2473efe4115ebb1b691b463276be52803e9669f4e1e05af80a62b1bd00d20d0c"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/robotics-routes.ts",
+      "bytes": 5461,
+      "sha256": "a19c4b057639d4ddfccd1316f1f010474fd363bbefff77ab29070d0360145ec0"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/robotics-service.ts",
+      "bytes": 2321,
+      "sha256": "f2b95d9db1efc4cd321b1e2709d16a15796241a320ddde86c8bfc1d4c382d956"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/server.ts",
+      "bytes": 14712,
+      "sha256": "d7b0f62f58d6f462d62480171774b891c52e6d4fa878ce89161264b998de822d"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/store.ts",
+      "bytes": 30308,
+      "sha256": "9f465448877707e2677310c21bc4709f07b4264edadeb8ca1ac193e7cbe459a7"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/src/validation.ts",
+      "bytes": 8872,
+      "sha256": "005c98d9590833f57b669a8ab060bc92132e866c28e99082cb09d1434d022f38"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/agent-attachments.test.ts",
+      "bytes": 2385,
+      "sha256": "9f49370ec1558a6d5b772591e51cf851000cd283404dc2210fa47458d6be6e90"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/agent-http.test.ts",
+      "bytes": 8477,
+      "sha256": "ae16baf583e00d37433c7bfbb1a74a61180853f0b0d2b42b9894b4324e802b1c"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/agent.test.ts",
+      "bytes": 21239,
+      "sha256": "c886aedf691b220ced0228a3832090d62aca0a0d5e59e5197bbfe08f0a577cc6"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/compile-cache.test.ts",
+      "bytes": 1849,
+      "sha256": "bec04856a86cf319ccf699505f6b495e233db0aee49d1758ee0ca614ee5f6100"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/history.test.ts",
+      "bytes": 5170,
+      "sha256": "824facd80d607678a205b0bf89fbb8f189c2b502d9315646e9cea8b839e7d85e"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/integrity.test.ts",
+      "bytes": 3289,
+      "sha256": "461061b610f9be97409c189b2a9f1b3b24e1255bb5f076f683e89079f540af2b"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/presentation.test.ts",
+      "bytes": 2664,
+      "sha256": "2f99a0b40478b5c8a8afe125b4160ffddb00c6004e5a4e2780bec243898c935d"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/recovery.test.ts",
+      "bytes": 13237,
+      "sha256": "15c594348315c78e484f09ffb6e0d0ec98e1fd5ff6d9cb485dc5fdd912f96d85"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/rename.test.ts",
+      "bytes": 1904,
+      "sha256": "22fa3ba529ee09708da045424e7c2ee9e0da3558505743c2539c107cfe4fa85c"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/robotics.test.ts",
+      "bytes": 9007,
+      "sha256": "d43613e78601e6d134d3680fc7d5e3ff3b487d1360d70d3862b7fa5b8cef8c5c"
+    },
+    {
+      "path": "cutu-circuits/packages/runtime/tests/runtime.test.ts",
+      "bytes": 20609,
+      "sha256": "130c80b53e80f309467013c43e6356e735ab149386a173041ddca58641da9683"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/DESIGN.md",
+      "bytes": 2427,
+      "sha256": "d66caf34c4489eaf1f69380d09fbae98edbd03cc7be831b96aa4b4ad8cb84132"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/NOTICE.md",
+      "bytes": 873,
+      "sha256": "af20766a298df6f56aaa8f27ef459de64ca41359d1ab5f5c7d95541c37b9a8b3"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/gallery/main.tsx",
+      "bytes": 12470,
+      "sha256": "828992978ebe14820b690577a763bc144737d766450e2974d41246720a72cdcb"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/gallery/styles.css",
+      "bytes": 3299,
+      "sha256": "1906d9cea3821f701f6ccb544e8592fb9d8f7a10ab4dfed95e4ec9593d18733d"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/index.html",
+      "bytes": 435,
+      "sha256": "2ee14d7b1d13bcf4071bc5e6cd932ccdcbc82a867d206d128632778321313a40"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/package.json",
+      "bytes": 1678,
+      "sha256": "f7ff2475ceb841e536c997b77e89ca11125d2bec92ec135cfffaed4a9df6b742"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/playwright.config.ts",
+      "bytes": 469,
+      "sha256": "8103f454924f66a486e9c6715dd8bb2f5ac4f8b416fdf3528a4dbeefd04f35e2"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/appearance.css",
+      "bytes": 6185,
+      "sha256": "2c32123e2e8a14a946e7c2955d5772d9e7814224b83335eafca62f2711828209"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/breadcrumb.tsx",
+      "bytes": 1482,
+      "sha256": "1018eb74340dc0e0f5ac2dcb35f0d6049a9996dfe78878916d6e5b45bbedd727"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/button.tsx",
+      "bytes": 3324,
+      "sha256": "f19c8d0e74b7e23f407a99a772324a6770f878b728cc9866cbd4ba372ad5bf48"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/cn.ts",
+      "bytes": 194,
+      "sha256": "7f542c60e2c88be3206de99f329fbedb0ac9cb2ee3f4b734ffe6eab1cb9699a2"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/dialog.tsx",
+      "bytes": 3840,
+      "sha256": "449f1b5a8ee0f1b2d98a3b64d887cd57cdd401d1e8ec196fdbaceb1a2e732c43"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/icon-button.tsx",
+      "bytes": 622,
+      "sha256": "895550c5f20e66a021d657c3661a6f5936c215a940ffa0224f959b8dab0664ec"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/icon.tsx",
+      "bytes": 1139,
+      "sha256": "97e08d7347aca2363dc59a934d00fe9b158d63953e561c050426ff6126c72401"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/icons/data.json",
+      "bytes": 182133,
+      "sha256": "58a57364d7c3bed8628b16680780c22c765b523827a5c7b3812933b9614b8ed7"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/index.ts",
+      "bytes": 2233,
+      "sha256": "61ccc57f13c446b60020aeaeca3c2902ea281241e0fa0f3aca8ae52717d53352"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/input.tsx",
+      "bytes": 545,
+      "sha256": "38215bed8f684522716b172ee120991a522e04c5ea20ab4414f0a6868debd41f"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/kbd.tsx",
+      "bytes": 926,
+      "sha256": "661cfbc995e8a6b3f72d85c1f760ce3aceb6803032ba5b5a9135d2dbc95a3179"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/menu.tsx",
+      "bytes": 5910,
+      "sha256": "237d3312b945b03063f29c6bdf0ba73f750b9a609f5705f6920891ea8b79e876"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/patterns.tsx",
+      "bytes": 1497,
+      "sha256": "e53dbeb02323fc5f649e7d0efcadb81044a4f78436e4e3b55f9d6ae159649ff3"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/search-field.tsx",
+      "bytes": 1029,
+      "sha256": "cdc1b68768caeaddb44775895cfccce7fbab5e50b915b2c42895b0aa83aceda1"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/settings-group.tsx",
+      "bytes": 1584,
+      "sha256": "88079ee29740c5d488e6f289767693f9addab5f379990454213c9a873e20d1d6"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/settings-select.tsx",
+      "bytes": 1853,
+      "sha256": "13212ddd2c26bca390cb6e97826334d8807b5ecf66ea3d7a9904b194eaaf4896"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/settings.css",
+      "bytes": 2435,
+      "sha256": "e21cfe628e2aef5e6ac37447b413154c27dbc8b855bec35f750cdacb5e79be55"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/slider.tsx",
+      "bytes": 1799,
+      "sha256": "bf5d17f4072d86170c9f4faf16c91e9a3ada4ea6dae91ddc165f9fc7acfa730f"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/step-slider.css",
+      "bytes": 3268,
+      "sha256": "df6af24f43a97b9915174afb633da3c110e42b2fda1232a273aff5abd2dcd5c7"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/step-slider.tsx",
+      "bytes": 5175,
+      "sha256": "28c8ff27109365b32bc597f808c0a6b26ea26c75cca8417844dc9d18332d0169"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/streaming-text.LICENSE",
+      "bytes": 1073,
+      "sha256": "eafb05991a572efa34097474b31fef45b14a8879ed1d1a8fd77de62e6fa7d275"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/streaming-text.css",
+      "bytes": 1164,
+      "sha256": "de9388230eae855022b24f87dfcc0c557f6c24db0f3dce86ce4872833d5600f4"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/streaming-text.tsx",
+      "bytes": 1182,
+      "sha256": "e8666125370d95caf01965f57c4efaa476bf451acca68d2ec1391a8b2391d101"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/styles.css",
+      "bytes": 174,
+      "sha256": "324a967f4c8f5ca9793cffb1627c805b935c93e2684e25ff4d5e63d88f932f50"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/surfaces.css",
+      "bytes": 3716,
+      "sha256": "1fc83e2ea95efb13d84a6cf007cbeda7a3f9c7923ccd5a0d1637f45275185e48"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/switch.tsx",
+      "bytes": 1001,
+      "sha256": "d1ff15c92c777ead170c5f13f9c7e36eec5aad5f6f78952ccc81c002a2fe09fb"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/system-message.tsx",
+      "bytes": 1087,
+      "sha256": "e79852f4aa253c19d4f8d9054dad6add90cde64abb75d68e190677857735ff37"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/themes/cutucircuits.ts",
+      "bytes": 919,
+      "sha256": "74b811e022f017f7fd5fe08ed6ecd64bdee9485dafb4ef768a0959c069f70d4f"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/themes/foundation.ts",
+      "bytes": 2133,
+      "sha256": "5e1ba22920ff251bee3bd06c0ab0fd2dd56c2d97c28ed8304077650726619337"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/themes/theme.ts",
+      "bytes": 5672,
+      "sha256": "610cf9c04bae3b223345afeb22c3a1d0b164c3011974bae8d548b63eba8a7873"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/toast.css",
+      "bytes": 3118,
+      "sha256": "68e5059555866a9242c24f4e2809c4f23507eb74e0aac6e6663789fae31dca03"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/toast.tsx",
+      "bytes": 1058,
+      "sha256": "058377d2b78133f6031721841416006848818319a401c0f2a39cd108dcec2806"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/tokens.css",
+      "bytes": 2736,
+      "sha256": "71f6a03d298efbea534062a140588afed0b152882bd43621a37e30f005244050"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/src/tooltip.tsx",
+      "bytes": 803,
+      "sha256": "f925a79a5f289053b627492e8bff77476e2b3ea8eec88362eac2d90e2da62505"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/tests/gallery.spec.ts",
+      "bytes": 3341,
+      "sha256": "35e1f743f58a883fe3c94be6431e5b6d8a19d88fe73a0164cc52b82a2cd017d8"
+    },
+    {
+      "path": "cutu-circuits/packages/ui/vite.config.ts",
+      "bytes": 201,
+      "sha256": "21b10de12f528a6cf39b921f2511fe5bde46727dd3aa4a0ba124e3ce0076426f"
+    },
+    {
+      "path": "cutu-circuits/playwright.config.ts",
+      "bytes": 1510,
+      "sha256": "17c135d2e42d5764156faa9a997a110146c1357180bfc91be4949bd1fbb055b3"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/.codex-plugin/plugin.json",
+      "bytes": 423,
+      "sha256": "ecff03af0dcae589b39036fc55b4bb77e4861fa2bbe7b75a222b577f2690b2aa"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/.gitignore",
+      "bytes": 7,
+      "sha256": "fe56da5f27d174b011ca65d2c1c9be83ca19ce1428e1594f8ed3ca037e8814ed"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/.mcp.json",
+      "bytes": 113,
+      "sha256": "2e141f908e8fa818dcfc52097f89ee7e2b59fad5be3d4576eb7a0f81441f3185"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/README.md",
+      "bytes": 3361,
+      "sha256": "98eca8822f970a7014369f43b12758ffe9320130df125385612c21257263ec17"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/THIRD_PARTY_NOTICES.md",
+      "bytes": 589,
+      "sha256": "2889be3dbce6c0f0f0a10f625f74761dee2c84bbe52ba0cbc723bd3df68a1553"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/dist/THIRD_PARTY_LICENSES.txt",
+      "bytes": 9320,
+      "sha256": "e6771a943f3847df358b9a5deb859d564312acd03d08bea3fe6ff4e9570af66c"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/dist/server.mjs",
+      "bytes": 764435,
+      "sha256": "066c4d2f969a9afdb1c5ebc8d42373d175b008307cba0555fe31164fee66db7c"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/mcp.json",
+      "bytes": 226,
+      "sha256": "3f5e2e89ac7a39e06ea4eaf9973e1fa89884f498b2117e134930f33ed0db1fbb"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/plugin.json",
+      "bytes": 881,
+      "sha256": "4f3a4b0a0de4d21b064b7b7be3bb6f21880d3d8a2cc2632efa059ed1b8252ec8"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/scripts/launch.mjs",
+      "bytes": 1445,
+      "sha256": "9a5e313f276fc637f247384204bea0fc31e5f45ba46cefb850cd77cf337f471f"
+    },
+    {
+      "path": "cutu-circuits/plugins/cutucircuits/skills/engineering-workflow/SKILL.md",
+      "bytes": 5530,
+      "sha256": "39b12f082a8faa9707f14a6e646c3f0902e574e33edb3509a6d75cba23c30c68"
+    },
+    {
+      "path": "cutu-circuits/requirements-dev.txt",
+      "bytes": 194,
+      "sha256": "80bde487f0c24d63b842c934274059169b84cf525b5e8453d8ef756e25232d88"
+    },
+    {
+      "path": "cutu-circuits/requirements.txt",
+      "bytes": 83,
+      "sha256": "e2dabc81de7a9572fc8ee79e440298b0ca2bca27467d811a58c985af971878c4"
+    },
+    {
+      "path": "cutu-circuits/scripts/capture-next-stage.mjs",
+      "bytes": 22210,
+      "sha256": "b23e45b15a0a63ca77b15201e0807ef7bb8a26a11b6ead2e141f07e2db731f30"
+    },
+    {
+      "path": "cutu-circuits/scripts/capture-overhaul.mjs",
+      "bytes": 14305,
+      "sha256": "28205098afbf8e50142bdb0c2b1adfdeca484ab475da7093632e2260aab7109d"
+    },
+    {
+      "path": "cutu-circuits/scripts/demo-preflight.mjs",
+      "bytes": 12323,
+      "sha256": "28fd47c10f510edc603dbfd04df9aa4e1378a1600d3012129acd976c82ed99a7"
+    },
+    {
+      "path": "cutu-circuits/scripts/demo-record.mjs",
+      "bytes": 17319,
+      "sha256": "4678b0fa6fd9ef76674d0ab20f5c6b93d0982e5ed1915f808c26bbfd13791c28"
+    },
+    {
+      "path": "cutu-circuits/scripts/package-release.mjs",
+      "bytes": 11613,
+      "sha256": "6c19e45f6cb3161d16958dfc82503676eeaa35983b7b91e2812ba9f1aa4037fa"
+    },
+    {
+      "path": "cutu-circuits/scripts/prepare-upstream.mjs",
+      "bytes": 2721,
+      "sha256": "3ef5054eaa4c0205f927a177ad5bdbd08e1d47f6734f60eef7c71843dc56fb6c"
+    },
+    {
+      "path": "cutu-circuits/scripts/regenerate-spidey-meshes.mjs",
+      "bytes": 3314,
+      "sha256": "4fb0f48ba8c473314d3ffd9b10685c47dd6c5a2cbe39dcb0be744f4cc76bc3bc"
+    },
+    {
+      "path": "cutu-circuits/scripts/start-demo.mjs",
+      "bytes": 5995,
+      "sha256": "79b084b1d8a67eb3a906a9822bb3c2fff0eda9966b4b138825272d0c484b6a1c"
+    },
+    {
+      "path": "cutu-circuits/sources.lock.json",
+      "bytes": 2268,
+      "sha256": "f00d379a42a7df814229d806016bb80bf4d03e1603be35857e70f0ce9aa6b3a6"
+    },
+    {
+      "path": "cutu-circuits/tests/e2e/agent.spec.ts",
+      "bytes": 10925,
+      "sha256": "468705a951c3f80300ea88cd72c497c7713a7d78891d8aa95b4ff2f33d0aef7e"
+    },
+    {
+      "path": "cutu-circuits/tests/e2e/next-stage.spec.ts",
+      "bytes": 18628,
+      "sha256": "922bc1c78e3b984d51ee18bf4d80a38772953a64dc3ac46668627776a9082b82"
+    },
+    {
+      "path": "cutu-circuits/tests/e2e/production.config.ts",
+      "bytes": 812,
+      "sha256": "07dcd977c36edf9248e523a95e50c22fdb068f3a91d9cb306a30785a9277a8a5"
+    },
+    {
+      "path": "cutu-circuits/tests/e2e/replay.spec.ts",
+      "bytes": 5255,
+      "sha256": "e4880af03f3b44283576498d5e1da944d776e41a2adac6d11a8f483cb0785357"
+    },
+    {
+      "path": "cutu-circuits/tests/e2e/robot-walk.spec.ts",
+      "bytes": 2484,
+      "sha256": "c17da4a810434df985df8573a7db692dedf3403b0b3bda50b49d15c330cb1710"
+    },
+    {
+      "path": "cutu-circuits/tests/e2e/theme.spec.ts",
+      "bytes": 1297,
+      "sha256": "44042a3a1bd12d6b162406c8a8329c2e67c9d03728d8024d20253537c4f5ee43"
+    },
+    {
+      "path": "cutu-circuits/tests/e2e/workspace.spec.ts",
+      "bytes": 26942,
+      "sha256": "481f3d9971672af04ae864ef2aadfd9d30140f9f5e33d24ac25cb0201f33141d"
+    },
+    {
+      "path": "cutu-circuits/tests/integration.test.ts",
+      "bytes": 6927,
+      "sha256": "03e5c3e97ea62283779426d7efaa08f3f0dddc3e7e94f7403542277fc4f5e0c2"
+    },
+    {
+      "path": "cutu-circuits/tests/next-integration.test.ts",
+      "bytes": 4919,
+      "sha256": "efa53aa321ff53e3cfaf9988933997867256b6117f9f0360997e54f1b957a5fd"
+    },
+    {
+      "path": "cutu-circuits/tsconfig.json",
+      "bytes": 557,
+      "sha256": "ef2c32ff41fcbe52598ea71eeccfcd3750fb2aa1b999ac3e533bef7a498c5224"
+    },
+    {
+      "path": "scripts/build-makada.mjs",
+      "bytes": 1557,
+      "sha256": "1dda5a2361b1eb6ced598547725e34ee67b0f7adeaf99e6023391a1e92963b22"
+    },
+    {
+      "path": "scripts/package-submission.mjs",
+      "bytes": 17027,
+      "sha256": "a1728be40d408d5cdf6c54e2db856aee4a37d6586f26ee95f05ced2bf46c4404"
+    },
+    {
+      "path": "workspace.ps1",
+      "bytes": 293,
+      "sha256": "ad5aef3ef542957246adac0127d3f15a2e9a7ef0ae2105bd58dc69c586de0c83"
+    }
+  ]
+}

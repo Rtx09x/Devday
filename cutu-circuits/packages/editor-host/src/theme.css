@@ -1,0 +1,76 @@
+/* Map the engineering editors' host contract to the actual Myui theme. */
+.es-editor,
+.replicad-editor,
+.replicad-mesh-editor {
+  --cutucircuits-bg: var(--theme-surface, #212121);
+  --cutucircuits-bg-secondary: var(--theme-surface-deep, #1e2024);
+  --cutucircuits-bg-tertiary: var(--theme-surface-popover, #323434);
+  --cutucircuits-bg-hover: var(--theme-surface-control, #3b3d3d);
+  --cutucircuits-text: var(--theme-ink, #eeffff);
+  --cutucircuits-text-muted: var(--theme-ink-muted, #a5b3b3);
+  --cutucircuits-text-faint: var(--theme-ink-muted, #8b9999);
+  --cutucircuits-text-disabled: var(--theme-ink-muted, #8b9999);
+  --cutucircuits-border: var(--theme-border-muted, rgba(255, 255, 255, 0.12));
+  --cutucircuits-border-focus: var(--theme-accent, #80cbc4);
+  --cutucircuits-primary: var(--theme-accent, #80cbc4);
+  --cutucircuits-primary-hover: var(--theme-accent, #80cbc4);
+  --cutucircuits-on-primary: var(--theme-surface, #212121);
+  --cutucircuits-accent-subtle: color-mix(
+    in srgb,
+    var(--theme-accent, #80cbc4) 15%,
+    transparent
+  );
+  --cutucircuits-info: #82aaff;
+  --cutucircuits-success: #c3e88d;
+  --cutucircuits-warning: #ffcb6b;
+  --cutucircuits-error: #f07178;
+}
+/* Native authoring shares the workspace canvas. Save feedback is contextual. */
+.cutucircuits-native-editor-frame {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--theme-ink, #eeffff);
+  background: var(--theme-surface, #212121);
+}
+.cutucircuits-native-editor-actions {
+  position: absolute;
+  z-index: 35;
+  right: 14px;
+  bottom: 56px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 14px;
+  color: var(--theme-ink-muted);
+  font-size: 12px;
+}
+.cutucircuits-native-editor-actions:empty {
+  display: none;
+}
+.cutucircuits-native-editor-actions[data-dirty="true"] {
+  padding: 5px 6px 5px 12px;
+  background: color-mix(in srgb, var(--theme-surface-popover) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border: 0.5px solid var(--theme-border-muted);
+  box-shadow: 0 4px 18px #0002;
+}
+.cutucircuits-native-editor-save-error {
+  position: relative;
+  z-index: 36;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: color-mix(in srgb, #f07178 18%, var(--theme-surface));
+  color: var(--theme-ink);
+  font-size: 13px;
+}
+.cutucircuits-native-editor-content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- SI: metres, kilograms, radians. Z-up. An engineering demonstration with authored ideal rigid-body properties. -->
+<robot name="Cutu two-axis arm">
+  <material name="graphite"><color rgba="0.23 0.26 0.27 1"/></material>
+  <material name="mint"><color rgba="0.50 0.80 0.77 1"/></material>
+  <material name="blue"><color rgba="0.18 0.42 0.78 1"/></material>
+  <link name="base">
+    <inertial><origin xyz="0 0 0.04"/><mass value="2"/><inertia ixx="0.0071" ixy="0" ixz="0" iyy="0.0071" iyz="0" izz="0.012"/></inertial>
+    <visual><origin xyz="0 0 0.04"/><geometry><cylinder radius="0.11" length="0.08"/></geometry><material name="graphite"/></visual>
+    <collision><origin xyz="0 0 0.04"/><geometry><cylinder radius="0.11" length="0.08"/></geometry></collision>
+  </link>
+  <link name="upper_arm">
+    <inertial><origin xyz="0 0 0.18"/><mass value="0.8"/><inertia ixx="0.009" ixy="0" ixz="0" iyy="0.009" iyz="0" izz="0.00048"/></inertial>
+    <visual><origin xyz="0 0 0.18"/><geometry><box size="0.06 0.06 0.36"/></geometry><material name="mint"/></visual>
+    <collision><origin xyz="0 0 0.18"/><geometry><box size="0.06 0.06 0.36"/></geometry></collision>
+    <visual><geometry><sphere radius="0.046"/></geometry><material name="graphite"/></visual>
+  </link>
+  <link name="slider">
+    <inertial><origin xyz="0.09 0 0"/><mass value="0.25"/><inertia ixx="0.00013" ixy="0" ixz="0" iyy="0.0008" iyz="0" izz="0.0008"/></inertial>
+    <visual><origin xyz="0.09 0 0"/><geometry><box size="0.18 0.055 0.055"/></geometry><material name="blue"/></visual>
+    <collision><origin xyz="0.09 0 0"/><geometry><box size="0.18 0.055 0.055"/></geometry></collision>
+  </link>
+  <joint name="shoulder" type="revolute"><parent link="base"/><child link="upper_arm"/><origin xyz="0 0 0.09"/><axis xyz="0 1 0"/><limit lower="-1.2" upper="1.2"/></joint>
+  <joint name="extension" type="prismatic"><parent link="upper_arm"/><child link="slider"/><origin xyz="0 0 0.36"/><axis xyz="1 0 0"/><limit lower="0" upper="0.16"/></joint>
+</robot>

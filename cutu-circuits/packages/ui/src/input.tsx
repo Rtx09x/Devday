@@ -1,0 +1,18 @@
+import type {InputHTMLAttributes} from "react";
+import {cn} from "@cutucircuits/ui/cn";
+
+export type InputProps = InputHTMLAttributes<HTMLInputElement>;
+
+export default function Input(props: InputProps) {
+  const {className, ...inputProps} = props;
+
+  return (
+    <input
+      className={cn(
+        "w-full rounded-xl corner-superellipse/1.3 border border-border bg-surface-raised/70 px-3 py-2 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-border-strong",
+        className
+      )}
+      {...inputProps}
+    />
+  );
+}

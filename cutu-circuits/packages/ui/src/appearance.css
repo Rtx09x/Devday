@@ -1,0 +1,246 @@
+:root[data-ui="cutucircuits"] {
+  --text-sm: 0.875rem;
+  --cutucircuits-composer-width: 736px;
+  --cutucircuits-scrollbar-width: 8px;
+}
+
+:root[data-ui="cutucircuits"] ::selection {
+  background: #4c5a59;
+  color: #e6f7f6;
+}
+
+:root[data-ui="cutucircuits"] .cutucircuits-session-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  border-bottom: 0;
+  pointer-events: none;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-session-header > div {
+  pointer-events: auto;
+  background: var(--theme-surface);
+  border-radius: 6px;
+}
+:root[data-ui="cutucircuits"] [data-slot="message-scroller-viewport"].overflow-y-auto {
+  scrollbar-gutter: stable both-edges;
+  mask-image: linear-gradient(to bottom, transparent, #000 112px, #000 calc(100% - 16px), transparent);
+}
+:root[data-ui="cutucircuits"] .cutucircuits-transcript-frame {
+  width: calc(100% - 56px + var(--cutucircuits-scrollbar-width) + var(--cutucircuits-scrollbar-width));
+  max-width: var(--cutucircuits-composer-width);
+  padding-inline: 0;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-message-editor textarea {
+  field-sizing: content;
+  min-height: 60px;
+  max-height: min(360px, 50dvh);
+}
+:root[data-ui="cutucircuits"] .cutucircuits-message-edit-send {
+  background: var(--theme-ink);
+  color: var(--theme-surface);
+}
+:root[data-ui="cutucircuits"] .cutucircuits-message-edit-send:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+:root[data-ui="cutucircuits"] .cutucircuits-sidebar {
+  font-family: var(--font-sans);
+  padding: 0 8px 12px;
+}
+
+:root[data-ui="cutucircuits"] body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-sidebar-head {
+  padding: 0;
+}
+.cutucircuits-brand-row {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 8px 8px;
+  gap: 4px;
+}
+.cutucircuits-brand {
+  flex: 1;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--theme-ink-muted);
+}
+.cutucircuits-sidebar .cutucircuits-catalog {
+  padding: 0;
+}
+.cutucircuits-sidebar-section {
+  margin-top: 13px;
+}
+.cutucircuits-sidebar-section + .cutucircuits-sidebar-section {
+  margin-top: 24px;
+}
+.cutucircuits-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  padding: 0 4px 0 8px;
+}
+.cutucircuits-section-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--theme-ink-faint);
+}
+.cutucircuits-section-toggle svg {
+  opacity: 0;
+  transition: opacity 150ms;
+}
+.cutucircuits-sidebar-section:hover .cutucircuits-section-toggle svg,
+.cutucircuits-sidebar-section:focus-within .cutucircuits-section-toggle svg {
+  opacity: 1;
+}
+.cutucircuits-section-action {
+  opacity: 0;
+}
+.cutucircuits-sidebar-section:hover .cutucircuits-section-action,
+.cutucircuits-sidebar-section:focus-within .cutucircuits-section-action {
+  opacity: 1;
+}
+.cutucircuits-sidebar .cutucircuits-chat-row,
+.cutucircuits-sidebar .cutucircuits-project-row {
+  height: 33px;
+  border-radius: 11px;
+  padding: 0 8px;
+}
+.cutucircuits-sidebar .cutucircuits-chat-row {
+  padding-inline-end: 4px;
+}
+.cutucircuits-sidebar .cutucircuits-chat-row > button,
+.cutucircuits-sidebar .cutucircuits-project-row [role="button"] {
+  font-size: 13px;
+  font-weight: 400;
+}
+.cutucircuits-sidebar .cutucircuits-empty-note {
+  padding: 2px 8px 8px;
+  font-size: 13px;
+  color: var(--theme-ink-faint);
+}
+.cutucircuits-sidebar-foot {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+:root[data-ui="cutucircuits"] .cutucircuits-composer-dock {
+  padding: 0 28px 16px;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-composer-stack {
+  max-width: var(--cutucircuits-composer-width);
+}
+:root[data-ui="cutucircuits"] .cutucircuits-composer {
+  min-height: 98px;
+  padding: 10px 8px 8px;
+  border-radius: 22px;
+  corner-shape: round;
+  box-shadow: inset 0 0 1px rgb(255 255 255 / 0.2);
+}
+:root[data-ui="cutucircuits"] .cutucircuits-composer .tiptap {
+  font-size: 14px;
+  line-height: 1.45;
+  min-height: 48px;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-composer-placeholder {
+  color: var(--theme-ink-faint);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-composer-toolbar {
+  gap: 8px;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-model-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--theme-ink-muted);
+}
+:root[data-ui="cutucircuits"] .cutucircuits-menu[data-kind="power-picker"] {
+  width: 264px;
+  min-width: 264px;
+  padding: 4px;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-send {
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-composer-toolbar > button:not(.cutucircuits-send) {
+  min-width: 28px;
+}
+:root[data-ui="cutucircuits"] .cutucircuits-send:disabled {
+  background: var(--theme-ink);
+  color: var(--theme-ink-inverse);
+  opacity: 0.5;
+}
+.cutucircuits-project-rail {
+  position: relative;
+  z-index: 0;
+  height: 42px;
+  margin: 0 13px -8px;
+  padding: 0 8px 8px;
+  border-radius: 20px 20px 0 0;
+  background: var(--theme-surface-raised);
+  display: flex;
+  align-items: center;
+}
+.cutucircuits-project-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  max-width: 100%;
+  padding: 0 10px 0 8px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--theme-ink);
+}
+.cutucircuits-project-chip:hover {
+  background: var(--theme-overlay-hover);
+}
+.cutucircuits-project-chip svg {
+  color: var(--theme-ink-faint);
+  flex: none;
+}
+.cutucircuits-primary-action {
+  background: var(--theme-ink);
+  color: var(--theme-ink-inverse);
+  border-radius: 12px;
+  padding: 8px 18px;
+  font-size: 13px;
+}
+.cutucircuits-primary-action:disabled {
+  opacity: 0.5;
+}
+
+:root[data-ui="cutucircuits"] .cutucircuits-message-bubble {
+  border-radius: 22px;
+  corner-shape: round;
+  font-size: 14px;
+  padding: 10px 16px;
+}
+
+:root[data-theme="material"] .sidebar-preview {
+  background: linear-gradient(180deg, #1e2022, #1b2230);
+}
+
+@media (max-width: 600px) {
+  :root[data-ui="cutucircuits"] .cutucircuits-composer-dock {
+    padding-inline: 16px;
+  }
+}

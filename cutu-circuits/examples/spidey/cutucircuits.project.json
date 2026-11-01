@@ -1,0 +1,2718 @@
+{
+  "version": 1,
+  "id": "spidey",
+  "name": "Makada",
+  "description": "Photo-informed three-servo wire-leg hexapod with a rear-mounted NodeMCU 1.0 ESP-12E and separate regulated servo rail. Dimensions and mounting are estimates; native CAD and commanded gait preview.",
+  "revision": 1,
+  "createdAt": "2026-10-31T00:00:00.000Z",
+  "updatedAt": "2026-10-31T00:00:00.000Z",
+  "units": "mm",
+  "entities": [
+    {
+      "id": "body",
+      "name": "Bonded servo cluster · glue seams",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#dbe6e8",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "body"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue"
+      }
+    },
+    {
+      "id": "controller",
+      "name": "NodeMCU ESP8266",
+      "kind": "controller",
+      "position": [
+        0,
+        21.5,
+        55.5
+      ],
+      "color": "#263b36",
+      "metadata": {
+        "ref": "MCU",
+        "circuitRef": "MCU",
+        "firmware": "firmware/src/main.cpp",
+        "external": false,
+        "sceneHidden": false,
+        "note": "Upright landscape rear mount parallel to the servo backs; placement and mounting remain estimates.",
+        "boardVariant": "NodeMCU 1.0 (ESP-12E), nodemcuv2",
+        "dimensionSource": "upstream ESP12E_DEVKIT.lbr 25.4 x 48.26 mm outline, 22.86 mm header rows; placement estimated",
+        "pinoutSource": "https://github.com/nodemcu/nodemcu-devkit-v1.0/blob/master/Documents/NODEMCU_DEVKIT_V1.0_PINMAP.png",
+        "footprintSource": "https://github.com/nodemcu/nodemcu-devkit-v1.0/blob/master/ESP12E_DEVKIT.lbr",
+        "boardPlane": "XZ",
+        "componentFace": "+Y",
+        "antennaDirection": "+X"
+      },
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller"
+      }
+    },
+    {
+      "id": "power-bus",
+      "name": "5 V BEC / common ground",
+      "kind": "connector",
+      "position": [
+        -33,
+        23.5,
+        55.5
+      ],
+      "color": "#3e3e3e",
+      "metadata": {
+        "ref": "BEC",
+        "circuitRef": "BEC",
+        "note": "Illustrative separate external BEC distribution connector; regulated servo 5 V and shared ground. No servo load from NodeMCU 3V3 or VIN.",
+        "external": true,
+        "sceneHidden": false
+      },
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "power-bus"
+      }
+    },
+    {
+      "id": "servo-left",
+      "name": "Left walking servo",
+      "kind": "servo",
+      "position": [
+        -13,
+        0,
+        56
+      ],
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "servo-left"
+      },
+      "color": "#184fc1",
+      "metadata": {
+        "ref": "LEFT",
+        "circuitRef": "LEFT",
+        "gpio": 14,
+        "boardPin": "D5",
+        "centerUs": 1450,
+        "minUs": 1260,
+        "maxUs": 1600,
+        "feedback": "commanded only; no measured shaft feedback",
+        "calibration": "last-known, unverified",
+        "material": "blue-servo",
+        "dimensionSource": "nominal SG90 / photo estimate",
+        "jointPivot": [
+          -13,
+          5.5,
+          73.8
+        ]
+      }
+    },
+    {
+      "id": "servo-left-seams",
+      "name": "Left servo · case seams",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#103887",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "servo-left-seams"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "blue-servo"
+      },
+      "parentId": "servo-left"
+    },
+    {
+      "id": "horn-left",
+      "name": "Left cross horn",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#f1efdf",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "horn-left"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "nylon",
+        "driver": "servo-left"
+      },
+      "parentId": "servo-left"
+    },
+    {
+      "id": "horn-left-screw",
+      "name": "Left horn screw",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b3b5b2",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "horn-left-screw"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-left"
+      },
+      "parentId": "horn-left"
+    },
+    {
+      "id": "glue-left",
+      "name": "Left horn · hot-glue bond",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#e3eced",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "glue-left"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-left"
+      },
+      "parentId": "horn-left"
+    },
+    {
+      "id": "servo-right",
+      "name": "Right walking servo",
+      "kind": "servo",
+      "position": [
+        13,
+        0,
+        56
+      ],
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "servo-right"
+      },
+      "color": "#184fc1",
+      "metadata": {
+        "ref": "RIGHT",
+        "circuitRef": "RIGHT",
+        "gpio": 12,
+        "boardPin": "D6",
+        "centerUs": 1500,
+        "minUs": 1350,
+        "maxUs": 1740,
+        "feedback": "commanded only; no measured shaft feedback",
+        "calibration": "last-known, unverified",
+        "material": "blue-servo",
+        "dimensionSource": "nominal SG90 / photo estimate",
+        "jointPivot": [
+          13,
+          5.5,
+          73.8
+        ]
+      }
+    },
+    {
+      "id": "servo-right-seams",
+      "name": "Right servo · case seams",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#103887",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "servo-right-seams"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "blue-servo"
+      },
+      "parentId": "servo-right"
+    },
+    {
+      "id": "horn-right",
+      "name": "Right cross horn",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#f1efdf",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "horn-right"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "nylon",
+        "driver": "servo-right"
+      },
+      "parentId": "servo-right"
+    },
+    {
+      "id": "horn-right-screw",
+      "name": "Right horn screw",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b3b5b2",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "horn-right-screw"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-right"
+      },
+      "parentId": "horn-right"
+    },
+    {
+      "id": "glue-right",
+      "name": "Right horn · hot-glue bond",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#e3eced",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "glue-right"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-right"
+      },
+      "parentId": "horn-right"
+    },
+    {
+      "id": "servo-tilt",
+      "name": "Middle tilt servo",
+      "kind": "servo",
+      "position": [
+        0,
+        -0.5,
+        55
+      ],
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "servo-tilt"
+      },
+      "color": "#184fc1",
+      "metadata": {
+        "ref": "TILT",
+        "circuitRef": "TILT",
+        "gpio": 13,
+        "boardPin": "D7",
+        "centerUs": 1505,
+        "minUs": 1330,
+        "maxUs": 1650,
+        "feedback": "commanded only; no measured shaft feedback",
+        "calibration": "last-known, unverified",
+        "material": "blue-servo",
+        "dimensionSource": "nominal SG90 / photo estimate",
+        "jointPivot": [
+          0,
+          -16.5,
+          60.5
+        ]
+      }
+    },
+    {
+      "id": "servo-tilt-seams",
+      "name": "Tilt servo · case seams",
+      "kind": "part",
+      "position": [
+        0,
+        9,
+        0
+      ],
+      "color": "#103887",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "servo-tilt-seams"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "blue-servo"
+      },
+      "parentId": "servo-tilt"
+    },
+    {
+      "id": "horn-tilt",
+      "name": "Tilt cross horn",
+      "kind": "part",
+      "position": [
+        0,
+        9,
+        0
+      ],
+      "color": "#f1efdf",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "horn-tilt"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "nylon",
+        "driver": "servo-tilt"
+      },
+      "parentId": "servo-tilt"
+    },
+    {
+      "id": "horn-tilt-screw",
+      "name": "Tilt horn screw",
+      "kind": "part",
+      "position": [
+        0,
+        9,
+        0
+      ],
+      "color": "#b3b5b2",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "horn-tilt-screw"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-tilt"
+      },
+      "parentId": "horn-tilt"
+    },
+    {
+      "id": "glue-tilt",
+      "name": "Tilt horn · hot-glue bond",
+      "kind": "part",
+      "position": [
+        0,
+        9,
+        0
+      ],
+      "color": "#e3eced",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "glue-tilt"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-tilt"
+      },
+      "parentId": "horn-tilt"
+    },
+    {
+      "id": "leg-left-1",
+      "name": "Left front · bent steel wire",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b9c6d0",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "leg-left-1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-left",
+        "coupledPair": "left"
+      },
+      "parentId": "servo-left"
+    },
+    {
+      "id": "foot-left-1",
+      "name": "Left front · glue foot",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d2e0e3",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "foot-left-1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-left"
+      },
+      "parentId": "leg-left-1"
+    },
+    {
+      "id": "leg-left-2",
+      "name": "Left middle · bent steel wire",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b9c6d0",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "leg-left-2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-tilt",
+        "coupledPair": "middle"
+      },
+      "parentId": "servo-tilt"
+    },
+    {
+      "id": "foot-left-2",
+      "name": "Left middle · glue foot",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d2e0e3",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "foot-left-2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-tilt"
+      },
+      "parentId": "leg-left-2"
+    },
+    {
+      "id": "leg-left-3",
+      "name": "Left hind · bent steel wire",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b9c6d0",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "leg-left-3"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-left",
+        "coupledPair": "left"
+      },
+      "parentId": "servo-left"
+    },
+    {
+      "id": "foot-left-3",
+      "name": "Left hind · glue foot",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d2e0e3",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "foot-left-3"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-left"
+      },
+      "parentId": "leg-left-3"
+    },
+    {
+      "id": "leg-right-1",
+      "name": "Right front · bent steel wire",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b9c6d0",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "leg-right-1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-right",
+        "coupledPair": "right"
+      },
+      "parentId": "servo-right"
+    },
+    {
+      "id": "foot-right-1",
+      "name": "Right front · glue foot",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d2e0e3",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "foot-right-1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-right"
+      },
+      "parentId": "leg-right-1"
+    },
+    {
+      "id": "leg-right-2",
+      "name": "Right middle · bent steel wire",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b9c6d0",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "leg-right-2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-tilt",
+        "coupledPair": "middle"
+      },
+      "parentId": "servo-tilt"
+    },
+    {
+      "id": "foot-right-2",
+      "name": "Right middle · glue foot",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d2e0e3",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "foot-right-2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-tilt"
+      },
+      "parentId": "leg-right-2"
+    },
+    {
+      "id": "leg-right-3",
+      "name": "Right hind · bent steel wire",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b9c6d0",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "leg-right-3"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "steel",
+        "driver": "servo-right",
+        "coupledPair": "right"
+      },
+      "parentId": "servo-right"
+    },
+    {
+      "id": "foot-right-3",
+      "name": "Right hind · glue foot",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d2e0e3",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "foot-right-3"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "glue",
+        "driver": "servo-right"
+      },
+      "parentId": "leg-right-3"
+    },
+    {
+      "id": "cable-left-0",
+      "name": "Left servo · ground lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#8a492b",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-left-0"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "ground",
+        "external": false
+      },
+      "parentId": "servo-left"
+    },
+    {
+      "id": "cable-left-1",
+      "name": "Left servo · 5 V lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d44428",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-left-1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "5 V",
+        "external": false
+      },
+      "parentId": "servo-left"
+    },
+    {
+      "id": "cable-left-2",
+      "name": "Left servo · signal lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#ed922f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-left-2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "signal",
+        "external": false,
+        "boardPin": "D5",
+        "gpio": 14,
+        "sourceEntityId": "controller-pin-D5",
+        "targetEntityId": "servo-left"
+      },
+      "parentId": "servo-left"
+    },
+    {
+      "id": "plug-left",
+      "name": "Left servo · signal jumper at NodeMCU pad",
+      "kind": "connector",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#282d31",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "plug-left"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "connector",
+        "external": false
+      },
+      "parentId": "servo-left"
+    },
+    {
+      "id": "cable-tilt-0",
+      "name": "Tilt servo · ground lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#8a492b",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-tilt-0"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "ground",
+        "external": false
+      },
+      "parentId": "servo-tilt"
+    },
+    {
+      "id": "cable-tilt-1",
+      "name": "Tilt servo · 5 V lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d44428",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-tilt-1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "5 V",
+        "external": false
+      },
+      "parentId": "servo-tilt"
+    },
+    {
+      "id": "cable-tilt-2",
+      "name": "Tilt servo · signal lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#ed922f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-tilt-2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "signal",
+        "external": false,
+        "boardPin": "D7",
+        "gpio": 13,
+        "sourceEntityId": "controller-pin-D7",
+        "targetEntityId": "servo-tilt"
+      },
+      "parentId": "servo-tilt"
+    },
+    {
+      "id": "plug-tilt",
+      "name": "Tilt servo · signal jumper at NodeMCU pad",
+      "kind": "connector",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#282d31",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "plug-tilt"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "connector",
+        "external": false
+      },
+      "parentId": "servo-tilt"
+    },
+    {
+      "id": "cable-right-0",
+      "name": "Right servo · ground lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#8a492b",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-right-0"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "ground",
+        "external": false
+      },
+      "parentId": "servo-right"
+    },
+    {
+      "id": "cable-right-1",
+      "name": "Right servo · 5 V lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d44428",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-right-1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "5 V",
+        "external": false
+      },
+      "parentId": "servo-right"
+    },
+    {
+      "id": "cable-right-2",
+      "name": "Right servo · signal lead",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#ed922f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "cable-right-2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "insulation",
+        "conductor": "signal",
+        "external": false,
+        "boardPin": "D6",
+        "gpio": 12,
+        "sourceEntityId": "controller-pin-D6",
+        "targetEntityId": "servo-right"
+      },
+      "parentId": "servo-right"
+    },
+    {
+      "id": "plug-right",
+      "name": "Right servo · signal jumper at NodeMCU pad",
+      "kind": "connector",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#282d31",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "plug-right"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "photo-estimated",
+        "material": "connector",
+        "external": false
+      },
+      "parentId": "servo-right"
+    },
+    {
+      "id": "controller-module",
+      "name": "ESP-12E shield",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b9bdbe",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-module"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics"
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-antenna",
+      "name": "ESP-12E antenna region",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#242824",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-antenna"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics"
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-antenna-trace",
+      "name": "ESP-12E antenna trace",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#d5ad53",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-antenna-trace"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics"
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-usb",
+      "name": "Micro USB socket",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#b4bac0",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-usb"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics"
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-components",
+      "name": "USB bridge, regulator and buttons (estimated)",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#262b2e",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-components"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics"
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-headers",
+      "name": "Two 15-pin header insulators",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#1d2327",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-headers"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics"
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-labels",
+      "name": "Physical pin silkscreen",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#f2f0d9",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-labels"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics"
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "power-bus-pads",
+      "name": "Separate servo rail terminals",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "power-bus-pads"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics"
+      },
+      "parentId": "power-bus"
+    },
+    {
+      "id": "controller-common-ground",
+      "name": "NodeMCU GND to external common ground",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#8a492b",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-common-ground"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "insulation"
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-A0",
+      "name": "NodeMCU header A0",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-A0"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "A0",
+        "row": "left",
+        "headerIndex": 1,
+        "pitchMm": 2.54,
+        "padPosition": [
+          17.78,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-RSV1",
+      "name": "NodeMCU header RSV1",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-RSV1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "RSV1",
+        "row": "left",
+        "headerIndex": 2,
+        "pitchMm": 2.54,
+        "padPosition": [
+          15.240000000000002,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-RSV2",
+      "name": "NodeMCU header RSV2",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-RSV2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "RSV2",
+        "row": "left",
+        "headerIndex": 3,
+        "pitchMm": 2.54,
+        "padPosition": [
+          12.700000000000003,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-SD3",
+      "name": "NodeMCU header SD3",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-SD3"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "SD3",
+        "row": "left",
+        "headerIndex": 4,
+        "pitchMm": 2.54,
+        "padPosition": [
+          10.160000000000004,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-SD2",
+      "name": "NodeMCU header SD2",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-SD2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "SD2",
+        "row": "left",
+        "headerIndex": 5,
+        "pitchMm": 2.54,
+        "padPosition": [
+          7.6200000000000045,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-SD1",
+      "name": "NodeMCU header SD1",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-SD1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "SD1",
+        "row": "left",
+        "headerIndex": 6,
+        "pitchMm": 2.54,
+        "padPosition": [
+          5.079999999999998,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-CMD",
+      "name": "NodeMCU header CMD",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-CMD"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "CMD",
+        "row": "left",
+        "headerIndex": 7,
+        "pitchMm": 2.54,
+        "padPosition": [
+          2.539999999999999,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-SD0",
+      "name": "NodeMCU header SD0",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-SD0"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "SD0",
+        "row": "left",
+        "headerIndex": 8,
+        "pitchMm": 2.54,
+        "padPosition": [
+          0,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-CLK",
+      "name": "NodeMCU header CLK",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-CLK"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "CLK",
+        "row": "left",
+        "headerIndex": 9,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -2.539999999999999,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-GND-L1",
+      "name": "NodeMCU header GND-L1",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-GND-L1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "GND-L1",
+        "row": "left",
+        "headerIndex": 10,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -5.079999999999998,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-3V3-L",
+      "name": "NodeMCU header 3V3-L",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-3V3-L"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "3V3-L",
+        "row": "left",
+        "headerIndex": 11,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -7.619999999999997,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-EN",
+      "name": "NodeMCU header EN",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-EN"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "EN",
+        "row": "left",
+        "headerIndex": 12,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -10.16,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-RST",
+      "name": "NodeMCU header RST",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-RST"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "RST",
+        "row": "left",
+        "headerIndex": 13,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -12.7,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-GND-L2",
+      "name": "NodeMCU header GND-L2",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-GND-L2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "GND-L2",
+        "row": "left",
+        "headerIndex": 14,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -15.240000000000002,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-VIN",
+      "name": "NodeMCU header VIN",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-VIN"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "VIN",
+        "row": "left",
+        "headerIndex": 15,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -17.78,
+          24.599999999999994,
+          44.07
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D0",
+      "name": "NodeMCU header D0",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D0"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D0",
+        "row": "right",
+        "headerIndex": 1,
+        "pitchMm": 2.54,
+        "padPosition": [
+          17.78,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D1",
+      "name": "NodeMCU header D1",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D1",
+        "row": "right",
+        "headerIndex": 2,
+        "pitchMm": 2.54,
+        "padPosition": [
+          15.240000000000002,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D2",
+      "name": "NodeMCU header D2",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D2",
+        "row": "right",
+        "headerIndex": 3,
+        "pitchMm": 2.54,
+        "padPosition": [
+          12.700000000000003,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D3",
+      "name": "NodeMCU header D3",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D3"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D3",
+        "row": "right",
+        "headerIndex": 4,
+        "pitchMm": 2.54,
+        "padPosition": [
+          10.160000000000004,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D4",
+      "name": "NodeMCU header D4",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D4"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D4",
+        "row": "right",
+        "headerIndex": 5,
+        "pitchMm": 2.54,
+        "padPosition": [
+          7.6200000000000045,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-3V3-R1",
+      "name": "NodeMCU header 3V3-R1",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-3V3-R1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "3V3-R1",
+        "row": "right",
+        "headerIndex": 6,
+        "pitchMm": 2.54,
+        "padPosition": [
+          5.079999999999998,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-GND-R1",
+      "name": "NodeMCU header GND-R1",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-GND-R1"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "GND-R1",
+        "row": "right",
+        "headerIndex": 7,
+        "pitchMm": 2.54,
+        "padPosition": [
+          2.539999999999999,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D5",
+      "name": "NodeMCU header D5",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#efb64f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D5"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D5",
+        "row": "right",
+        "headerIndex": 8,
+        "pitchMm": 2.54,
+        "padPosition": [
+          0,
+          24.599999999999994,
+          66.93
+        ],
+        "gpio": 14
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D6",
+      "name": "NodeMCU header D6",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#efb64f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D6"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D6",
+        "row": "right",
+        "headerIndex": 9,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -2.539999999999999,
+          24.599999999999994,
+          66.93
+        ],
+        "gpio": 12
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D7",
+      "name": "NodeMCU header D7",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#efb64f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D7"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D7",
+        "row": "right",
+        "headerIndex": 10,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -5.079999999999998,
+          24.599999999999994,
+          66.93
+        ],
+        "gpio": 13
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-D8",
+      "name": "NodeMCU header D8",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-D8"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "D8",
+        "row": "right",
+        "headerIndex": 11,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -7.619999999999997,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-RX",
+      "name": "NodeMCU header RX",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-RX"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "RX",
+        "row": "right",
+        "headerIndex": 12,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -10.16,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-TX",
+      "name": "NodeMCU header TX",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-TX"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "TX",
+        "row": "right",
+        "headerIndex": 13,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -12.7,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-GND-R2",
+      "name": "NodeMCU header GND-R2",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-GND-R2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "GND-R2",
+        "row": "right",
+        "headerIndex": 14,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -15.240000000000002,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    },
+    {
+      "id": "controller-pin-3V3-R2",
+      "name": "NodeMCU header 3V3-R2",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "color": "#c8b36f",
+      "geometry": {
+        "type": "mesh",
+        "shapeName": "controller-pin-3V3-R2"
+      },
+      "metadata": {
+        "illustrative": true,
+        "dimensionSource": "nominal board layout; placement estimated",
+        "material": "electronics",
+        "boardPin": "3V3-R2",
+        "row": "right",
+        "headerIndex": 15,
+        "pitchMm": 2.54,
+        "padPosition": [
+          -17.78,
+          24.599999999999994,
+          66.93
+        ]
+      },
+      "parentId": "controller"
+    }
+  ],
+  "links": [
+    {
+      "id": "servo-left-signal",
+      "source": "controller",
+      "target": "servo-left",
+      "kind": "electrical",
+      "sourcePort": "D5",
+      "targetPort": "SIG",
+      "label": "D5 / GPIO14"
+    },
+    {
+      "id": "servo-left-5v",
+      "source": "power-bus",
+      "target": "servo-left",
+      "kind": "electrical",
+      "sourcePort": "V5",
+      "targetPort": "V5",
+      "label": "BEC regulated 5 V"
+    },
+    {
+      "id": "servo-left-gnd",
+      "source": "power-bus",
+      "target": "servo-left",
+      "kind": "electrical",
+      "sourcePort": "GND",
+      "targetPort": "GND",
+      "label": "Shared GND"
+    },
+    {
+      "id": "servo-right-signal",
+      "source": "controller",
+      "target": "servo-right",
+      "kind": "electrical",
+      "sourcePort": "D6",
+      "targetPort": "SIG",
+      "label": "D6 / GPIO12"
+    },
+    {
+      "id": "servo-right-5v",
+      "source": "power-bus",
+      "target": "servo-right",
+      "kind": "electrical",
+      "sourcePort": "V5",
+      "targetPort": "V5",
+      "label": "BEC regulated 5 V"
+    },
+    {
+      "id": "servo-right-gnd",
+      "source": "power-bus",
+      "target": "servo-right",
+      "kind": "electrical",
+      "sourcePort": "GND",
+      "targetPort": "GND",
+      "label": "Shared GND"
+    },
+    {
+      "id": "servo-tilt-signal",
+      "source": "controller",
+      "target": "servo-tilt",
+      "kind": "electrical",
+      "sourcePort": "D7",
+      "targetPort": "SIG",
+      "label": "D7 / GPIO13"
+    },
+    {
+      "id": "servo-tilt-5v",
+      "source": "power-bus",
+      "target": "servo-tilt",
+      "kind": "electrical",
+      "sourcePort": "V5",
+      "targetPort": "V5",
+      "label": "BEC regulated 5 V"
+    },
+    {
+      "id": "servo-tilt-gnd",
+      "source": "power-bus",
+      "target": "servo-tilt",
+      "kind": "electrical",
+      "sourcePort": "GND",
+      "targetPort": "GND",
+      "label": "Shared GND"
+    },
+    {
+      "id": "common-ground",
+      "source": "power-bus",
+      "target": "controller",
+      "kind": "electrical",
+      "sourcePort": "GND",
+      "targetPort": "GND",
+      "label": "Required common ground"
+    },
+    {
+      "id": "leg-left-1-drive",
+      "source": "servo-left",
+      "target": "leg-left-1",
+      "kind": "mechanical",
+      "label": "Coupled bent-wire linkage · photo-estimated geometry"
+    },
+    {
+      "id": "leg-left-2-drive",
+      "source": "servo-tilt",
+      "target": "leg-left-2",
+      "kind": "mechanical",
+      "label": "Coupled bent-wire linkage · photo-estimated geometry"
+    },
+    {
+      "id": "leg-left-3-drive",
+      "source": "servo-left",
+      "target": "leg-left-3",
+      "kind": "mechanical",
+      "label": "Coupled bent-wire linkage · photo-estimated geometry"
+    },
+    {
+      "id": "leg-right-1-drive",
+      "source": "servo-right",
+      "target": "leg-right-1",
+      "kind": "mechanical",
+      "label": "Coupled bent-wire linkage · photo-estimated geometry"
+    },
+    {
+      "id": "leg-right-2-drive",
+      "source": "servo-tilt",
+      "target": "leg-right-2",
+      "kind": "mechanical",
+      "label": "Coupled bent-wire linkage · photo-estimated geometry"
+    },
+    {
+      "id": "leg-right-3-drive",
+      "source": "servo-right",
+      "target": "leg-right-3",
+      "kind": "mechanical",
+      "label": "Coupled bent-wire linkage · photo-estimated geometry"
+    },
+    {
+      "id": "horn-left-drive",
+      "source": "servo-left",
+      "target": "horn-left",
+      "kind": "mechanical",
+      "label": "Output spline and horn screw"
+    },
+    {
+      "id": "horn-right-drive",
+      "source": "servo-right",
+      "target": "horn-right",
+      "kind": "mechanical",
+      "label": "Output spline and horn screw"
+    },
+    {
+      "id": "horn-tilt-drive",
+      "source": "servo-tilt",
+      "target": "horn-tilt",
+      "kind": "mechanical",
+      "label": "Output spline and horn screw"
+    }
+  ],
+  "assets": [
+    {
+      "id": "circuit",
+      "name": "Makada wiring",
+      "path": "circuit.circuit.tsx",
+      "kind": "circuit",
+      "entityIds": [
+        "controller",
+        "power-bus",
+        "servo-left",
+        "servo-right",
+        "servo-tilt"
+      ]
+    },
+    {
+      "id": "cad",
+      "name": "Photo-informed SG90 and swept-wire assembly",
+      "path": "model.replicad.ts",
+      "kind": "cad",
+      "entityIds": [
+        "body",
+        "servo-left",
+        "servo-left-seams",
+        "horn-left",
+        "horn-left-screw",
+        "glue-left",
+        "servo-right",
+        "servo-right-seams",
+        "horn-right",
+        "horn-right-screw",
+        "glue-right",
+        "servo-tilt",
+        "servo-tilt-seams",
+        "horn-tilt",
+        "horn-tilt-screw",
+        "glue-tilt",
+        "leg-left-1",
+        "foot-left-1",
+        "leg-left-2",
+        "foot-left-2",
+        "leg-left-3",
+        "foot-left-3",
+        "leg-right-1",
+        "foot-right-1",
+        "leg-right-2",
+        "foot-right-2",
+        "leg-right-3",
+        "foot-right-3",
+        "cable-left-0",
+        "cable-left-1",
+        "cable-left-2",
+        "plug-left",
+        "cable-tilt-0",
+        "cable-tilt-1",
+        "cable-tilt-2",
+        "plug-tilt",
+        "cable-right-0",
+        "cable-right-1",
+        "cable-right-2",
+        "plug-right",
+        "controller",
+        "power-bus",
+        "controller-module",
+        "controller-antenna",
+        "controller-antenna-trace",
+        "controller-usb",
+        "controller-components",
+        "controller-headers",
+        "controller-labels",
+        "power-bus-pads",
+        "controller-common-ground",
+        "controller-pin-A0",
+        "controller-pin-RSV1",
+        "controller-pin-RSV2",
+        "controller-pin-SD3",
+        "controller-pin-SD2",
+        "controller-pin-SD1",
+        "controller-pin-CMD",
+        "controller-pin-SD0",
+        "controller-pin-CLK",
+        "controller-pin-GND-L1",
+        "controller-pin-3V3-L",
+        "controller-pin-EN",
+        "controller-pin-RST",
+        "controller-pin-GND-L2",
+        "controller-pin-VIN",
+        "controller-pin-D0",
+        "controller-pin-D1",
+        "controller-pin-D2",
+        "controller-pin-D3",
+        "controller-pin-D4",
+        "controller-pin-3V3-R1",
+        "controller-pin-GND-R1",
+        "controller-pin-D5",
+        "controller-pin-D6",
+        "controller-pin-D7",
+        "controller-pin-D8",
+        "controller-pin-RX",
+        "controller-pin-TX",
+        "controller-pin-GND-R2",
+        "controller-pin-3V3-R2"
+      ]
+    },
+    {
+      "id": "firmware",
+      "name": "ESP8266 hexapod firmware",
+      "path": "firmware/src/main.cpp",
+      "kind": "firmware",
+      "entityIds": [
+        "controller",
+        "servo-left",
+        "servo-right",
+        "servo-tilt"
+      ]
+    },
+    {
+      "id": "program",
+      "name": "TCP session broker",
+      "path": "programs/spidey.py",
+      "kind": "program",
+      "entityIds": [
+        "controller"
+      ]
+    },
+    {
+      "id": "calibration",
+      "name": "Last-known unverified calibration",
+      "path": "profiles/spidey-last-known.json",
+      "kind": "data",
+      "entityIds": [
+        "servo-left",
+        "servo-right",
+        "servo-tilt"
+      ]
+    },
+    {
+      "id": "robot-urdf",
+      "name": "Articulated Makada",
+      "path": "spidey.urdf",
+      "kind": "urdf",
+      "entityIds": [
+        "servo-left",
+        "servo-right",
+        "servo-tilt",
+        "controller",
+        "power-bus"
+      ]
+    }
+  ],
+  "motion": {
+    "id": "forward-gait",
+    "name": "Forward eight-phase gait",
+    "description": "Firmware phase order with three coupled servo outputs. Side front/hind wire pairs sweep about vertical shafts; middle pair tilts about the horizontal center shaft. Pulse-to-angle mapping and dimensions are estimates; no measured feedback.",
+    "source": "commanded",
+    "calibrated": false,
+    "joints": [
+      {
+        "entityId": "servo-left",
+        "channel": "D5",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "centerUs": 1450,
+        "minUs": 1260,
+        "maxUs": 1600,
+        "pulsePerDegree": 10,
+        "drivenEntityIds": [
+          "horn-left",
+          "horn-left-screw",
+          "glue-left",
+          "leg-left-1",
+          "leg-left-3",
+          "foot-left-1",
+          "foot-left-3"
+        ]
+      },
+      {
+        "entityId": "servo-right",
+        "channel": "D6",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "centerUs": 1500,
+        "minUs": 1350,
+        "maxUs": 1740,
+        "pulsePerDegree": 10,
+        "drivenEntityIds": [
+          "horn-right",
+          "horn-right-screw",
+          "glue-right",
+          "leg-right-1",
+          "leg-right-3",
+          "foot-right-1",
+          "foot-right-3"
+        ]
+      },
+      {
+        "entityId": "servo-tilt",
+        "channel": "D7",
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "centerUs": 1505,
+        "minUs": 1330,
+        "maxUs": 1650,
+        "pulsePerDegree": 10,
+        "drivenEntityIds": [
+          "horn-tilt",
+          "horn-tilt-screw",
+          "glue-tilt",
+          "leg-left-2",
+          "leg-right-2",
+          "foot-left-2",
+          "foot-right-2"
+        ]
+      }
+    ],
+    "phases": [
+      {
+        "label": "1. Lift right",
+        "targets": {
+          "servo-left": 1450,
+          "servo-right": 1500,
+          "servo-tilt": 1645
+        },
+        "durationMs": 25,
+        "settleMs": 25
+      },
+      {
+        "label": "2. Right forward",
+        "targets": {
+          "servo-left": 1450,
+          "servo-right": 1740,
+          "servo-tilt": 1645
+        },
+        "durationMs": 25,
+        "settleMs": 25
+      },
+      {
+        "label": "3. Level",
+        "targets": {
+          "servo-left": 1450,
+          "servo-right": 1740,
+          "servo-tilt": 1505
+        },
+        "durationMs": 25,
+        "settleMs": 25
+      },
+      {
+        "label": "4. Left recover",
+        "targets": {
+          "servo-left": 1600,
+          "servo-right": 1740,
+          "servo-tilt": 1505
+        },
+        "durationMs": 25,
+        "settleMs": 25
+      },
+      {
+        "label": "5. Lift left",
+        "targets": {
+          "servo-left": 1600,
+          "servo-right": 1740,
+          "servo-tilt": 1345
+        },
+        "durationMs": 25,
+        "settleMs": 25
+      },
+      {
+        "label": "6. Left forward",
+        "targets": {
+          "servo-left": 1260,
+          "servo-right": 1740,
+          "servo-tilt": 1345
+        },
+        "durationMs": 25,
+        "settleMs": 25
+      },
+      {
+        "label": "7. Level",
+        "targets": {
+          "servo-left": 1260,
+          "servo-right": 1740,
+          "servo-tilt": 1505
+        },
+        "durationMs": 25,
+        "settleMs": 25
+      },
+      {
+        "label": "8. Right recover",
+        "targets": {
+          "servo-left": 1260,
+          "servo-right": 1350,
+          "servo-tilt": 1505
+        },
+        "durationMs": 25,
+        "settleMs": 25
+      }
+    ],
+    "previewTravel": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "strideMm": 16
+    }
+  },
+  "hardware": {
+    "version": 1,
+    "name": "Makada TCP adapter",
+    "description": "Project-owned Python broker serializes authenticated commands, telemetry, heartbeat and STOP on one connection. Credentials remain local.",
+    "capabilities": [
+      {
+        "id": "inspect",
+        "label": "Inspect hardware",
+        "description": "Read pin map and saved calibration offline.",
+        "kind": "read",
+        "command": "python3",
+        "args": [
+          "programs/spidey.py",
+          "inspect"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        },
+        "timeoutMs": 30000,
+        "persistent": false
+      },
+      {
+        "id": "gait-preview",
+        "label": "Preview gait",
+        "description": "Offline commanded pulse sequence from the saved profile; not live measurements.",
+        "kind": "read",
+        "command": "python3",
+        "args": [
+          "programs/spidey.py",
+          "preview"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "phaseMs": {
+              "type": "integer",
+              "minimum": 20,
+              "maximum": 2000,
+              "default": 150
+            }
+          },
+          "required": [
+            "phaseMs"
+          ],
+          "additionalProperties": false
+        },
+        "timeoutMs": 30000,
+        "persistent": false
+      },
+      {
+        "id": "connect",
+        "label": "Connect and monitor",
+        "description": "Hold the single real TCP connection with live heartbeat. Cancellation sends STOP.",
+        "kind": "read",
+        "command": "python3",
+        "args": [
+          "programs/spidey.py",
+          "connect"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "durationSeconds": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 300,
+              "default": 30
+            },
+            "telemetryHz": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20,
+              "default": 2
+            }
+          },
+          "required": [
+            "durationSeconds"
+          ],
+          "additionalProperties": false
+        },
+        "timeoutMs": 310000,
+        "persistent": true
+      },
+      {
+        "id": "status",
+        "label": "Read status and stop outputs",
+        "description": "Authenticate and read real STATUS/DIAG, then send STOP and detach all servo outputs before disconnecting. Requires physical-operation authorization and robot support.",
+        "kind": "read",
+        "command": "python3",
+        "args": [
+          "programs/spidey.py",
+          "status"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        },
+        "timeoutMs": 10000,
+        "persistent": false
+      },
+      {
+        "id": "walk",
+        "label": "Walk forward",
+        "description": "Move the real robot forward over Wi-Fi. Requests of 1–100 gait cycles run in verified batches of up to 20; any timeout stops the remaining plan. A cycle is not a measured distance.",
+        "kind": "motion",
+        "command": "python3",
+        "args": [
+          "programs/spidey.py",
+          "walk"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "steps": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 5,
+              "title": "Gait cycles",
+              "description": "1–100 cycles. Larger requests use verified batches; no automatic retry."
+            },
+            "speed": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 100
+            },
+            "durationSeconds": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 300,
+              "default": 180,
+              "title": "Time limit (seconds)"
+            },
+            "telemetryHz": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20,
+              "default": 2
+            }
+          },
+          "required": [
+            "steps",
+            "speed",
+            "durationSeconds"
+          ],
+          "additionalProperties": false
+        },
+        "timeoutMs": 310000,
+        "persistent": true
+      }
+    ]
+  }
+}

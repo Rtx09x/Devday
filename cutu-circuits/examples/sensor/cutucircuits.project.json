@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "id": "sensor",
+  "name": "Light sensor enclosure",
+  "description": "A photoresistor, status LED and generic controller with a parametric enclosure and editable serial program.",
+  "revision": 1,
+  "createdAt": "2026-10-31T00:00:00.000Z",
+  "updatedAt": "2026-10-31T00:00:00.000Z",
+  "units": "mm",
+  "entities": [
+    {
+      "id": "controller",
+      "name": "3.3 V controller",
+      "kind": "controller",
+      "position": [
+        -12,
+        0,
+        5
+      ],
+      "geometry": {
+        "type": "box",
+        "size": [
+          18,
+          26,
+          3
+        ],
+        "shapeName": "controller"
+      },
+      "color": "#80cbc4",
+      "metadata": {
+        "ref": "U1",
+        "circuitRef": "U1"
+      }
+    },
+    {
+      "id": "light-sensor",
+      "name": "Light sensor divider",
+      "kind": "sensor",
+      "position": [
+        8,
+        8,
+        6
+      ],
+      "geometry": {
+        "type": "box",
+        "size": [
+          6,
+          6,
+          3
+        ],
+        "shapeName": "light-sensor"
+      },
+      "color": "#80cbc4",
+      "metadata": {
+        "ref": "LDR1",
+        "circuitRef": "LDR1"
+      }
+    },
+    {
+      "id": "divider",
+      "name": "10 k\u03a9 divider",
+      "kind": "part",
+      "position": [
+        8,
+        3,
+        5
+      ],
+      "geometry": {
+        "type": "box",
+        "size": [
+          3,
+          2,
+          1
+        ],
+        "shapeName": "divider"
+      },
+      "color": "#80cbc4",
+      "metadata": {
+        "ref": "R1",
+        "circuitRef": "R1"
+      }
+    },
+    {
+      "id": "led-resistor",
+      "name": "330 \u03a9 LED resistor",
+      "kind": "part",
+      "position": [
+        8,
+        -4,
+        5
+      ],
+      "geometry": {
+        "type": "box",
+        "size": [
+          3,
+          2,
+          1
+        ],
+        "shapeName": "led-resistor"
+      },
+      "color": "#80cbc4",
+      "metadata": {
+        "ref": "R2",
+        "circuitRef": "R2"
+      }
+    },
+    {
+      "id": "status-led",
+      "name": "Status LED",
+      "kind": "part",
+      "position": [
+        14,
+        -4,
+        6
+      ],
+      "geometry": {
+        "type": "cylinder",
+        "radius": 2,
+        "length": 3,
+        "shapeName": "status-led"
+      },
+      "color": "#ffce66",
+      "metadata": {
+        "ref": "LED1",
+        "circuitRef": "LED1"
+      }
+    },
+    {
+      "id": "enclosure",
+      "name": "Parametric enclosure",
+      "kind": "part",
+      "position": [
+        0,
+        0,
+        9
+      ],
+      "geometry": {
+        "type": "box",
+        "size": [
+          54,
+          40,
+          18
+        ],
+        "shapeName": "sensor-enclosure"
+      },
+      "color": "#80cbc4",
+      "metadata": {
+        "illustrative": true
+      }
+    }
+  ],
+  "links": [
+    {
+      "id": "net-0",
+      "source": "controller",
+      "target": "light-sensor",
+      "kind": "electrical",
+      "label": "3.3 V",
+      "sourcePort": "VCC",
+      "targetPort": "pin1"
+    },
+    {
+      "id": "net-1",
+      "source": "light-sensor",
+      "target": "divider",
+      "kind": "electrical",
+      "label": "Divider node",
+      "sourcePort": "pin2",
+      "targetPort": "pin1"
+    },
+    {
+      "id": "net-2",
+      "source": "controller",
+      "target": "divider",
+      "kind": "electrical",
+      "label": "A0",
+      "sourcePort": "A0",
+      "targetPort": "pin1"
+    },
+    {
+      "id": "net-3",
+      "source": "divider",
+      "target": "controller",
+      "kind": "electrical",
+      "label": "GND",
+      "sourcePort": "pin2",
+      "targetPort": "GND"
+    },
+    {
+      "id": "net-4",
+      "source": "controller",
+      "target": "led-resistor",
+      "kind": "electrical",
+      "label": "D2",
+      "sourcePort": "D2",
+      "targetPort": "pin1"
+    },
+    {
+      "id": "net-5",
+      "source": "led-resistor",
+      "target": "status-led",
+      "kind": "electrical",
+      "label": "LED current",
+      "sourcePort": "pin2",
+      "targetPort": "anode"
+    },
+    {
+      "id": "net-6",
+      "source": "status-led",
+      "target": "controller",
+      "kind": "electrical",
+      "label": "GND",
+      "sourcePort": "cathode",
+      "targetPort": "GND"
+    }
+  ],
+  "assets": [
+    {
+      "id": "circuit",
+      "name": "Light sensor circuit",
+      "path": "circuit.circuit.tsx",
+      "kind": "circuit",
+      "entityIds": [
+        "controller",
+        "light-sensor",
+        "divider",
+        "led-resistor",
+        "status-led"
+      ]
+    },
+    {
+      "id": "cad",
+      "name": "Enclosure",
+      "path": "model.replicad.ts",
+      "kind": "cad",
+      "entityIds": [
+        "enclosure"
+      ]
+    },
+    {
+      "id": "program",
+      "name": "Controller program",
+      "path": "programs/controller.py",
+      "kind": "program",
+      "entityIds": [
+        "controller",
+        "light-sensor"
+      ]
+    }
+  ],
+  "hardware": {
+    "version": 1,
+    "name": "Editable local controller",
+    "description": "Programs own the device protocol. Offline inspection and actual serial JSONL acquisition.",
+    "capabilities": [
+      {
+        "id": "inspect",
+        "label": "Inspect design",
+        "description": "Reads saved project files; no hardware connection.",
+        "kind": "read",
+        "command": "python3",
+        "args": [
+          "programs/controller.py",
+          "inspect"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        },
+        "timeoutMs": 30000,
+        "persistent": false
+      },
+      {
+        "id": "serial",
+        "label": "Read serial device",
+        "description": "Reads actual JSON Lines from a local serial port; requires pyserial.",
+        "kind": "read",
+        "command": "python3",
+        "args": [
+          "programs/controller.py",
+          "serial"
+        ],
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "port": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "default": "/dev/ttyUSB0"
+            },
+            "baud": {
+              "type": "integer",
+              "minimum": 300,
+              "maximum": 2000000,
+              "default": 115200
+            },
+            "durationSeconds": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 300,
+              "default": 30
+            }
+          },
+          "required": [
+            "port",
+            "baud",
+            "durationSeconds"
+          ],
+          "additionalProperties": false
+        },
+        "timeoutMs": 310000,
+        "persistent": true
+      }
+    ]
+  }
+}

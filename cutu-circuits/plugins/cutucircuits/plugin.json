@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "cutucircuits",
+  "version": "0.1.0",
+  "description": "Author persistent circuits, mechanical CAD, robot assemblies and device programs in Cutu Circuits through its local runtime.",
+  "author": {"name": "Cutu Circuits"},
+  "keywords": ["hardware", "electronics", "cad", "robotics", "local"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Cutu Circuits",
+        "shortDescription": "Design hardware with your local engineering workspace",
+        "developerName": "Cutu Circuits",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "defaultPrompt": ["Design and validate a circuit in Cutu Circuits", "Create a parameterized enclosure and export STEP", "Inspect this project's hardware capabilities"]
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+/**
+ * Generated from examples/firmware/avr-pwm-heartbeat.asm by the
+ * already-installed avr8js assembler. Do not edit by hand.
+ */
+export const AVR_PWM_HEARTBEAT_BYTES = Uint8Array.from([
+  0x00, 0xe4, 0x0a, 0xb9, 0x00, 0xe4, 0x00, 0x93, 0x47, 0x00, 0x03, 0xe8,
+  0x00, 0x93, 0x44, 0x00, 0x03, 0xe0, 0x00, 0x93, 0x45, 0x00, 0xff, 0xcf,
+]);
+
+export const AVR_PWM_HEARTBEAT_SHA256 =
+  '1f85420312347831053c4af9f208f1a8011204b72ef799dc04039a7f4be8996b';

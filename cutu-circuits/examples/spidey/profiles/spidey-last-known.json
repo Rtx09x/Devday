@@ -1,0 +1,9 @@
+{
+  "description": "Last recorded assembly calibration, 2026-10-31. Board unavailable during repository packaging; verify or replace with a live snapshot. D5 forward reach was shortened 50 us for an unverified drift experiment. Repositioned horns invalidate physical endpoints.",
+  "joints": [
+    {"joint": 1, "center": 1450, "min": 1260, "max": 1600, "sign": -1, "amplitude": 150},
+    {"joint": 2, "center": 1500, "min": 1350, "max": 1740, "sign": 1, "amplitude": 150},
+    {"joint": 3, "center": 1505, "min": 1330, "max": 1650, "sign": 1, "amplitude": 140}
+  ],
+  "timing": {"move_ms": 25, "settle_ms": 25}
+}

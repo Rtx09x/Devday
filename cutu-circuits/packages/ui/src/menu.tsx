@@ -1,0 +1,135 @@
+import type {ComponentProps, KeyboardEvent, MouseEvent, ReactElement, ReactNode} from "react";
+import {Menu as BaseMenu} from "@base-ui/react/menu";
+import {ContextMenu as BaseContextMenu} from "@base-ui/react/context-menu";
+import Button from "@cutucircuits/ui/button";
+import {cn} from "@cutucircuits/ui/cn";
+
+export type MenuTriggerProps = Omit<ComponentProps<typeof Button>, "children">;
+
+export interface MenuItemProps extends ComponentProps<typeof BaseMenu.Item> {
+  readonly icon?: ReactNode;
+  readonly trailing?: ReactNode;
+}
+
+export function MenuItem(props: MenuItemProps) {
+  const {children, className, icon, onClick, trailing, ...itemProps} = props;
+
+  const handleClick: NonNullable<ComponentProps<typeof BaseMenu.Item>["onClick"]> = (event) => {
+    event.stopPropagation();
+    onClick?.(event);
+  };
+
+  return (
+    <BaseMenu.Item
+      className={cn(
+        "cutucircuits-menu-item flex cursor-pointer items-center gap-2.5 rounded-xl corner-superellipse/1.3 px-2 py-1.5 text-left text-sm leading-5 outline-none transition-colors hover:bg-overlay-pressed data-disabled:cursor-default data-disabled:opacity-45 data-highlighted:bg-overlay-pressed",
+        className
+      )}
+      onClick={handleClick}
+      {...itemProps}
+    >
+      {icon && <span className="flex h-5 w-3 shrink-0 items-center justify-center text-ink">{icon}</span>}
+      <span className="min-w-0 flex-1 truncate leading-5">{children}</span>
+      {trailing && <span className="ml-auto flex h-5 shrink-0 items-center justify-center text-ink">{trailing}</span>}
+    </BaseMenu.Item>
+  );
+}
+
+export interface MenuLabelProps {
+  readonly children: ReactNode;
+  readonly className?: string;
+}
+
+/** Renders a section heading inside a menu or menu-like floating panel. */
+export function MenuLabel(props: MenuLabelProps) {
+  const {children, className} = props;
+
+  return <div className={cn("px-2 pb-2 pt-2 text-sm text-ink-faint", className)}>{children}</div>;
+}
+
+export interface MenuProps {
+  readonly align?: ComponentProps<typeof BaseMenu.Positioner>["align"];
+  readonly alignOffset?: ComponentProps<typeof BaseMenu.Positioner>["alignOffset"];
+  readonly children: ReactNode;
+  readonly className?: string;
+  readonly onOpenChange?: ComponentProps<typeof BaseMenu.Root>["onOpenChange"];
+  readonly onOpenChangeComplete?: ComponentProps<typeof BaseMenu.Root>["onOpenChangeComplete"];
+  readonly open?: ComponentProps<typeof BaseMenu.Root>["open"];
+  readonly side?: ComponentProps<typeof BaseMenu.Positioner>["side"];
+  readonly sideOffset?: ComponentProps<typeof BaseMenu.Positioner>["sideOffset"];
+  readonly trigger: (triggerProps: MenuTriggerProps) => ReactElement;
+  readonly triggerLabel: string;
+}
+
+function MenuContents(props: Pick<MenuProps, "align" | "alignOffset" | "children" | "className" | "side" | "sideOffset">) {
+  const {align = "end", alignOffset, children, className, side = "bottom", sideOffset = 8} = props;
+  return (
+    <BaseMenu.Portal>
+      <BaseMenu.Positioner align={align} alignOffset={alignOffset} className="z-50 outline-none" side={side} sideOffset={sideOffset}>
+        <BaseMenu.Popup
+          className={cn(
+            "cutucircuits-menu min-w-45 overflow-hidden rounded-2xl corner-superellipse/1.3 border border-border bg-surface-drawer p-1 text-ink shadow-2xl shadow-black/35 outline-none",
+            "origin-(--transform-origin) translate-y-0 scale-100 transform-gpu opacity-100 will-change-[opacity,transform] transition-[opacity,scale,translate] duration-200 ease-out data-closed:translate-y-1 data-closed:scale-[0.985] data-closed:opacity-0 data-ending-style:translate-y-1 data-ending-style:scale-[0.985] data-ending-style:opacity-0 data-starting-style:translate-y-1 data-starting-style:scale-[0.985] data-starting-style:opacity-0",
+            className
+          )}
+        >
+          {children}
+        </BaseMenu.Popup>
+      </BaseMenu.Positioner>
+    </BaseMenu.Portal>
+  );
+}
+
+export interface ContextMenuProps {
+  readonly children: ReactNode;
+  readonly trigger: ReactElement;
+  readonly open?: boolean;
+  readonly onOpenChange?: ComponentProps<typeof BaseContextMenu.Root>["onOpenChange"];
+}
+
+/** Opens the shared menu surface from right click, long press, or the context-menu key. */
+export function ContextMenu(props: ContextMenuProps) {
+  const {children, trigger, open, onOpenChange} = props;
+  return (
+    <BaseContextMenu.Root open={open} onOpenChange={onOpenChange}>
+      <BaseContextMenu.Trigger render={trigger} />
+      <MenuContents align="start" sideOffset={4}>
+        {children}
+      </MenuContents>
+    </BaseContextMenu.Root>
+  );
+}
+
+export default function Menu(props: MenuProps) {
+  const {align = "end", alignOffset, children, className, onOpenChange, onOpenChangeComplete, open, side = "bottom", sideOffset = 8, trigger, triggerLabel} = props;
+
+  const handleTriggerClick = (event: MouseEvent<HTMLButtonElement>, onClick: MenuTriggerProps["onClick"]): void => {
+    event.stopPropagation();
+    onClick?.(event);
+  };
+
+  const handleTriggerKeyDown = (event: KeyboardEvent<HTMLButtonElement>, onKeyDown: MenuTriggerProps["onKeyDown"]): void => {
+    event.stopPropagation();
+    onKeyDown?.(event);
+  };
+
+  return (
+    <BaseMenu.Root modal={false} onOpenChange={onOpenChange} onOpenChangeComplete={onOpenChangeComplete} open={open}>
+      <BaseMenu.Trigger
+        render={(triggerProps) => {
+          const {onClick, onKeyDown, ...buttonProps} = triggerProps as MenuTriggerProps;
+
+          return trigger({
+            "aria-label": triggerLabel,
+            onClick: (event) => handleTriggerClick(event, onClick),
+            onKeyDown: (event) => handleTriggerKeyDown(event, onKeyDown),
+            ...buttonProps,
+          });
+        }}
+      />
+      <MenuContents align={align} alignOffset={alignOffset} className={className} side={side} sideOffset={sideOffset}>
+        {children}
+      </MenuContents>
+    </BaseMenu.Root>
+  );
+}

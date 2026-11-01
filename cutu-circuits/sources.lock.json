@@ -1,0 +1,55 @@
+{
+  "project": "Cutu Circuits",
+  "inspectionDate": "2026-10-31",
+  "sources": [
+    {
+      "directory": "sources/Myui",
+      "remote": "https://github.com/Rtx09x/Myui.git",
+      "commit": "a3046badcfcc4d3440008f9419aa9ddecb1c1663",
+      "commitDate": "2026-10-31T04:52:21Z",
+      "files": {
+        "package-lock.json": "e69956fa1b4d9785c5ad0cdc9b83e2c887e345897d11f3a39f1da8b97696de21",
+        "package.json": "ea5d96aeff305bba46e3e2ef8b25af6a3fec343d990649067c8a8141b7d10cfe"
+      }
+    },
+    {
+      "directory": "sources/spidey",
+      "remote": "https://github.com/Rtx09x/cutie-circuits-spidey.git",
+      "commit": "866e3d69e3a174723bb67af50babb4ab2d388da7",
+      "commitDate": "2026-10-31T01:44:08+05:30",
+      "files": {}
+    },
+    {
+      "directory": "sources/electronics",
+      "remote": "https://github.com/nimbalyst/nimbalyst-electronics.git",
+      "commit": "d00fc14aacd05e8bdf493189fd4c080b2da33d32",
+      "commitDate": "2026-10-07T16:32:42-04:00",
+      "files": {
+        "pnpm-lock.yaml": "a591ec5d64112180ce3cc2dce0703e1d929f61b3d58d3c19b5a0758ed1b367a8",
+        "manifest.json": "385e807dfa1894b3aa903f742c3351edfe633722420cdbe14843fde91c893c7b",
+        "package.json": "70d8ef29e8d614c34dc5142654cfb60d39585b10bb11ac54c3b3529ff87e01d9"
+      }
+    },
+    {
+      "directory": "sources/replicad",
+      "remote": "https://github.com/nimbalyst/nimbalyst-replicad.git",
+      "commit": "c4211260044b5e1c1c620bde941dc398683869cf",
+      "commitDate": "2026-10-07T16:32:43-04:00",
+      "files": {
+        "pnpm-lock.yaml": "40edaec7b2bd675954cf12245ddfb9bc67ae7c8c5ccaa9a0dcbc8d1c9036de55",
+        "manifest.json": "7c32e206f1fd8f4cbd8069a8dae297c38747979d36cbe3cba309aa10433a0876",
+        "package.json": "926ab18f07c2b25a80d91a7efeb39137521de9e020e5af3fb22a16ab77b07ac5"
+      }
+    },
+    {
+      "directory": "sources/host-reference",
+      "remote": "https://github.com/nimbalyst/nimbalyst.git",
+      "commit": "46472d85f885a5a4a339f043c083a257085f591b",
+      "commitDate": "2026-10-31T01:30:31-04:00",
+      "files": {
+        "pnpm-lock.yaml": "a9456b54397e8db4915603b7b8f9911dde1adfd3d3e7015629459681ae13badb",
+        "package.json": "528d9d553640cab60cd89b4925113e19f9e05a653e76e4d9c5658753602d6066"
+      }
+    }
+  ]
+}

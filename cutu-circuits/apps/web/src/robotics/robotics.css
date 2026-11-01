@@ -1,0 +1,76 @@
+.cutu-robot-workspace {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  overflow: hidden;
+  color: var(--theme-ink, #eeffff);
+  background: var(--theme-surface, #212121);
+}
+.cutu-robot-viewport { position: absolute; inset: 0; }
+.cutu-robot-viewport canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.cutu-robot-toolbar { position: absolute; inset: 16px 18px auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; pointer-events: none; }
+.cutu-robot-toolbar > * { pointer-events: auto; }
+.cutu-robot-toolbar-actions { display: flex; align-items: center; gap: 3px; border-radius: 16px; background: color-mix(in srgb, var(--theme-surface, #212121) 88%, transparent); backdrop-filter: blur(8px); padding: 3px; }
+.cutu-robot-toolbar-actions > button { width: auto; }
+.cutu-robot-segment { display: flex; gap: 3px; padding: 4px; border-radius: 16px; background: var(--theme-surface-sidebar, #1e2024); border: .5px solid color-mix(in srgb, var(--theme-ink) 7%, transparent); }
+.cutu-robot-segment > button { padding: 8px 15px; border-radius: 12px; font-size: 13px; color: var(--theme-ink-muted, #a9b6b6); }
+.cutu-robot-segment > button[aria-pressed=true] { background: var(--theme-surface-control, #3b3d3d); color: var(--theme-ink, #eeffff); }
+.cutu-robot-count { font-size: 11px; opacity: .55; }
+.cutu-robot-caption { position: absolute; top: 83px; left: 24px; display: grid; gap: 5px; pointer-events: none; }
+.cutu-robot-caption strong { font-size: 15px; font-weight: 500; }
+.cutu-robot-caption span { font-size: 12px; opacity: .5; }
+.cutu-robot-panel { position: absolute; right: 18px; top: 72px; bottom: 98px; width: min(304px, calc(100% - 36px)); padding: 16px; overflow: auto; border-radius: 18px; border: .5px solid color-mix(in srgb, var(--theme-ink) 10%, transparent); background: color-mix(in srgb, var(--theme-surface-sidebar, #1e2024) 94%, transparent); box-shadow: 0 12px 36px #0003; backdrop-filter: blur(8px); }
+.cutu-robot-panel-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.cutu-robot-panel-title strong { font-weight: 600; font-size: 14px; }
+.cutu-robot-help { font-size: 12px; opacity: .6; line-height: 1.6; margin: 0 0 16px; }
+.cutu-robot-joint { padding: 15px 0; border-top: .5px solid color-mix(in srgb, var(--theme-ink) 7%, transparent); }
+.cutu-robot-joint-title { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; margin-bottom: 6px; }
+.cutu-robot-joint-title strong { font-weight: 500; overflow: hidden; text-overflow: ellipsis; }
+.cutu-robot-joint-title span, .cutu-robot-joint-range { font-size: 10px; opacity: .5; }
+.cutu-robot-joint > div[role=group], .cutu-robot-joint > div[data-orientation] { width: 100%; }
+.cutu-robot-joint-readout { font-size: 11px; color: var(--theme-accent, #80cbc4); margin: 3px 0 8px; }
+.cutu-robot-link-details { display: grid; gap: 6px; font-size: 12px; border-top: .5px solid color-mix(in srgb, var(--theme-ink) 7%, transparent); padding-top: 16px; margin-top: 12px; }
+.cutu-robot-link-details span { font-size: 11px; opacity: .6; }
+.cutu-robot-panel .cutucircuits-settings-row { padding: 12px 0; border-bottom: .5px solid color-mix(in srgb, var(--theme-ink) 7%, transparent); }
+.cutu-robot-panel .cutucircuits-settings-row > div:first-child { display: flex; flex-direction: row; align-items: center; gap: 12px; }
+.cutu-robot-panel .cutucircuits-settings-control { width: auto; }
+.cutu-robot-panel .cutucircuits-settings-row h3 { font-size: 12px; }
+.cutu-robot-panel .cutucircuits-settings-row p { font-size: 11px; }
+.cutu-robot-panel > button { margin-top: 16px; }
+.cutu-robot-diagnostics { font-size: 11px; line-height: 1.6; margin-top: 18px; opacity: .7; }
+.cutu-robot-diagnostics summary { cursor: pointer; }
+.cutu-robot-diagnostics p { margin-top: 12px; overflow-wrap: anywhere; }
+.cutu-robot-bottom { position: absolute; bottom: 18px; left: 18px; right: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; pointer-events: none; }
+.cutu-robot-bottom > * { pointer-events: auto; }
+.cutu-robot-simulation-controls, .cutu-robot-inspect-note { display: flex; align-items: center; gap: 4px; padding: 6px; border-radius: 16px; border: .5px solid color-mix(in srgb, var(--theme-ink) 7%, transparent); background: color-mix(in srgb, var(--theme-surface-sidebar, #1e2024) 94%, transparent); backdrop-filter: blur(8px); }
+.cutu-robot-simulation-controls > button, .cutu-robot-inspect-note > button { width: auto; white-space: nowrap; }
+.cutu-robot-time { min-width: 60px; padding: 0 8px; font-size: 11px; font-variant-numeric: tabular-nums; opacity: .65; }
+.cutu-robot-inspect-note { font-size: 12px; padding-left: 12px; gap: 12px; color: var(--theme-ink-muted); }
+.cutu-robot-status { display: grid; grid-template-columns: 6px auto; column-gap: 8px; row-gap: 4px; text-align: left; padding: 8px 10px; border-radius: 12px; background: color-mix(in srgb, var(--theme-surface, #212121) 90%, transparent); }
+.cutu-robot-status strong { font-size: 11px; font-weight: 500; }
+.cutu-robot-status > span:last-child { grid-column: 2; font-size: 10px; opacity: .5; white-space: nowrap; }
+.cutu-robot-status-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--theme-accent, #80cbc4); align-self: center; }
+.cutu-robot-selection { position: absolute; left: 24px; bottom: 96px; display: flex; align-items: center; gap: 8px; font-size: 12px; background: var(--theme-surface-sidebar, #1e2024); border-radius: 12px; padding: 6px 8px 6px 12px; }
+.cutu-robot-selection > span { opacity: .5; font-size: 11px; }
+.cutu-robot-selection > strong { font-weight: 500; }
+.cutu-robot-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center; color: var(--theme-ink-muted); }
+.cutu-robot-empty strong { font-size: 14px; font-weight: 500; }
+.cutu-robot-empty p { max-width: 480px; font-size: 12px; line-height: 1.6; }
+.cutu-robot-empty button { width: auto; }
+.cutu-robot-import-content { display: grid; gap: 16px; }
+.cutu-robot-import-content label { display: grid; gap: 8px; font-size: 13px; }
+.cutu-robot-import-content p { font-size: 12px; opacity: .65; line-height: 1.6; }
+.cutu-robot-import-content > p { margin-bottom: 0; }
+.cutu-robot-import-content > label { margin: 0; }
+@media (max-width: 700px) {
+  .cutu-robot-toolbar { inset: 12px 10px auto; gap: 4px; }
+  .cutu-robot-segment > button { padding: 8px 11px; }
+  .cutu-robot-caption { left: 16px; top: 76px; }
+  .cutu-robot-panel { right: 10px; top: 68px; bottom: 125px; width: min(290px, calc(100% - 20px)); }
+  .cutu-robot-bottom { bottom: 12px; left: 10px; right: 10px; align-items: flex-start; flex-direction: column; gap: 8px; }
+  .cutu-robot-status { grid-template-columns: 5px auto auto; align-items: center; gap: 7px; padding: 5px 8px; }
+  .cutu-robot-status > span:last-child { grid-column: 3; }
+  .cutu-robot-selection { bottom: 126px; left: 14px; }
+}

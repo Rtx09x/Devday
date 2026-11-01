@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!-- Photo-informed native CAD reconstruction, converted mm -> m. No measured dynamics. -->
+<robot name="Makada photo-informed hexapod">
+  <cutucircuits assumptions="All masses, inertia, friction and collision envelopes are estimates. Rigid wire legs and glue; no compliance or validated gait. Meshes preserve native CAD visuals. Servo effort and pulse-to-angle calibration are not measured."/>
+  <link name="body">
+    <inertial><origin xyz="0 0.006 0.056"/><mass value="0.047"/><inertia ixx="0.000025" ixy="0" ixz="0" iyy="0.000012" iyz="0" izz="0.000025"/></inertial>
+    <collision><origin xyz="-0.013 0 0.0575"/><geometry><box size="0.012 0.023 0.029"/></geometry></collision>
+    <collision><origin xyz="0.013 0 0.0575"/><geometry><box size="0.012 0.023 0.029"/></geometry></collision>
+    <collision><origin xyz="0 -0.0005 0.055"/><geometry><box size="0.012 0.029 0.023"/></geometry></collision>
+    <!-- Rear NodeMCU collision envelope includes inward headers and module; estimated. -->
+    <collision><origin xyz="0 0.0213 0.0555"/><geometry><box size="0.050 0.010 0.026"/></geometry></collision>
+    <collision><origin xyz="-0.033 0.0235 0.0555"/><geometry><box size="0.014 0.004 0.007"/></geometry></collision>
+    <visual name="servo-left"><geometry><mesh filename="meshes/servo-left.stl"/></geometry><material name="servo-left"><color rgba="0.09412 0.3098 0.75686 0.96"/></material></visual>
+    <visual name="servo-left-seams"><geometry><mesh filename="meshes/servo-left-seams.stl"/></geometry><material name="servo-left-seams"><color rgba="0.06275 0.21961 0.52941 1"/></material></visual>
+    <visual name="servo-right"><geometry><mesh filename="meshes/servo-right.stl"/></geometry><material name="servo-right"><color rgba="0.09412 0.3098 0.75686 0.96"/></material></visual>
+    <visual name="servo-right-seams"><geometry><mesh filename="meshes/servo-right-seams.stl"/></geometry><material name="servo-right-seams"><color rgba="0.06275 0.21961 0.52941 1"/></material></visual>
+    <visual name="servo-tilt"><geometry><mesh filename="meshes/servo-tilt.stl"/></geometry><material name="servo-tilt"><color rgba="0.09412 0.3098 0.75686 0.96"/></material></visual>
+    <visual name="servo-tilt-seams"><geometry><mesh filename="meshes/servo-tilt-seams.stl"/></geometry><material name="servo-tilt-seams"><color rgba="0.06275 0.21961 0.52941 1"/></material></visual>
+    <visual name="cable-left-0"><geometry><mesh filename="meshes/cable-left-0.stl"/></geometry><material name="cable-left-0"><color rgba="0.54118 0.28627 0.16863 1"/></material></visual>
+    <visual name="cable-left-1"><geometry><mesh filename="meshes/cable-left-1.stl"/></geometry><material name="cable-left-1"><color rgba="0.83137 0.26667 0.15686 1"/></material></visual>
+    <visual name="cable-left-2"><geometry><mesh filename="meshes/cable-left-2.stl"/></geometry><material name="cable-left-2"><color rgba="0.92941 0.57255 0.18431 1"/></material></visual>
+    <visual name="plug-left"><geometry><mesh filename="meshes/plug-left.stl"/></geometry><material name="plug-left"><color rgba="0.15686 0.17647 0.19216 1"/></material></visual>
+    <visual name="cable-tilt-0"><geometry><mesh filename="meshes/cable-tilt-0.stl"/></geometry><material name="cable-tilt-0"><color rgba="0.54118 0.28627 0.16863 1"/></material></visual>
+    <visual name="cable-tilt-1"><geometry><mesh filename="meshes/cable-tilt-1.stl"/></geometry><material name="cable-tilt-1"><color rgba="0.83137 0.26667 0.15686 1"/></material></visual>
+    <visual name="cable-tilt-2"><geometry><mesh filename="meshes/cable-tilt-2.stl"/></geometry><material name="cable-tilt-2"><color rgba="0.92941 0.57255 0.18431 1"/></material></visual>
+    <visual name="plug-tilt"><geometry><mesh filename="meshes/plug-tilt.stl"/></geometry><material name="plug-tilt"><color rgba="0.15686 0.17647 0.19216 1"/></material></visual>
+    <visual name="cable-right-0"><geometry><mesh filename="meshes/cable-right-0.stl"/></geometry><material name="cable-right-0"><color rgba="0.54118 0.28627 0.16863 1"/></material></visual>
+    <visual name="cable-right-1"><geometry><mesh filename="meshes/cable-right-1.stl"/></geometry><material name="cable-right-1"><color rgba="0.83137 0.26667 0.15686 1"/></material></visual>
+    <visual name="cable-right-2"><geometry><mesh filename="meshes/cable-right-2.stl"/></geometry><material name="cable-right-2"><color rgba="0.92941 0.57255 0.18431 1"/></material></visual>
+    <visual name="plug-right"><geometry><mesh filename="meshes/plug-right.stl"/></geometry><material name="plug-right"><color rgba="0.15686 0.17647 0.19216 1"/></material></visual>
+    <visual name="controller"><geometry><mesh filename="meshes/controller.stl"/></geometry><material name="controller"><color rgba="0.09412 0.23529 0.19608 1"/></material></visual>
+    <visual name="power-bus"><geometry><mesh filename="meshes/power-bus.stl"/></geometry><material name="power-bus"><color rgba="0.16078 0.18824 0.21961 1"/></material></visual>
+    <visual name="controller-module"><geometry><mesh filename="meshes/controller-module.stl"/></geometry><material name="controller-module"><color rgba="0.72549 0.74118 0.74510 1"/></material></visual>
+    <visual name="controller-antenna"><geometry><mesh filename="meshes/controller-antenna.stl"/></geometry><material name="controller-antenna"><color rgba="0.14118 0.15686 0.14118 1"/></material></visual>
+    <visual name="controller-antenna-trace"><geometry><mesh filename="meshes/controller-antenna-trace.stl"/></geometry><material name="controller-antenna-trace"><color rgba="0.83529 0.67843 0.32549 1"/></material></visual>
+    <visual name="controller-usb"><geometry><mesh filename="meshes/controller-usb.stl"/></geometry><material name="controller-usb"><color rgba="0.70588 0.72941 0.75294 1"/></material></visual>
+    <visual name="controller-components"><geometry><mesh filename="meshes/controller-components.stl"/></geometry><material name="controller-components"><color rgba="0.14902 0.16863 0.18039 1"/></material></visual>
+    <visual name="controller-headers"><geometry><mesh filename="meshes/controller-headers.stl"/></geometry><material name="controller-headers"><color rgba="0.11373 0.13725 0.15294 1"/></material></visual>
+    <visual name="controller-labels"><geometry><mesh filename="meshes/controller-labels.stl"/></geometry><material name="controller-labels"><color rgba="0.94902 0.94118 0.85098 1"/></material></visual>
+    <visual name="power-bus-pads"><geometry><mesh filename="meshes/power-bus-pads.stl"/></geometry><material name="power-bus-pads"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-common-ground"><geometry><mesh filename="meshes/controller-common-ground.stl"/></geometry><material name="controller-common-ground"><color rgba="0.54118 0.28627 0.16863 1"/></material></visual>
+    <visual name="controller-pin-A0"><geometry><mesh filename="meshes/controller-pin-A0.stl"/></geometry><material name="controller-pin-A0"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-RSV1"><geometry><mesh filename="meshes/controller-pin-RSV1.stl"/></geometry><material name="controller-pin-RSV1"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-RSV2"><geometry><mesh filename="meshes/controller-pin-RSV2.stl"/></geometry><material name="controller-pin-RSV2"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-SD3"><geometry><mesh filename="meshes/controller-pin-SD3.stl"/></geometry><material name="controller-pin-SD3"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-SD2"><geometry><mesh filename="meshes/controller-pin-SD2.stl"/></geometry><material name="controller-pin-SD2"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-SD1"><geometry><mesh filename="meshes/controller-pin-SD1.stl"/></geometry><material name="controller-pin-SD1"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-CMD"><geometry><mesh filename="meshes/controller-pin-CMD.stl"/></geometry><material name="controller-pin-CMD"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-SD0"><geometry><mesh filename="meshes/controller-pin-SD0.stl"/></geometry><material name="controller-pin-SD0"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-CLK"><geometry><mesh filename="meshes/controller-pin-CLK.stl"/></geometry><material name="controller-pin-CLK"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-GND-L1"><geometry><mesh filename="meshes/controller-pin-GND-L1.stl"/></geometry><material name="controller-pin-GND-L1"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-3V3-L"><geometry><mesh filename="meshes/controller-pin-3V3-L.stl"/></geometry><material name="controller-pin-3V3-L"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-EN"><geometry><mesh filename="meshes/controller-pin-EN.stl"/></geometry><material name="controller-pin-EN"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-RST"><geometry><mesh filename="meshes/controller-pin-RST.stl"/></geometry><material name="controller-pin-RST"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-GND-L2"><geometry><mesh filename="meshes/controller-pin-GND-L2.stl"/></geometry><material name="controller-pin-GND-L2"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-VIN"><geometry><mesh filename="meshes/controller-pin-VIN.stl"/></geometry><material name="controller-pin-VIN"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-D0"><geometry><mesh filename="meshes/controller-pin-D0.stl"/></geometry><material name="controller-pin-D0"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-D1"><geometry><mesh filename="meshes/controller-pin-D1.stl"/></geometry><material name="controller-pin-D1"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-D2"><geometry><mesh filename="meshes/controller-pin-D2.stl"/></geometry><material name="controller-pin-D2"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-D3"><geometry><mesh filename="meshes/controller-pin-D3.stl"/></geometry><material name="controller-pin-D3"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-D4"><geometry><mesh filename="meshes/controller-pin-D4.stl"/></geometry><material name="controller-pin-D4"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-3V3-R1"><geometry><mesh filename="meshes/controller-pin-3V3-R1.stl"/></geometry><material name="controller-pin-3V3-R1"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-GND-R1"><geometry><mesh filename="meshes/controller-pin-GND-R1.stl"/></geometry><material name="controller-pin-GND-R1"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-D5"><geometry><mesh filename="meshes/controller-pin-D5.stl"/></geometry><material name="controller-pin-D5"><color rgba="0.93725 0.71373 0.30980 1"/></material></visual>
+    <visual name="controller-pin-D6"><geometry><mesh filename="meshes/controller-pin-D6.stl"/></geometry><material name="controller-pin-D6"><color rgba="0.93725 0.71373 0.30980 1"/></material></visual>
+    <visual name="controller-pin-D7"><geometry><mesh filename="meshes/controller-pin-D7.stl"/></geometry><material name="controller-pin-D7"><color rgba="0.93725 0.71373 0.30980 1"/></material></visual>
+    <visual name="controller-pin-D8"><geometry><mesh filename="meshes/controller-pin-D8.stl"/></geometry><material name="controller-pin-D8"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-RX"><geometry><mesh filename="meshes/controller-pin-RX.stl"/></geometry><material name="controller-pin-RX"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-TX"><geometry><mesh filename="meshes/controller-pin-TX.stl"/></geometry><material name="controller-pin-TX"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-GND-R2"><geometry><mesh filename="meshes/controller-pin-GND-R2.stl"/></geometry><material name="controller-pin-GND-R2"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="controller-pin-3V3-R2"><geometry><mesh filename="meshes/controller-pin-3V3-R2.stl"/></geometry><material name="controller-pin-3V3-R2"><color rgba="0.78431 0.70196 0.43529 1"/></material></visual>
+    <visual name="body"><geometry><mesh filename="meshes/body.stl"/></geometry><material name="body"><color rgba="0.85882 0.90196 0.9098 0.55"/></material></visual>
+  </link>
+  <link name="left_wire_pair">
+    <inertial><mass value="0.005"/><inertia ixx="0.00003" ixy="0" ixz="0" iyy="0.00003" iyz="0" izz="0.00004"/></inertial>
+    <collision><origin xyz="-0.00650000 -0.00550000 0.00120000" rpy="0 1.5707963268 -2.4393357221"/><geometry><cylinder radius="0.00055" length="0.01702939"/></geometry></collision>
+    <collision><origin xyz="-0.02100000 -0.02125000 0.01070000" rpy="0 0.9398050075 -2.2335258347"/><geometry><cylinder radius="0.00055" length="0.03220637"/></geometry></collision>
+    <collision><origin xyz="-0.03600000 -0.04000000 0.02770000" rpy="0 0.9728576775 -2.2597207150"/><geometry><cylinder radius="0.00055" length="0.02664583"/></geometry></collision>
+    <collision><origin xyz="-0.07150000 -0.07850000 -0.01870000" rpy="0 2.4868557992 -2.3305590817"/><geometry><cylinder radius="0.00055" length="0.13590379"/></geometry></collision>
+    <collision><origin xyz="-0.10000000 -0.10850000 -0.07260000"/><geometry><sphere radius="0.0015"/></geometry></collision>
+    <collision><origin xyz="-0.00650000 0.00550000 0.00120000" rpy="0 1.5707963268 2.4393357221"/><geometry><cylinder radius="0.00055" length="0.01702939"/></geometry></collision>
+    <collision><origin xyz="-0.02100000 0.01575000 0.01070000" rpy="0 0.7749696944 2.6057814156"/><geometry><cylinder radius="0.00055" length="0.02659417"/></geometry></collision>
+    <collision><origin xyz="-0.03600000 0.02900000 0.02770000" rpy="0 0.9728576775 2.2597207150"/><geometry><cylinder radius="0.00055" length="0.02664583"/></geometry></collision>
+    <collision><origin xyz="-0.07150000 0.06750000 -0.01870000" rpy="0 2.4868557992 2.3305590817"/><geometry><cylinder radius="0.00055" length="0.13590379"/></geometry></collision>
+    <collision><origin xyz="-0.10000000 0.09750000 -0.07260000"/><geometry><sphere radius="0.0015"/></geometry></collision>
+    <visual name="horn-left"><geometry><mesh filename="meshes/horn-left.stl"/></geometry><material name="horn-left"><color rgba="0.9451 0.93725 0.87451 1"/></material></visual>
+    <visual name="horn-left-screw"><geometry><mesh filename="meshes/horn-left-screw.stl"/></geometry><material name="horn-left-screw"><color rgba="0.70196 0.7098 0.69804 1"/></material></visual>
+    <visual name="glue-left"><geometry><mesh filename="meshes/glue-left.stl"/></geometry><material name="glue-left"><color rgba="0.8902 0.92549 0.92941 0.6"/></material></visual>
+    <visual name="leg-left-1"><geometry><mesh filename="meshes/leg-left-1.stl"/></geometry><material name="leg-left-1"><color rgba="0.72549 0.77647 0.81569 1"/></material></visual>
+    <visual name="foot-left-1"><geometry><mesh filename="meshes/foot-left-1.stl"/></geometry><material name="foot-left-1"><color rgba="0.82353 0.87843 0.8902 0.65"/></material></visual>
+    <visual name="leg-left-3"><geometry><mesh filename="meshes/leg-left-3.stl"/></geometry><material name="leg-left-3"><color rgba="0.72549 0.77647 0.81569 1"/></material></visual>
+    <visual name="foot-left-3"><geometry><mesh filename="meshes/foot-left-3.stl"/></geometry><material name="foot-left-3"><color rgba="0.82353 0.87843 0.8902 0.65"/></material></visual>
+  </link>
+  <link name="right_wire_pair">
+    <inertial><mass value="0.005"/><inertia ixx="0.00003" ixy="0" ixz="0" iyy="0.00003" iyz="0" izz="0.00004"/></inertial>
+    <collision><origin xyz="0.00650000 -0.00550000 0.00120000" rpy="0 1.5707963268 -0.7022569315"/><geometry><cylinder radius="0.00055" length="0.01702939"/></geometry></collision>
+    <collision><origin xyz="0.02100000 -0.02125000 0.01070000" rpy="0 0.9398050075 -0.9080668189"/><geometry><cylinder radius="0.00055" length="0.03220637"/></geometry></collision>
+    <collision><origin xyz="0.03600000 -0.04000000 0.02770000" rpy="0 0.9728576775 -0.8818719386"/><geometry><cylinder radius="0.00055" length="0.02664583"/></geometry></collision>
+    <collision><origin xyz="0.07150000 -0.07850000 -0.01870000" rpy="0 2.4868557992 -0.8110335719"/><geometry><cylinder radius="0.00055" length="0.13590379"/></geometry></collision>
+    <collision><origin xyz="0.10000000 -0.10850000 -0.07260000"/><geometry><sphere radius="0.0015"/></geometry></collision>
+    <collision><origin xyz="0.00650000 0.00550000 0.00120000" rpy="0 1.5707963268 0.7022569315"/><geometry><cylinder radius="0.00055" length="0.01702939"/></geometry></collision>
+    <collision><origin xyz="0.02100000 0.01575000 0.01070000" rpy="0 0.7749696944 0.5358112380"/><geometry><cylinder radius="0.00055" length="0.02659417"/></geometry></collision>
+    <collision><origin xyz="0.03600000 0.02900000 0.02770000" rpy="0 0.9728576775 0.8818719386"/><geometry><cylinder radius="0.00055" length="0.02664583"/></geometry></collision>
+    <collision><origin xyz="0.07150000 0.06750000 -0.01870000" rpy="0 2.4868557992 0.8110335719"/><geometry><cylinder radius="0.00055" length="0.13590379"/></geometry></collision>
+    <collision><origin xyz="0.10000000 0.09750000 -0.07260000"/><geometry><sphere radius="0.0015"/></geometry></collision>
+    <visual name="horn-right"><geometry><mesh filename="meshes/horn-right.stl"/></geometry><material name="horn-right"><color rgba="0.9451 0.93725 0.87451 1"/></material></visual>
+    <visual name="horn-right-screw"><geometry><mesh filename="meshes/horn-right-screw.stl"/></geometry><material name="horn-right-screw"><color rgba="0.70196 0.7098 0.69804 1"/></material></visual>
+    <visual name="glue-right"><geometry><mesh filename="meshes/glue-right.stl"/></geometry><material name="glue-right"><color rgba="0.8902 0.92549 0.92941 0.6"/></material></visual>
+    <visual name="leg-right-1"><geometry><mesh filename="meshes/leg-right-1.stl"/></geometry><material name="leg-right-1"><color rgba="0.72549 0.77647 0.81569 1"/></material></visual>
+    <visual name="foot-right-1"><geometry><mesh filename="meshes/foot-right-1.stl"/></geometry><material name="foot-right-1"><color rgba="0.82353 0.87843 0.8902 0.65"/></material></visual>
+    <visual name="leg-right-3"><geometry><mesh filename="meshes/leg-right-3.stl"/></geometry><material name="leg-right-3"><color rgba="0.72549 0.77647 0.81569 1"/></material></visual>
+    <visual name="foot-right-3"><geometry><mesh filename="meshes/foot-right-3.stl"/></geometry><material name="foot-right-3"><color rgba="0.82353 0.87843 0.8902 0.65"/></material></visual>
+  </link>
+  <link name="middle_wire_pair">
+    <inertial><mass value="0.005"/><inertia ixx="0.00003" ixy="0" ixz="0" iyy="0.00003" iyz="0" izz="0.00004"/></inertial>
+    <collision><origin xyz="-0.01400000 -0.00170000 -0.00065000" rpy="0 1.6171915806 3.1415926536"/><geometry><cylinder radius="0.00055" length="0.02803016"/></geometry></collision>
+    <collision><origin xyz="-0.03150000 -0.00010000 -0.00040000" rpy="0 1.3410603658 2.7128146261"/><geometry><cylinder radius="0.00055" length="0.00790443"/></geometry></collision>
+    <collision><origin xyz="-0.04700000 0.00500000 0.01550000" rpy="0 0.6947382762 2.8577985444"/><geometry><cylinder radius="0.00055" length="0.03905125"/></geometry></collision>
+    <collision><origin xyz="-0.09100000 0.01300000 -0.01440000" rpy="0 2.5177624035 3.0018837793"/><geometry><cylinder radius="0.00055" length="0.11063923"/></geometry></collision>
+    <collision><origin xyz="-0.12300000 0.01750000 -0.05930000"/><geometry><sphere radius="0.0015"/></geometry></collision>
+    <collision><origin xyz="0.01400000 -0.00170000 -0.00065000" rpy="0 1.6171915806 0.0000000000"/><geometry><cylinder radius="0.00055" length="0.02803016"/></geometry></collision>
+    <collision><origin xyz="0.03150000 -0.00010000 -0.00040000" rpy="0 1.3410603658 0.4287780274"/><geometry><cylinder radius="0.00055" length="0.00790443"/></geometry></collision>
+    <collision><origin xyz="0.04700000 0.00500000 0.01550000" rpy="0 0.6947382762 0.2837941092"/><geometry><cylinder radius="0.00055" length="0.03905125"/></geometry></collision>
+    <collision><origin xyz="0.09100000 0.01300000 -0.01440000" rpy="0 2.5177624035 0.1397088743"/><geometry><cylinder radius="0.00055" length="0.11063923"/></geometry></collision>
+    <collision><origin xyz="0.12300000 0.01750000 -0.05930000"/><geometry><sphere radius="0.0015"/></geometry></collision>
+    <visual name="horn-tilt"><geometry><mesh filename="meshes/horn-tilt.stl"/></geometry><material name="horn-tilt"><color rgba="0.9451 0.93725 0.87451 1"/></material></visual>
+    <visual name="horn-tilt-screw"><geometry><mesh filename="meshes/horn-tilt-screw.stl"/></geometry><material name="horn-tilt-screw"><color rgba="0.70196 0.7098 0.69804 1"/></material></visual>
+    <visual name="glue-tilt"><geometry><mesh filename="meshes/glue-tilt.stl"/></geometry><material name="glue-tilt"><color rgba="0.8902 0.92549 0.92941 0.6"/></material></visual>
+    <visual name="leg-left-2"><geometry><mesh filename="meshes/leg-left-2.stl"/></geometry><material name="leg-left-2"><color rgba="0.72549 0.77647 0.81569 1"/></material></visual>
+    <visual name="foot-left-2"><geometry><mesh filename="meshes/foot-left-2.stl"/></geometry><material name="foot-left-2"><color rgba="0.82353 0.87843 0.8902 0.65"/></material></visual>
+    <visual name="leg-right-2"><geometry><mesh filename="meshes/leg-right-2.stl"/></geometry><material name="leg-right-2"><color rgba="0.72549 0.77647 0.81569 1"/></material></visual>
+    <visual name="foot-right-2"><geometry><mesh filename="meshes/foot-right-2.stl"/></geometry><material name="foot-right-2"><color rgba="0.82353 0.87843 0.8902 0.65"/></material></visual>
+  </link>
+  <joint name="left" type="revolute"><parent link="body"/><child link="left_wire_pair"/><origin xyz="-0.013 0.0055 0.07379999999999999"/><axis xyz="0 0 1"/><limit lower="-0.65" upper="0.65"/></joint>
+  <joint name="right" type="revolute"><parent link="body"/><child link="right_wire_pair"/><origin xyz="0.013 0.0055 0.07379999999999999"/><axis xyz="0 0 1"/><limit lower="-0.65" upper="0.65"/></joint>
+  <joint name="tilt" type="revolute"><parent link="body"/><child link="middle_wire_pair"/><origin xyz="0.0 -0.0165 0.0605"/><axis xyz="0 1 0"/><limit lower="-0.65" upper="0.65"/></joint>
+</robot>
